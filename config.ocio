@@ -15,7 +15,7 @@ roles:
   default_byte: sRGB 2.2
   default_float: Linear BT.709 I-D65
   default_sequencer: sRGB 2.2
-  matte_paint: AgX Log
+  matte_paint: sRGB 2.2
   reference: Linear CIE-XYZ I-E
   scene_linear: Linear BT.709 I-E
   texture_paint: sRGB 2.2
