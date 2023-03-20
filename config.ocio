@@ -361,9 +361,11 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
-        - !<FileTransform> {src: guard_rail_bt2020.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
+        - !<ExponentTransform> {value: 0.4}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
+        - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: BT.2020 2.4}
     to_scene_reference: !<GroupTransform>
       children:
@@ -380,11 +382,12 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
+        - !<ExponentTransform> {value: 0.4}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
         - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
-        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.709 I-D65}
-        - !<ColorSpaceTransform> {src: Linear BT.709 I-D65, dst: sRGB 2.2}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
+        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: sRGB 2.2}
     to_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: sRGB 2.2, dst: Linear CIE-XYZ I-E}
@@ -416,10 +419,11 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
-        - !<FileTransform> {src: guard_rail_p3.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
-        - !<RangeTransform> {max_in_value: 1, max_out_value: 1}
+        - !<ExponentTransform> {value: 0.4}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
+        - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Display P3 2.2}
     to_scene_reference: !<GroupTransform>
       children:
