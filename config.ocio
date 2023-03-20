@@ -363,7 +363,9 @@ colorspaces:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
         - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
-        - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
+        - !<FileTransform> {src: guard_rail_bt2020.cube, interpolation: best}
+        - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
         - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: BT.2020 2.4}
@@ -384,7 +386,9 @@ colorspaces:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
         - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
+        - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
         - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: sRGB 2.2}
@@ -421,7 +425,9 @@ colorspaces:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
         - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167]}
-        - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
+        - !<ExponentTransform> {value: 0.4, direction: inverse}
+        - !<FileTransform> {src: guard_rail_p3.cube, interpolation: best}
+        - !<ExponentTransform> {value: 0.4}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 4.02606881167], direction: inverse}
         - !<ExponentTransform> {value: 0.4, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Display P3 2.2}
