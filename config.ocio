@@ -361,9 +361,13 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084}
+        - !<ExponentTransform> {value: 1.5}
         - !<FileTransform> {src: guard_rail_bt2020.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
+        - !<ExponentTransform> {value: 1.5, direction: inverse}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: BT.2020 2.4}
     to_scene_reference: !<GroupTransform>
       children:
@@ -380,9 +384,13 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084}
+        - !<ExponentTransform> {value: 1.5}
         - !<FileTransform> {src: guard_rail_srgb.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
+        - !<ExponentTransform> {value: 1.5, direction: inverse}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: sRGB 2.2}
     to_scene_reference: !<GroupTransform>
       children:
@@ -415,9 +423,13 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084}
+        - !<ExponentTransform> {value: 1.5}
         - !<FileTransform> {src: guard_rail_p3.cube, interpolation: best}
-        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
+        - !<ExponentTransform> {value: 1.5, direction: inverse}
+        - !<BuiltinTransform> {style: CURVE - LINEAR_to_ST-2084, direction: inverse}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0, max_in_value: 10, max_out_value: 100, style: noclamp, direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Display P3 2.2}
     to_scene_reference: !<GroupTransform>
       children:
