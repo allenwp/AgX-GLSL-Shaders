@@ -27,6 +27,7 @@ roles:
   scene_linear: Linear BT.709 I-E
   rendering: Linear BT.709 I-E
   texture_paint: sRGB 2.2
+  # When using Spectral Cycles, Change XYZ role to I-E
   XYZ: Linear CIE-XYZ I-D65
 
 file_rules:
