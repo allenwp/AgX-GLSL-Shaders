@@ -1,3 +1,10 @@
+# OpenColorIO configuration file for Blender, replacing Filmic
+
+# Based on original AgX by Troy Sobotka: https://github.com/sobotka/AgX https://github.com/sobotka/SB2383-Configuration-Generation
+
+# Further Developed by Zijun Eary Zhou法纤净, Mark Faderbauer, and Sakari Kapanen
+# Repository for this version: https://github.com/EaryChow/AgX
+
 ocio_profile_version: 2
 
 environment:
@@ -18,6 +25,7 @@ roles:
   matte_paint: sRGB 2.2
   reference: Linear CIE-XYZ I-E
   scene_linear: Linear BT.709 I-E
+  rendering: Linear BT.709 I-E
   texture_paint: sRGB 2.2
   XYZ: Linear CIE-XYZ I-D65
 
