@@ -633,19 +633,19 @@ colorspaces:
         - !<ExponentTransform> {value: 2.4, direction: inverse}
 
   - !<ColorSpace>
-    name: Luminance Correction BT.2020
+    name: Luminance Compensation BT.2020
     aliases: []
     family: Utilities
     equalitygroup: ""
     bitdepth: unknown
-    description: Use CIE 2012 Luminance to Compensate for Some Out-of-BT.2020-Domain Values
+    description: Offset the negative values and compensate for luminance
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
-        - !<FileTransform> {src: luminance_correction_bt2020.cube, interpolation: best}
+        - !<FileTransform> {src: luminance_compensation_bt2020.cube, interpolation: best}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear E-Gamut I-D65, direction: inverse}
 
