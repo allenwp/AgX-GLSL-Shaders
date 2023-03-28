@@ -60,7 +60,7 @@ displays:
     - !<View> {name: None, colorspace: Generic Data}
 active_displays: []
 active_views: []
-inactive_colorspaces: [Guard Rail sRGB, Guard Rail P3, Guard Rail BT.1886, Guard Rail BT.2020, Luminance Correction BT.2020, Display P3 2.2 I-E, sRGB 2.2 I-E, BT.2020 2.4 I-E, AgX False Color]
+inactive_colorspaces: [Guard Rail sRGB, Guard Rail P3, Guard Rail BT.1886, Guard Rail BT.2020, Luminance Compensation BT.2020, Display P3 2.2 I-E, sRGB 2.2 I-E, BT.2020 2.4 I-E, AgX False Color]
 
 looks:
   - !<Look>
