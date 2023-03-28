@@ -190,7 +190,7 @@ colorspaces:
     equalitygroup: ""
     bitdepth: 32f
     description: |
-      XYZ transform with assumed I-E white point
+      1931 CIE XYZ with assumed I-E white point
     isdata: false
     allocation: uniform
     allocationvars: [-12.4739, 12.5261]
@@ -202,7 +202,7 @@ colorspaces:
     equalitygroup:
     bitdepth: 32f
     description: |
-      XYZ transform with adapted I-D65 white point
+      1931 CIE XYZ with adapted I-D65 white point
     isdata: false
     allocation: uniform
     from_scene_reference: !<FileTransform> {src: xyz_E_to_D65.spimtx, interpolation: linear}
@@ -309,7 +309,7 @@ colorspaces:
     family: Log Encodings
     equalitygroup: ""
     bitdepth: unknown
-    description: AgX Log Encoding
+    description: Chroma-inset Log Encoding with 25 Stops of Dynamic Range
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
@@ -472,7 +472,7 @@ colorspaces:
     family: Imagery
     equalitygroup: ""
     bitdepth: unknown
-    description: AgX Base Image Encoding for sRGB 2.2 Display
+    description: AgX Image Encoding for sRGB 2.2 Display
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
@@ -489,7 +489,7 @@ colorspaces:
     family: Imagery
     equalitygroup: ""
     bitdepth: unknown
-    description: AgX Base Image Encoding for Display P3 2.2 Display
+    description: AgX Image Encoding for Display P3 2.2 Display
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
@@ -506,7 +506,7 @@ colorspaces:
     family: Imagery
     equalitygroup: ""
     bitdepth: unknown
-    description: AgX Base Image Encoding for BT.1886 2.4 Display
+    description: AgX Image Encoding for BT.1886 2.4 Display
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
