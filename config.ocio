@@ -314,7 +314,7 @@ colorspaces:
     allocation: uniform
     from_scene_reference: !<GroupTransform>
       children:
-        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Luminance Correction BT.2020}
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: LLuminance Compensation BT.2020}
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear BT.2020 I-D65}
         - !<MatrixTransform> {matrix: [0.8127985426204, 0.10575541804334, 0.0814460393362595, 0, 0.101729546302339, 0.751545638069437, 0.146724815628225, 0, 0.0722395899390781, 0.0879927925471106, 0.839767617513811, 0, 0, 0, 0, 1]}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
