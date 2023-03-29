@@ -52,20 +52,19 @@ The config includes the following view transform:
 
 Different from False Color in current Blender or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore all values below will be linearized 0 to 1 value written in percentage.
 
-
-    | [0.0, 1.0] Closed Domain Linear | Color |
-    | ---- | ---- |
-    | Low Clip | Black |
-    | 0.0001% to 0.05% | Blue |
-    | 0.05% to 0.5% | Blue-Cyan |
-    | 0.5% to 5% | Cyan |
-    | 5% to 16% | Green-Cyan |
-    | 16% to 22% | Grey |
-    | 22% to 35% | Green-Yellow |
-    | 35% to 55% | Yellow |
-    | 55% to 80% | Orange |
-    | 80% to 97% | Red |
-    | High Clip | White |
+[0.0, 1.0] Closed Domain Linear | Color 
+---- | ---- 
+Low Clip | Black 
+0.0001% to 0.05% | Blue
+0.05% to 0.5% | Blue-Cyan
+0.5% to 5% | Cyan
+5% to 16% | Green-Cyan
+16% to 22% | Grey
+22% to 35% | Green-Yellow
+35% to 55% | Yellow
+55% to 80% | Orange
+80% to 97% | Red
+High Clip | White
 
 
 **Looks**
