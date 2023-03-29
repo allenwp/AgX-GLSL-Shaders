@@ -249,7 +249,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACEScg
-    aliases: [lin_ap1, ACES - ACEScg, "ACEScg: Linear - AP1"]
+    aliases: [Linear ACEScg, lin_ap1, ACES - ACEScg, "ACEScg: Linear - AP1"]
     family: Colourspaces
     equalitygroup: ""
     bitdepth: unknown
