@@ -75,7 +75,7 @@ looks:
   - !<Look>
     name: Green Ink
     process_space: AgX Base BT.2020
-    description: A Look with Green Tint in Lower Range and Warm Tint in Higher Range
+    description: A Post-Formation Look with Green Tint in Lower Range and Warm Tint in Higher Range
     transform: !<GroupTransform>
       children:
         - !<CDLTransform> {slope: [1, 0.85, 0.9]}
