@@ -76,7 +76,7 @@ High Clip | White
 
 - `Greyscale` Turn the image into greyscale. Luminance coefficients are BT.2020’s CIE 2012 values, evaluated in Linear state.
 
--  Five Contrast Looks. Similar to Filmic’s contrast looks. All operates in AgX Log, with pivot set in 0.18 middle grey. All using OCIO v2’s `Grading Primary Transform` feature, meaning you can customize your contrast just by editing the values in the config.
+-  Seven Contrast Looks. Similar to Filmic’s contrast looks. All operates in AgX Log, with pivot set in 0.18 middle grey. All using OCIO v2’s `Grading Primary Transform` feature, meaning you can customize your contrast just by editing the values in the config.
 
 **Colorimetric Information**
 
