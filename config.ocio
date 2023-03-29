@@ -183,6 +183,7 @@ looks:
 colorspaces:
   - !<ColorSpace>
     name: Linear CIE-XYZ I-E
+    aliases: ["FilmLight: Linear - XYZ"]
     family: Chromaticity
     equalitygroup: ""
     bitdepth: 32f
@@ -220,7 +221,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Linear BT.709 I-D65
-    aliases: [Linear, Linear BT.709, Linear Tristimulus, Linear Rec.709, linrec709, Utility - Linear - sRGB, Utility - Linear - Rec.709, lin_srgb, Linear Rec.709 (sRGB), lin_rec709_srgb, lin_rec709, lin_srgb]
+    aliases: [Linear, Linear BT.709, Linear Tristimulus, Linear Rec.709, linrec709, Utility - Linear - sRGB, Utility - Linear - Rec.709, lin_srgb, Linear Rec.709 (sRGB), lin_rec709_srgb, lin_rec709, lin_srgb, "CGI: Linear - Rec.709"]
     family: Colourspaces
     equalitygroup: ""
     bitdepth: 32f
@@ -234,7 +235,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACES2065-1
-    aliases: [Linear ACES, aces2065_1, ACES - ACES2065-1, lin_ap0]
+    aliases: [Linear ACES, aces2065_1, ACES - ACES2065-1, lin_ap0, "ACES: Linear - AP0"]
     family: Colourspaces
     equalitygroup: ""
     bitdepth: unknown
@@ -248,7 +249,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: ACEScg
-    aliases: [lin_ap1, ACES - ACEScg]
+    aliases: [lin_ap1, ACES - ACEScg, "ACEScg: Linear - AP1"]
     family: Colourspaces
     equalitygroup: ""
     bitdepth: unknown
@@ -316,7 +317,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: Linear E-Gamut I-D65
-    aliases: []
+    aliases: ["FilmLight: Linear - E-Gamut"]
     family: Colourspaces
     equalitygroup: ""
     bitdepth: 32f
@@ -561,7 +562,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: sRGB 2.2
-    aliases: [sRGB, sRGB 2.2 I-D65, srgb_display, sRGB - Display, g22_rec709, Utility - Gamma 2.2 - Rec.709 - Texture, Utility - sRGB - Texture, sRGB - Texture, srgb_tx, srgb_texture, Input - Generic - sRGB - Texture]
+    aliases: [sRGB, sRGB 2.2 I-D65, srgb_display, sRGB - Display, g22_rec709, Utility - Gamma 2.2 - Rec.709 - Texture, Utility - sRGB - Texture, sRGB - Texture, srgb_tx, srgb_texture, Input - Generic - sRGB - Texture, "sRGB Display: 2.2 Gamma - Rec.709"]
     family: Displays/SDR
     equalitygroup: ""
     bitdepth: unknown
@@ -603,7 +604,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: BT.1886 2.4
-    aliases: [BT.1886, BT.1886 2.4 I-D65, Rec.1886 / Rec.709 Video - Display, rec1886_rec709_video_display, Rec.1886 Rec.709 - Display, rec1886_rec709_display]
+    aliases: [BT.1886, BT.1886 2.4 I-D65, Rec.1886 / Rec.709 Video - Display, rec1886_rec709_video_display, Rec.1886 Rec.709 - Display, rec1886_rec709_display, "Rec1886: 2.4 Gamma - Rec.709"]
     family: Displays/SDR
     equalitygroup: ""
     bitdepth: unknown
@@ -631,7 +632,7 @@ colorspaces:
 
   - !<ColorSpace>
     name: BT.2020 2.4
-    aliases: [BT.2020, BT.2020 2.4 I-D65, Rec.1886 / Rec.2020 Video - Display, rec1886_rec2020_video_display, Rec.1886 Rec.2020 - Display, rec1886_rec2020_display]
+    aliases: [BT.2020, BT.2020 2.4 I-D65, Rec.1886 / Rec.2020 Video - Display, rec1886_rec2020_video_display, Rec.1886 Rec.2020 - Display, rec1886_rec2020_display, "Rec1886: 2.4 Gamma - Rec.2020"]
     family: Displays/SDR
     equalitygroup: ""
     bitdepth: unknown
