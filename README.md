@@ -34,7 +34,7 @@ AgX (Left) vs Filmic (Right)
 
 **How?**
 
-1. Download the latest version of Eary's AgX, Replace your current OpenColorIO configuration in Blender with this version.
+1. Download [the latest version of Eary's AgX](https://codeload.github.com/EaryChow/AgX/zip/refs/heads/main), Replace your current OpenColorIO configuration in Blender with this version.
 
 2. The Blender OpenColorIO configuration directory is located in:
 
