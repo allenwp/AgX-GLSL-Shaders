@@ -68,7 +68,7 @@ High Clip | White
 
 
 **Looks**
-"Looks" are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two pos-formation looks.
+"Looks" are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two post-formation looks.
 
 - `Punchy` A post-formation look that makes the image look more “punchy”. Technically it’s just a power curve of 1.35 post-formation.
 
