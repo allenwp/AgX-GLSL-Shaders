@@ -48,8 +48,10 @@ The config includes the following view transform:
 - `AgX Log` The Log encoding with chroma-inset and rotation of primaries included. Uses BT.2020 primaries with Log 2 encoding from `-12.47393` to `12.5260688117` and I-D65 white point.
 - `AgX False Color` A heat-map-like imagery derived from `AgX`'s formed image. uses BT.2020's CIE 2012 luminance for luminance coefficients evaluation. 
 
-** False Color ranges
+**False Color ranges**
+
 Different from False Color in current Blender or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore all values below will be linearized 0 to 1 value written in percentage.
+
 
     | [0.0, 1.0] Closed Domain Linear | Color |
     | ---- | ---- |
