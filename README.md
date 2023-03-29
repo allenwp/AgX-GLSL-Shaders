@@ -29,6 +29,9 @@ Three of the frequently asked space names are:
 
 Because the current Filmic has issues like the Notorious Six, meaning Filmic collapses all colors into six before attenuating to white. Filmic also doesn't have the capability to handle wider gamut render produced by wider working space, spectral rendering, real-camera-produced colorimetry etc. 
 
+![AgtX_vs_Filmic Sweep](https://user-images.githubusercontent.com/59176246/228655449-0b9b5e7b-e962-400f-bfb5-56c104bc7cd9.png)
+AgX (Left) vs Filmic (Right)
+
 **How?**
 
 1. Download the latest version of Eary's AgX, Replace your current OpenColorIO configuration in Blender with this version.
