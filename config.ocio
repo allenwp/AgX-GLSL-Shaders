@@ -236,6 +236,34 @@ colorspaces:
         - !<MatrixTransform> {matrix: [ 3.2410032329763587, -1.5373989694887855, -0.4986158819963629, 0, -0.9692242522025164, 1.8759299836951759, 0.0415542263400847, 0, 0.0556394198519755, -0.2040112061239099, 1.0571489771875333, 0, 0, 0, 0, 1]}
 
   - !<ColorSpace>
+    name: ACES2065-1
+    aliases: [Linear ACES, aces2065_1, ACES - ACES2065-1, lin_ap0]
+    family: Colourspaces
+    equalitygroup: ""
+    bitdepth: unknown
+    description: Open Domain Linear AP0 Tristimulus with ACES white point
+    isdata: false
+    allocation: uniform
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear CIE-XYZ I-D65}
+        - !<BuiltinTransform> {style: "UTILITY - ACES-AP0_to_CIE-XYZ-D65_BFD", direction: inverse}
+
+  - !<ColorSpace>
+    name: ACEScg
+    aliases: [lin_ap1, ACES - ACEScg]
+    family: Colourspaces
+    equalitygroup: ""
+    bitdepth: unknown
+    description: Open Domain Linear AP1 Tristimulus with ACES white point
+    isdata: false
+    allocation: uniform
+    from_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear CIE-XYZ I-D65}
+        - !<BuiltinTransform> {style: "UTILITY - ACES-AP1_to_CIE-XYZ-D65_BFD", direction: inverse}
+
+  - !<ColorSpace>
     name: Linear DCI-P3 I-E
     family: Colourspaces
     equalitygroup: ""
@@ -295,7 +323,7 @@ colorspaces:
     family: Colourspaces
     equalitygroup: ""
     bitdepth: 32f
-    description: Open Domain E Gamut Tristimulus with I-D65 white point
+    description: Open Domain Linear E Gamut Tristimulus with I-D65 white point
     isdata: false
     allocation: uniform
     from_scene_reference: !<GroupTransform>
