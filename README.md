@@ -4,7 +4,7 @@ AgX (Left) vs Filmic (Right)
 **What?**
 
 
-Eary's AgX is an OCIO v2 configuration maded with the intension to replace Blender's default config, to give Blender a better color management and image formation for the upcoming Spectral Cycles.
+Eary's AgX is an OCIO v2 configuration made with the intension to replace Blender's default config, to give Blender a better color management and image formation for the upcoming Spectral Cycles.
 
 The config was built more specifically for Blender, but other software that supports OCIO v2 should also be able to use it. 
 
