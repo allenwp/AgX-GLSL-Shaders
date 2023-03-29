@@ -97,19 +97,19 @@ High Clip | White
   It's very unlikely someone would use a BT.2020 2.4 display as of now, but since we have the image formed in BT.2020, supporting it is just a "why not?" thing to do.
 
 
-  - `Colorspaces`
+ - `Colorspaces`
     This config supports the following colorspaces:
-  - `Linear CIE-XYZ I-E` This is the standard 1931 CIE chromaticity standard used as reference.
-  - `Linear CIE-XYZ I-D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
-  - `Linear BT.709 I-E` Open Domain Linear BT.709 Tristimulus with I-E white point
-  - `Linear BT.709 I-D65` Open Domain Linear BT.709 Tristimulus with I-D65 white point
-  - `Linear DCI-P3 I-E` Open Domain Linear P3 Tristimulus with I-E white point
-  - `Linear DCI-P3 I-D65` Open Domain Linear P3 Tristimulus with I-D65 white point
-  - `Linear BT.2020 I-E` Open Domain Linear BT.2020 Tristimulus with I-E white point
-  - `Linear BT.2020 I-D65` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
-  - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
-  - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
-  - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
+   - `Linear CIE-XYZ I-E` This is the standard 1931 CIE chromaticity standard used as reference.
+   - `Linear CIE-XYZ I-D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
+   - `Linear BT.709 I-E` Open Domain Linear BT.709 Tristimulus with I-E white point
+   - `Linear BT.709 I-D65` Open Domain Linear BT.709 Tristimulus with I-D65 white point
+   - `Linear DCI-P3 I-E` Open Domain Linear P3 Tristimulus with I-E white point
+   - `Linear DCI-P3 I-D65` Open Domain Linear P3 Tristimulus with I-D65 white point
+   - `Linear BT.2020 I-E` Open Domain Linear BT.2020 Tristimulus with I-E white point
+   - `Linear BT.2020 I-D65` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
+   - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
+   - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
+   - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
 
   Note: `I-E` is short for “Illuminant E”, `I-D65` is short for “Illuminant D65”.
 
