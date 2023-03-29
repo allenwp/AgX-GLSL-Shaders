@@ -65,9 +65,12 @@ inactive_colorspaces: [Guard Rail sRGB, Guard Rail P3, Guard Rail BT.1886, Guard
 looks:
   - !<Look>
     name: Punchy
-    process_space: AgX Log
-    description: A punchy look
-    transform: !<CDLTransform> {power: [1.09055, 1.09055, 1.09055]}
+    process_space: AgX Base BT.2020
+    description: A post-formation punchy look
+    transform: !<GroupTransform>
+      children:
+        - !<CDLTransform> {power: [1.35, 1.35, 1.35]}
+        - !<ColorSpaceTransform> {src: BT.2020 2.4, dst: Guard Rail BT.2020}
 
   - !<Look>
     name: Green Ink
