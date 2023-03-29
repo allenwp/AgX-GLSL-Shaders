@@ -4,7 +4,7 @@ AgX (Left) vs Filmic (Right)
 **What?**
 
 
-Eary's AgX is an OCIO v2 configuration made with the intension to replace Blender's default config, to give Blender a better color management and image formation for the upcoming Spectral Cycles.
+Eary's AgX is an OCIO v2 configuration made with the intention to replace Blender's default config, to give Blender a better color management and image formation for the upcoming Spectral Cycles.
 
 The config was built more specifically for Blender, but other software that supports OCIO v2 should also be able to use it. 
 
@@ -12,13 +12,13 @@ The two featuring image formations (view transforms) are Guard Rail and AgX. Gua
 
 "AgX" the name is a pseudo-chemical notation of silver halide, commonly used in photographic film, therefore, AgX is an alias of Filmic.
 
-AgX is similar to Filmic as a sigmoid-driven formation, while Guard Rail is a minimalist image formation that broke-out from AgX, that only touchs values outside of the valid [0, 1] target display medium range. 
+AgX is similar to Filmic as a sigmoid-driven formation, while Guard Rail is a minimalist image formation that broke-out from AgX, that only touches values out of the valid [0, 1] target display medium range. 
 
 `AgX` Image formation does two things
 - It forms a [0.0, 1.0] closed domain image from the unbounded radiometric-like tristimulus data that modern 3D render engines like Cycles and Eevee produce. 
-- It provides smooth chromatic attenation in the image accross challenging use cases including wider gamut rendering, real-camera-produced colorimetry etc.
+- It provides smooth chromatic attenuation in the image across challenging use cases including wider gamut rendering, real-camera-produced colorimetry etc.
 
-This config also comes with a different colorspace naming scheme, but with backwards compatibility setup with OCIO v2 feature of aliaes, so that texture colorspaces in old .blend files will get auto-converted to the new names. 
+This config also comes with a different colorspace naming scheme, but with backwards compatibility setup with OCIO v2 feature of aliases, so that texture colorspaces in old .blend files will get auto-converted to the new names. 
 
 Three of the frequently asked space names are:
 - `Generic Data`, this corresponds to the legacy `Non-Color` and `Raw`
@@ -27,7 +27,7 @@ Three of the frequently asked space names are:
 
 **Why?**
 
-Because the current Filmic has issues like the Notorious Six, meaning Filmic collapes all colors into six before attenuating to white. Filmic also doesn't have the capability to handle wider gamut render produced by wider working space, spectral rendering, real-camera-produced colorimetry etc. 
+Because the current Filmic has issues like the Notorious Six, meaning Filmic collapses all colors into six before attenuating to white. Filmic also doesn't have the capability to handle wider gamut render produced by wider working space, spectral rendering, real-camera-produced colorimetry etc. 
 
 **How?**
 
@@ -50,7 +50,7 @@ The config includes the following view transform:
 
 **False Color ranges**
 
-Different from False Color in current Blender or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore all values below will be linearized 0 to 1 value written in percentage.
+Different from False Color in current Blender or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore, all values below will be linearized 0 to 1 value written in percentage.
 
 [0.0, 1.0] Closed Domain Linear | Color 
 ---- | ---- 
@@ -68,7 +68,7 @@ High Clip | White
 
 
 **Looks**
-Looks are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two pos-formation looks.
+"Looks" are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two pos-formation looks.
 
 - `Punchy` A post-formation look that makes the image look more “punchy”. Technically it’s just a power curve of 1.35 post-formation.
 
@@ -111,7 +111,7 @@ Looks are artistic adjustment to the image formation chain. The artistic adjustm
   - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
   - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
 
-  Note: `I-E` is short for “Iluminant E”, `I-D65` is short for “Iluminant D65”.
+  Note: `I-E` is short for “Illuminant E”, `I-D65` is short for “Illuminant D65”.
 
  - The use of I-E white point
  
