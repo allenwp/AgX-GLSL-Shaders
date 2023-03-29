@@ -110,6 +110,11 @@ High Clip | White
    - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
    - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
    - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
+   - `sRGB 2.2` sRGB 2.2 Exponent Reference EOTF Display
+   - `BT.1886 2.4` BT.1886 2.4 Exponent EOTF Display
+   - `Display P3 2.2`Display P3 2.2 Exponent EOTF Display
+   - `BT.2020 2.4` BT.2020 2.4 Exponent EOTF Display
+   - `Generic Data` Generic data that is not color, will not apply any color transform
 
   Note: `I-E` is short for “Illuminant E”, `I-D65` is short for “Illuminant D65”.
 
