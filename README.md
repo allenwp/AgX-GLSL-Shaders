@@ -94,28 +94,28 @@ Looks are artistic adjustment to the image formation chain. The artistic adjustm
     Apple iMac from late 2015 on.
   - `BT.2020`BT.2020 displays with 2.4 native power function.
 
-It's very unlikely someone would use a BT.2020 2.4 display as of now, but since we have the image formed in BT.2020, supporting it is just a "why not?" thing to do.
+  It's very unlikely someone would use a BT.2020 2.4 display as of now, but since we have the image formed in BT.2020, supporting it is just a "why not?" thing to do.
 
 
--`Colorspaces`
-  This config supports the following colorspaces:
+  - `Colorspaces`
+    This config supports the following colorspaces:
   - `Linear CIE-XYZ I-E` This is the standard 1931 CIE chromaticity standard used as reference.
-- `Linear CIE-XYZ I-D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
-- `Linear BT.709 I-E` Open Domain Linear BT.709 Tristimulus with I-E white point
-- `Linear BT.709 I-D65` Open Domain Linear BT.709 Tristimulus with I-D65 white point
-- `Linear DCI-P3 I-E` Open Domain Linear P3 Tristimulus with I-E white point
-- `Linear DCI-P3 I-D65` Open Domain Linear P3 Tristimulus with I-D65 white point
-- `Linear BT.2020 I-E` Open Domain Linear BT.2020 Tristimulus with I-E white point
-- `Linear BT.2020 I-D65` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
-- `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
-- `ACEScg` Open Domain AP1 Tristimulus with ACES white point
-- `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
+  - `Linear CIE-XYZ I-D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
+  - `Linear BT.709 I-E` Open Domain Linear BT.709 Tristimulus with I-E white point
+  - `Linear BT.709 I-D65` Open Domain Linear BT.709 Tristimulus with I-D65 white point
+  - `Linear DCI-P3 I-E` Open Domain Linear P3 Tristimulus with I-E white point
+  - `Linear DCI-P3 I-D65` Open Domain Linear P3 Tristimulus with I-D65 white point
+  - `Linear BT.2020 I-E` Open Domain Linear BT.2020 Tristimulus with I-E white point
+  - `Linear BT.2020 I-D65` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
+  - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
+  - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
+  - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
 
-Note: `I-E` is short for “Iluminant E”, `I-D65` is short for “Iluminant D65”.
+  Note: `I-E` is short for “Iluminant E”, `I-D65` is short for “Iluminant D65”.
 
  - The use of I-E white point
  
-    The main reason for supporting the I-E version of the spaces is to be prepared for the upcoming Spectral Cycles. Spectral renderers with capability to input RGB textures require an I-E based RGB working space to ensure an error-free spectral reconstruction/upsampling process. 
+      The main reason for supporting the I-E version of the spaces is to be prepared for the upcoming Spectral Cycles. Spectral renderers with capability to input RGB textures require an I-E based RGB working space to ensure an error-free spectral reconstruction/upsampling process. 
 
-    Note for using Eary’s AgX for Spectral Cycles: Remember to change the XYZ role to the I-E version of the XYZ chromaticity.   
+      Note for using Eary’s AgX for Spectral Cycles: Remember to change the XYZ role to the I-E version of the XYZ chromaticity.   
 
