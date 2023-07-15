@@ -667,16 +667,13 @@ colorspaces:
         - !<FileTransform> {src: luminance_compensation_bt2020.cube, interpolation: best}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65}
-        - !<RangeTransform> {min_in_value: 0, min_out_value: 0}
     to_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65, direction: inverse}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
         - !<FileTransform> {src: luminance_compensation_bt2020.cube, interpolation: best}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
-        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65}
-        - !<RangeTransform> {min_in_value: 0, min_out_value: 0}
-        - !<ColorSpaceTransform> {src: Linear BT.2020 I-D65, dst: Linear CIE-XYZ I-E}
+        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear CIE-XYZ I-E}
 
   - !<ColorSpace>
     name: Luminance Compensation sRGB
