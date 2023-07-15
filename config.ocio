@@ -14,7 +14,8 @@ strictparsing: true
 luma: [0.2126, 0.7152, 0.0722]
 
 roles:
-  color_picking: sRGB 2.2 I-E
+  # When using Spectral Cycles, Change color_pickin role to I-E
+  color_picking: sRGB 2.2
   color_timing: AgX Log
   compositing_log: AgX Log
   data: Generic Data
@@ -24,8 +25,9 @@ roles:
   default_sequencer: sRGB 2.2
   matte_paint: sRGB 2.2
   reference: Linear CIE-XYZ I-E
-  scene_linear: Linear BT.709 I-E
-  rendering: Linear BT.709 I-E
+  # When using Spectral Cycles, Change scene_linear and rendering role to I-E
+  scene_linear: Linear BT.709 I-D65
+  rendering: Linear BT.709 I-D65
   texture_paint: sRGB 2.2
   # When using Spectral Cycles, Change XYZ role to I-E
   XYZ: Linear CIE-XYZ I-D65
