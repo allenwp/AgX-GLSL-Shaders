@@ -349,7 +349,7 @@ colorspaces:
       children:
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
         - !<MatrixTransform> {matrix: [0.829681550265105, 0.0921291579508549, 0.0781892917840406, 0, 0.132999541165866, 0.737296771933025, 0.129703686901108, 0, 0.108378402989344, 0.0743836573934164, 0.81723793961724, 0, 0, 0, 0, 1], direction: inverse}
-        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Linear BT.2020 I-D65, direction: inverse}
+        - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: Luminance Compensation BT.2020, direction: inverse}
 
   - !<ColorSpace>
     name: Filmic sRGB
@@ -667,6 +667,16 @@ colorspaces:
         - !<FileTransform> {src: luminance_compensation_bt2020.cube, interpolation: best}
         - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
         - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0}
+    to_scene_reference: !<GroupTransform>
+      children:
+        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65, direction: inverse}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117]}
+        - !<FileTransform> {src: luminance_compensation_bt2020.cube, interpolation: best}
+        - !<AllocationTransform> {allocation: lg2, vars: [-12.47393, 12.5260688117], direction: inverse}
+        - !<ColorSpaceTransform> {src: Linear E-Gamut I-D65, dst: Linear BT.2020 I-D65}
+        - !<RangeTransform> {min_in_value: 0, min_out_value: 0}
+        - !<ColorSpaceTransform> {src: Linear BT.2020 I-D65, dst: Linear CIE-XYZ I-E}
 
   - !<ColorSpace>
     name: Luminance Compensation sRGB
