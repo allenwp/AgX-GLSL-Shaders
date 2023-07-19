@@ -80,6 +80,7 @@ looks:
     description: A Post-Formation Look with Green Tint in Lower Range and Warm Tint in Higher Range
     transform: !<GroupTransform>
       children:
+        - !<ColorSpaceTransform> {src: BT.2020 2.4, dst: Guard Rail BT.2020}
         - !<CDLTransform> {slope: [1, 0.85, 0.9]}
         - !<GradingToneTransform>
          shadows: {rgb: [0.5, 0.8, 0.7], master: 1, start: 2, pivot: 0.001}
