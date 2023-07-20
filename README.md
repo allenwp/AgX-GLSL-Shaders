@@ -70,6 +70,9 @@ Low Clip | Black
 High Clip | White
 
 
+![ea6deefe57f43e8684b6be27e3964fae_d676374d-3b8b-4e65-b048-5a17fd083a7f](https://github.com/EaryChow/AgX/assets/59176246/da259308-5d6f-409b-bf5b-4bd4c8fd4ec3)
+
+
 **Looks**
 "Looks" are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two post-formation looks.
 
