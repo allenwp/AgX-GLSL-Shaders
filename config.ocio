@@ -41,24 +41,28 @@ displays:
     - !<View> {name: AgX, colorspace: AgX Base sRGB}
     - !<View> {name: AgX Log,colorspace: AgX Log}
     - !<View> {name: AgX False Color, colorspace: AgX False Color}
+    - !<View> {name: Display's Native, colorspace: sRGB}
     - !<View> {name: None, colorspace: Generic Data}
   Display P3:
     - !<View> {name: Guard Rail, colorspace: Guard Rail P3}
     - !<View> {name: AgX, colorspace: AgX Base Display P3}
     - !<View> {name: AgX Log,colorspace: AgX Log}
     - !<View> {name: AgX False Color, colorspace: AgX False Color}
+    - !<View> {name: Display's Native, colorspace: Display P3}
     - !<View> {name: None, colorspace: Generic Data}
   BT.1886:
     - !<View> {name: Guard Rail, colorspace: Guard Rail BT.1886}
     - !<View> {name: AgX, colorspace: AgX Base BT.1886}
     - !<View> {name: AgX Log,colorspace: AgX Log}
     - !<View> {name: AgX False Color, colorspace: AgX False Color}
+    - !<View> {name: Display's Native, colorspace: BT.1886}
     - !<View> {name: None, colorspace: Generic Data}
   BT.2020:
     - !<View> {name: Guard Rail, colorspace: Guard Rail BT.2020}
     - !<View> {name: AgX, colorspace: AgX Base BT.2020}
     - !<View> {name: AgX Log,colorspace: AgX Log}
     - !<View> {name: AgX False Color, colorspace: AgX False Color}
+    - !<View> {name: Display's Native, colorspace: BT.2020}
     - !<View> {name: None, colorspace: Generic Data}
 active_displays: []
 active_views: []
