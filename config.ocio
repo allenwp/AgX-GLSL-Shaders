@@ -579,7 +579,7 @@ colorspaces:
     equalitygroup:
     bitdepth: unknown
     description: |
-      AgX False Color heat map for P3 Display
+      AgX False Color heat map for BT.2020 Display
     isdata: false
     from_scene_reference: !<GroupTransform>
       children:
