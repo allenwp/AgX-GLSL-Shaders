@@ -570,7 +570,7 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: AgX False Color BT.709}
-        - !<ColorSpaceTransform> {src: sRGB 2.2, dst: Display 2.2}
+        - !<ColorSpaceTransform> {src: sRGB 2.2, dst: Display P3 2.2}
 
   - !<ColorSpace>
     name: AgX False Color BT.2020
