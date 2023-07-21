@@ -47,7 +47,7 @@ AgX (Left) vs Filmic (Right)
 
 The config includes the following view transform:
 - `Guard Rail`The minimalist image formation that only touches "the invalid", replaces Blender's legacy "Standard".
-- `AgX` The Filmic-like sigmoid based image formation with 16.5 stops of 25 stops of dynamic range.
+- `AgX` The Filmic-like sigmoid based image formation with 16.5 stops of dynamic range.
 - `AgX Log` The Log encoding with chroma-inset and rotation of primaries included. Uses BT.2020 primaries with Log 2 encoding from `-12.47393` to `12.5260688117`(25 stops of dynamic range) and I-D65 white point.
 - `AgX False Color` A heat-map-like imagery derived from `AgX`'s formed image. uses BT.2020's CIE 2012 luminance for luminance coefficients evaluation. 
 
