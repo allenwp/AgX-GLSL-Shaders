@@ -478,6 +478,9 @@ colorspaces:
     from_scene_reference: !<GroupTransform>
       children:
         - !<ColorSpaceTransform> {src: Linear CIE-XYZ I-E, dst: AgX Log}
+        - !<AllocationTransform> {allocation: uniform, vars: [0, 0.82]}
+        - !<FileTransform> {src: filmic_desat_33.cube, interpolation: best}
+        - !<AllocationTransform> {allocation: uniform, vars: [0, 0.82], direction: inverse}
         - !<FileTransform> {src: AgX_Formation.cube, interpolation: best}
         - !<ColorSpaceTransform> {src: BT.2020, dst: Linear BT.2020 I-D65}
         - !<MatrixTransform> {matrix: [0.844866185973361, 0.081876260205381, 0.0732575538212578, 0, 0.104618964711338, 0.822123481467404, 0.0732575538212576, 0, 0.104618964711338, 0.0818762602053808, 0.813504775083281, 0, 0, 0, 0, 1], direction: inverse}
