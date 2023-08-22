@@ -86,9 +86,9 @@ For exposure-stop range reference, here is the exposure sweep:
 
 - Supported Image Display Mediums:
 
-  - `sRGB`, Generic sRGB / REC.709 displays with sRGB Piece-wise function
+  - `sRGB`, Generic sRGB / REC.709 encoding with sRGB Piece-wise function
   - `Rec.1886`, Generic sRGB / REC.709 displays with 2.4 native power function
-  - `Display P3` P3 displays with with sRGB Piece-wise function. Examples include:
+  - `Display P3` Display P3 encoding with with sRGB Piece-wise function. Examples of Display P3 devices include:
     Apple MacBook Pros from 2016 on.
     Apple iMac Pros.
     Apple iMac from late 2015 on.
