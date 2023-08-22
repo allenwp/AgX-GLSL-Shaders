@@ -8,11 +8,9 @@ Eary's AgX is an OCIO v2 configuration made with the intention to replace Blende
 
 The config was built more specifically for Blender, but other software that supports OCIO v2 should also be able to use it. 
 
-The two featuring image formations (view transforms) are Guard Rail and AgX. Guard Rail is targeted as a replacement for Blender's "Standard", while AgX is targeted as a replacement for "Filmic".
+The featuring image formation (view transform) is AgX, which is targeted as a replacement for "Filmic".
 
 "AgX" the name is a pseudo-chemical notation of silver halide, commonly used in photographic film, therefore, AgX is an alias of Filmic.
-
-AgX is similar to Filmic as a sigmoid-driven formation, while Guard Rail is a minimalist image formation that broke-out from AgX, that only touches values out of the valid [0, 1] target display medium range. 
 
 `AgX` Image formation does two things
 - It forms a [0.0, 1.0] closed domain image from the unbounded radiometric-like tristimulus data that modern 3D render engines like Cycles and Eevee produce. 
@@ -20,10 +18,8 @@ AgX is similar to Filmic as a sigmoid-driven formation, while Guard Rail is a mi
 
 This config also comes with a different colorspace naming scheme, but with backwards compatibility setup with OCIO v2 feature of aliases, so that texture colorspaces in old .blend files will get auto-converted to the new names. 
 
-Three of the frequently asked space names are:
-- `Generic Data`, this corresponds to the legacy `Non-Color` and `Raw`
-- `sRGB 2.2`, this corresponds to the legacy `sRGB`
-- `Linear BT.709 I-D65`, this corresponds to the legacy `Linear`
+One of the frequently asked space names is:
+- `Linear Rec.709`, this corresponds to the legacy `Linear`
 
 **Why?**
 
@@ -46,10 +42,9 @@ AgX (Left) vs Filmic (Right)
 **View Transforms**
 
 The config includes the following view transform:
-- `Guard Rail`The minimalist image formation that only touches "the invalid", replaces Blender's legacy "Standard".
+- `Standard` A.K.A `Display's Native` The display device's native colorspace as view transform. Included for compatibility reason.
 - `AgX` The Filmic-like sigmoid based image formation with 16.5 stops of dynamic range.
-- `AgX Log` The Log encoding with chroma-inset and rotation of primaries included. Uses BT.2020 primaries with Log 2 encoding from `-12.47393` to `12.5260688117`(25 stops of dynamic range) and I-D65 white point.
-- `AgX False Color` A heat-map-like imagery derived from `AgX`'s formed image. uses BT.2020's CIE 2012 luminance for luminance coefficients evaluation. 
+- `False Color` A heat-map-like imagery derived from `AgX`'s formed image. uses BT.2020's CIE 2012 luminance for luminance coefficients evaluation. 
 
 **False Color ranges**
 
@@ -69,16 +64,14 @@ Low Clip | Black
 80% to 97% | Red
 High Clip | White
 
-
+For exposure-stop range reference, here is the exposure sweep:
 ![ea6deefe57f43e8684b6be27e3964fae_d676374d-3b8b-4e65-b048-5a17fd083a7f](https://github.com/EaryChow/AgX/assets/59176246/da259308-5d6f-409b-bf5b-4bd4c8fd4ec3)
 
 
 **Looks**
-"Looks" are artistic adjustment to the image formation chain. The artistic adjustment can happen before image formation in the Open Domain, or after the image formation in Closed Domain. This config currently features two post-formation looks.
+"Looks" are artistic adjustment to the image formation chain. 
 
-- `Punchy` A post-formation look that makes the image look more “punchy”. Technically it’s just a power curve of 1.35 post-formation.
-
-- `Green Ink` A post-formation look that tints the lower range greenish and higher range warm.
+- `Punchy` A contrast look that makes the image look more “punchy” by darkening the entire image.
 
 - `Greyscale` Turn the image into greyscale. Luminance coefficients are BT.2020’s CIE 2012 values, evaluated in Linear state.
 
@@ -86,47 +79,36 @@ High Clip | White
 
 **Colorimetric Information**
 
-- `Reference` Every OCIO config has their own reference space, all other spaces are defined with how they transform “from” and/or “to” the reference space.  While Blender’s previous config has been using `Linear BT.709 I-D65` as reference, this config uses `1931 CIE XYZ E white point chromaticity` as reference. This is a sane decision, since CIE XYZ is the root for everything else color management related. FilmLight’s TCAMv2 config also has CIE XYZ as reference. 
+- `Reference` Every OCIO config has their own reference space, all other spaces are defined with how they transform “from” and/or “to” the reference space.  While Blender’s previous config has been using `Linear Rec.709` as reference, this config uses `1931 CIE XYZ E white point chromaticity` as reference. This is a sane decision, since CIE XYZ is the root for everything else color management related. FilmLight’s TCAMv2 config also has CIE XYZ as reference. 
 
 - `AgX Base image formation space` The AgX in this config has one single image formed in the BT.2020 display medium, then the images for other mediums are produced from the formed image in BT.2020.
 
 - Supported Image Display Mediums:
 
-  - `sRGB`, Generic sRGB / REC.709 displays with 2.2 native power function
-  - `BT.1886`, Generic sRGB / REC.709 displays with 2.4 native power function
-  - `Display P3` P3 displays with 2.2 native power function. Examples include:
+  - `sRGB`, Generic sRGB / REC.709 displays with sRGB Piece-wise function
+  - `Rec.1886`, Generic sRGB / REC.709 displays with 2.4 native power function
+  - `Display P3` P3 displays with with sRGB Piece-wise function. Examples include:
     Apple MacBook Pros from 2016 on.
     Apple iMac Pros.
     Apple iMac from late 2015 on.
-  - `BT.2020`BT.2020 displays with 2.4 native power function.
+  - `Rec.2020` BT.2020 displays with 2.4 native power function.
 
   It's very unlikely someone would use a BT.2020 2.4 display as of now, but since we have the image formed in BT.2020, supporting it is just a "why not?" thing to do.
 
 
  - `Colorspaces`
     This config supports the following colorspaces:
-   - `Linear CIE-XYZ I-E` This is the standard 1931 CIE chromaticity standard used as reference.
-   - `Linear CIE-XYZ I-D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
-   - `Linear BT.709 I-E` Open Domain Linear BT.709 Tristimulus with I-E white point
-   - `Linear BT.709 I-D65` Open Domain Linear BT.709 Tristimulus with I-D65 white point
-   - `Linear DCI-P3 I-E` Open Domain Linear P3 Tristimulus with I-E white point
-   - `Linear DCI-P3 I-D65` Open Domain Linear P3 Tristimulus with I-D65 white point
-   - `Linear BT.2020 I-E` Open Domain Linear BT.2020 Tristimulus with I-E white point
-   - `Linear BT.2020 I-D65` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
+   - `Linear CIE-XYZ E` This is the standard 1931 CIE chromaticity standard used as reference.
+   - `Linear CIE-XYZ D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
+   - `Linear Rec.709` Open Domain Linear BT.709 Tristimulus with I-D65 white point
+   - `Linear DCI-P3 D65` Open Domain Linear P3 Tristimulus with I-D65 white point
+   - `Linear Rec.2020` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
    - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
    - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
-   - `Linear E-Gamut I-D65` Open Domain Linear E Gamut Tristimulus with I-D65 white point
-   - `sRGB 2.2` sRGB 2.2 Exponent Reference EOTF Display
-   - `BT.1886 2.4` BT.1886 2.4 Exponent EOTF Display
-   - `Display P3 2.2`Display P3 2.2 Exponent EOTF Display
-   - `BT.2020 2.4` BT.2020 2.4 Exponent EOTF Display
-   - `Generic Data` Generic data that is not color, will not apply any color transform
-
-  Note: `I-E` is short for “Illuminant E”, `I-D65` is short for “Illuminant D65”.
-
- - The use of I-E white point
- 
-      The main reason for supporting the I-E version of the spaces is to be prepared for the upcoming Spectral Cycles. Spectral renderers with capability to input RGB textures require an I-E based RGB working space to ensure an error-free spectral reconstruction/upsampling process. 
-
-      Note for using Eary’s AgX for Spectral Cycles: Remember to change the XYZ role to the I-E version of the XYZ chromaticity.   
+   - `Linear FilmLight E-Gamut` Open Domain Linear E Gamut Tristimulus with I-D65 white point
+   - `sRGB` sRGB piece-wise encoding for reference display
+   - `Rec.1886` BT.1886 2.4 Exponent EOTF Display
+   - `Display P3`Display P3 with sRGB piece-wise encoding for reference display
+   - `Rec.2020` BT.2020 2.4 Exponent EOTF Display
+   - `Non-Color` Generic data that is not color, will not apply any color transform
 
