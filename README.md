@@ -40,6 +40,7 @@ AgX (Left) vs Filmic (Right)
 3. From within the Color Management panel, change the View to AgX, and choose the artistic Look of your desire.
 
 EDIT: This version of AgX has been merged to Blender 4.0 main.
+
 **View Transforms**
 
 The config includes the following view transform:
