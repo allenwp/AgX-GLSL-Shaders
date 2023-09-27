@@ -50,7 +50,7 @@ The config includes the following view transform:
 
 **False Color ranges**
 
-Different from False Color in current Blender or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore, all values below will be linearized 0 to 1 value written in percentage.
+Different from False Color in Blender 3.6 and before, or the Filmic-Blender config, the false color here is a post-formation closed domain evaluation. Therefore, all values below will be linearized 0 to 1 value written in percentage.
 
 [0.0, 1.0] Closed Domain Linear | Color 
 ---- | ---- 
@@ -71,7 +71,7 @@ For exposure-stop range reference, here is the exposure sweep:
 
 
 **Looks**
-"Looks" are artistic adjustment to the image formation chain. 
+"Looks" are artistic adjustments to the image formation chain. 
 
 - `Punchy` A contrast look that makes the image look more “punchy” by darkening the entire image.
 
@@ -101,13 +101,13 @@ For exposure-stop range reference, here is the exposure sweep:
  - `Colorspaces`
     This config supports the following colorspaces:
    - `Linear CIE-XYZ E` This is the standard 1931 CIE chromaticity standard used as reference.
-   - `Linear CIE-XYZ D65` This is the chromatic-adaptated to I-D65 version of the XYZ chromaticity. Method used is `Bradford`
-   - `Linear Rec.709` Open Domain Linear BT.709 Tristimulus with I-D65 white point
-   - `Linear DCI-P3 D65` Open Domain Linear P3 Tristimulus with I-D65 white point
-   - `Linear Rec.2020` Open Domain Linear BT.2020 Tristimulus with I-D65 white point
+   - `Linear CIE-XYZ D65` This is the chromatic-adapted to Illuminant D65 version of the XYZ chromaticity. Method used is `Bradford`
+   - `Linear Rec.709` Open Domain Linear BT.709 Tristimulus with Illuminant D65 white point
+   - `Linear DCI-P3 D65` Open Domain Linear P3 Tristimulus with Illuminant D65 white point
+   - `Linear Rec.2020` Open Domain Linear BT.2020 Tristimulus with Illuminant D65 white point
    - `ACES2065-1` Open Domain AP0 Tristimulus with ACES white point
    - `ACEScg` Open Domain AP1 Tristimulus with ACES white point
-   - `Linear FilmLight E-Gamut` Open Domain Linear E Gamut Tristimulus with I-D65 white point
+   - `Linear FilmLight E-Gamut` Open Domain Linear E-Gamut Tristimulus with Illuminant D65 white point
    - `sRGB` sRGB piece-wise encoding for reference display
    - `Rec.1886` BT.1886 2.4 Exponent EOTF Display
    - `Display P3`Display P3 with sRGB piece-wise encoding for reference display
