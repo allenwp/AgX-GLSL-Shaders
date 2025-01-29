@@ -72,7 +72,7 @@ vec3 tonemap_agx(vec3 color, float normalized_log2_maximum) {
 	// This is done before the Rec. 2020 transform to allow the Rec. 2020
 	// transform to be combined with the AgX inset matrix. This results in a loss
 	// of color information that could be correctly interpreted within the
-	// Rec. 2020 color space as positive RGB values, but often not worth
+	// Rec. 2020 color space as positive RGB values, but is often not worth
 	// the performance cost of an additional matrix multiplication.
 	color = max(color, 0);
 
