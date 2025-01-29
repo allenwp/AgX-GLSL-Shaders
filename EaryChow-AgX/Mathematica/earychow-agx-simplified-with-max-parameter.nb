@@ -1,0 +1,347 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14244,        339]
+NotebookOptionsPosition[     13866,        325]
+NotebookOutlinePosition[     14285,        341]
+CellTagsIndexPosition[     14242,        338]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"kNormLog2Min", "=", 
+   RowBox[{"-", "10"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"kMidGray", "=", 
+   RowBox[{"Rationalize", "[", "0.18", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"kPower", "=", 
+   RowBox[{"Rationalize", "[", "1.5", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"kSlope", "=", 
+    RowBox[{"Rationalize", "[", "2.4", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"equationScale", "[", 
+     RowBox[{
+     "transitionX_", ",", "transitionY_", ",", " ", "power_", ",", " ", 
+      "slope_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", "\n", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"termA", ",", " ", "termB"}], "}"}], ",", "\n", 
+      RowBox[{
+       RowBox[{"termA", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"slope", "*", 
+           RowBox[{"(", 
+            RowBox[{"Rationalize", "[", 
+             RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], "^", 
+         RowBox[{"(", 
+          RowBox[{"Rationalize", "[", 
+           RowBox[{
+            RowBox[{"-", "1"}], "*", "power"}], "]"}], ")"}]}]}], ";", "\n", 
+       RowBox[{"termB", " ", "=", "  ", 
+        RowBox[{"SetPrecision", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"slope", "*", 
+                RowBox[{"(", 
+                 RowBox[{"Rationalize", "[", 
+                  RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], 
+              "/", 
+              RowBox[{"(", 
+               RowBox[{"Rationalize", "[", 
+                RowBox[{"1", "-", " ", "transitionY"}], "]"}], ")"}]}], ")"}],
+             "^", 
+            RowBox[{"(", "power", ")"}]}], " ", "-", " ", "1"}], ",", " ", 
+          "20"}], "]"}]}], ";", "\n", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"termA", " ", "*", " ", "termB"}], ")"}], "^", 
+        RowBox[{"(", 
+         RowBox[{"Rationalize", "[", 
+          RowBox[{
+           RowBox[{"-", "1"}], " ", "/", " ", "power"}], "]"}], ")"}]}]}]}], 
+     "\n", "]"}]}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"exponentialCurve", "[", 
+    RowBox[{
+    "x_", ",", "scaleInput_", ",", " ", "xPivot_", ",", " ", "yPivot_", ",", 
+     " ", "power_", ",", " ", "slope_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"scaleInput", " ", "*", " ", 
+      RowBox[{"exponential", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"slope", "*", 
+           RowBox[{"(", 
+            RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scaleInput"}],
+         ",", " ", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"exponential", "[", 
+    RowBox[{"x_", ",", " ", "power_"}], "]"}], ":=", 
+   RowBox[{"x", " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"(", 
+         RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
+      RowBox[{"(", 
+       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"logEncodingLog2", "[", 
+     RowBox[{"lin_", ",", " ", "normLog2Max_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "lg2", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"lg2", "=", 
+        RowBox[{"Log2", "[", 
+         RowBox[{"lin", "/", "kMidGray"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"lg2", "-", "kNormLog2Min"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"normLog2Max", "-", "kNormLog2Min"}], ")"}]}]}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"calculateSigmoid", "[", 
+     RowBox[{"logEncodedX_", ",", " ", "xPivot_", ",", " ", "scaleValue_"}], 
+     "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "sigmoidResult", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"yPivot", "=", 
+        RowBox[{"kMidGray", "^", 
+         RowBox[{"(", 
+          RowBox[{"Rationalize", "[", 
+           RowBox[{"1", "/", "kSlope"}], "]"}], ")"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"sigmoidResult", "=", 
+        RowBox[{"exponentialCurve", "[", 
+         RowBox[{
+         "logEncodedX", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", 
+          ",", " ", "kPower", ",", " ", "kSlope"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"sigmoidResult", "^", "kSlope"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "Alternative", " ", "manual", " ", "switching", " ", "instead", " ", 
+      "of", " ", "If", " ", "and", " ", "Assuming", " ", "statement", " ", 
+      "that", " ", "I", " ", 
+      RowBox[{"can", "'"}], "t", " ", "get", " ", 
+      RowBox[{"working", ":", "\[IndentingNewLine]", 
+       RowBox[{"logEncodedX", "<", "xPivot"}], ":", "\[IndentingNewLine]", 
+       "scaleValue"}]}], " ", "=", " ", 
+     RowBox[{
+      RowBox[{"-", "1"}], "*", 
+      RowBox[{"equationScale", "[", 
+       RowBox[{
+        RowBox[{"1", "-", "xPivot"}], ",", 
+        RowBox[{"1", "-", "yPivot"}], ",", "kPower", ",", " ", "kSlope"}], 
+       "]"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"logEncodedX", ">=", 
+      RowBox[{"xPivot", ":", "\[IndentingNewLine]", "scaleValue"}]}], " ", 
+     "=", " ", 
+     RowBox[{"equationScale", "[", 
+      RowBox[{"xPivot", ",", "yPivot", ",", "kPower", ",", " ", "kSlope"}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "*)"}], "\n", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"normLog2Max", " ", "=", " ", 
+     RowBox[{"Log2", "[", 
+      RowBox[{"white", "/", "kMidGray"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"logEncodedX", "=", 
+     RowBox[{"logEncodingLog2", "[", 
+      RowBox[{"x", ",", "normLog2Max"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    
+    RowBox[{"xPivot", "=", 
+     RowBox[{
+      RowBox[{"Abs", "[", "kNormLog2Min", "]"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"normLog2Max", "-", "kNormLog2Min"}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", " ", "*)"}]}], "\n", 
+ RowBox[{"Print", "[", "\"\<logEncodedX<xPivot:\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"scaleValue", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"-", "1"}], "*", 
+     RowBox[{"equationScale", "[", 
+      RowBox[{
+       RowBox[{"1", "-", "xPivot"}], ",", 
+       RowBox[{"1", "-", "yPivot"}], ",", "kPower", ",", " ", "kSlope"}], 
+      "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", ">=", "0"}], " ", ",", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"calculateSigmoid", "[", 
+       RowBox[{"logEncodedX", ",", "xPivot", ",", "scaleValue"}], "]"}], 
+      "]"}]}], "]"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Assuming", "[", 
+   RowBox[{
+    RowBox[{"x", ">=", "0"}], ",", 
+    RowBox[{"N", "[", 
+     RowBox[{
+      RowBox[{"Simplify", "[", 
+       RowBox[{"calculateSigmoid", "[", 
+        RowBox[{"logEncodedX", ",", " ", "xPivot", ",", "scaleValue"}], "]"}],
+        "]"}], ",", "20"}], "]"}]}], "]"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"Print", "[", "\"\<logEncodedX>=xPivot:\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"scaleValue", " ", "=", " ", 
+    RowBox[{"equationScale", "[", 
+     RowBox[{"xPivot", ",", "yPivot", ",", "kPower", ",", " ", "kSlope"}], 
+     "]"}]}], ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", ">=", "0"}], " ", ",", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"calculateSigmoid", "[", 
+       RowBox[{"logEncodedX", ",", "xPivot", ",", "scaleValue"}], "]"}], 
+      "]"}]}], "]"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Assuming", "[", 
+   RowBox[{
+    RowBox[{"x", ">=", "0"}], ",", 
+    RowBox[{"N", "[", 
+     RowBox[{
+      RowBox[{"Simplify", "[", 
+       RowBox[{"calculateSigmoid", "[", 
+        RowBox[{"logEncodedX", ",", " ", "xPivot", ",", "scaleValue"}], "]"}],
+        "]"}], ",", "20"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<simplified normized log2:\>\"", "]"}], "\n", 
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"Simplify", "[", 
+    RowBox[{"logEncodingLog2", "[", 
+     RowBox[{"x", ",", "normLog2Max"}], "]"}], "]"}], ",", " ", "20"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.9464810797886276`*^9, 3.9464810797896233`*^9}, {
+   3.9464811177963753`*^9, 3.9464811279269676`*^9}, {3.946481214625864*^9, 
+   3.946481258898613*^9}, {3.9464815015750694`*^9, 3.9464815187444267`*^9}, {
+   3.946481563740732*^9, 3.9464816317701473`*^9}, {3.9464818608324757`*^9, 
+   3.9464819532416496`*^9}, {3.9464819997175217`*^9, 3.946482096904688*^9}, {
+   3.946482127143978*^9, 3.9464821374096413`*^9}, {3.9464821680425625`*^9, 
+   3.946482216395916*^9}, {3.946482323284422*^9, 3.94648236277186*^9}, {
+   3.946482406603964*^9, 3.946482653563238*^9}, {3.9464827953560123`*^9, 
+   3.946483146162983*^9}, {3.946483251276129*^9, 3.94648325287582*^9}, {
+   3.9464833914686394`*^9, 3.946483403866085*^9}, {3.946483456880533*^9, 
+   3.9464834850535393`*^9}, {3.9464835439673786`*^9, 3.946483749038925*^9}, {
+   3.9464837802439537`*^9, 3.9464837803292007`*^9}, {3.946483976350548*^9, 
+   3.946484003988907*^9}, {3.9464840578082237`*^9, 3.9464841453487377`*^9}, 
+   3.946484362515587*^9, {3.946484406795492*^9, 3.9464844639692707`*^9}, {
+   3.9469990918466663`*^9, 3.946999092370962*^9}, {3.946999293000698*^9, 
+   3.9469993210256233`*^9}, {3.9469993862750664`*^9, 3.946999423735111*^9}, {
+   3.9469994538248672`*^9, 3.9469994597643223`*^9}, {3.9469998629788265`*^9, 
+   3.946999886976513*^9}, {3.946999935943821*^9, 3.9469999508327885`*^9}, {
+   3.9470000201607113`*^9, 3.9470000285808926`*^9}, {3.9470014670436497`*^9, 
+   3.947001588322407*^9}, {3.9470016987308064`*^9, 3.9470017105781193`*^9}, {
+   3.9470017526719494`*^9, 3.947001755746954*^9}, {3.947001799915228*^9, 
+   3.947001827137268*^9}, {3.9470020102913513`*^9, 3.947002031680683*^9}, {
+   3.9470021086130524`*^9, 3.9470021115550327`*^9}, {3.947002161911148*^9, 
+   3.9470021763292675`*^9}, {3.9470022086039906`*^9, 3.94700237690654*^9}, {
+   3.94700242921373*^9, 3.9470024352441254`*^9}, {3.9470025549744205`*^9, 
+   3.9470025571321087`*^9}, {3.947002676019909*^9, 3.947002731782072*^9}, {
+   3.9470027657050343`*^9, 3.947002801943262*^9}, {3.947002911493593*^9, 
+   3.9470029115104218`*^9}, {3.947002969869114*^9, 3.947002983969784*^9}, {
+   3.947003338946871*^9, 3.9470035483468647`*^9}, {3.9470035866992188`*^9, 
+   3.947003629260067*^9}, {3.9470036965412292`*^9, 3.947003719615505*^9}, {
+   3.94700376856538*^9, 3.9470037719730873`*^9}, {3.947003857470644*^9, 
+   3.9470039094843235`*^9}, {3.947004042992325*^9, 3.947004046186966*^9}, 
+   3.947004118540249*^9, {3.947004176733307*^9, 3.947004226092804*^9}, {
+   3.9470047656761303`*^9, 3.947004783632536*^9}, {3.947004816954529*^9, 
+   3.9470048278696136`*^9}, {3.9470048843932247`*^9, 
+   3.9470048881255703`*^9}, {3.9470049313024445`*^9, 
+   3.9470049698680553`*^9}, {3.9470050640590267`*^9, 3.947005130634409*^9}, {
+   3.9470051810991116`*^9, 3.9470051944881706`*^9}, {3.947005247099184*^9, 
+   3.9470052501446705`*^9}, {3.947005305833317*^9, 3.9470053279630146`*^9}, {
+   3.9470053617589912`*^9, 3.9470053812215843`*^9}, 3.9470055965337677`*^9, {
+   3.9470056486283264`*^9, 3.947005656652809*^9}, {3.94700576145854*^9, 
+   3.9470058062110806`*^9}, {3.9470648859447823`*^9, 3.947064947645174*^9}, {
+   3.9470652104976215`*^9, 3.947065214275099*^9}, {3.947065476772644*^9, 
+   3.947065477500452*^9}, {3.9470655728583813`*^9, 3.94706559675906*^9}, {
+   3.947065629385191*^9, 3.9470656320787888`*^9}, {3.9470657703875237`*^9, 
+   3.9470657785159607`*^9}, {3.947065810491337*^9, 3.9470658125362263`*^9}, {
+   3.9470661098230476`*^9, 3.9470662838857555`*^9}, {3.9470663212342625`*^9, 
+   3.9470663282927094`*^9}, {3.9470663792246704`*^9, 3.947066379960125*^9}, 
+   3.947066415838606*^9, {3.9470664511796036`*^9, 3.947066469544174*^9}, 
+   3.947066515090931*^9, {3.9470668455519047`*^9, 3.947066865353956*^9}, {
+   3.947067013034998*^9, 3.9470670340252285`*^9}, {3.9470671948684235`*^9, 
+   3.947067227670307*^9}, {3.9470673854642296`*^9, 3.9470674331075687`*^9}, {
+   3.9470718779863186`*^9, 3.947071926083185*^9}, {3.947072132779068*^9, 
+   3.947072202725464*^9}, {3.947072238886072*^9, 3.947072281900879*^9}, {
+   3.9470723958649483`*^9, 3.947072467103363*^9}, 3.947072537726055*^9, {
+   3.9470725939033356`*^9, 3.947072764872673*^9}, {3.947072802699524*^9, 
+   3.9470728035887527`*^9}, {3.9470730954742146`*^9, 
+   3.9470730999045696`*^9}, {3.9470753400252132`*^9, 3.947075367319727*^9}, {
+   3.9470773876007957`*^9, 3.9470773949270573`*^9}, {3.9470845362589855`*^9, 
+   3.9470845439879932`*^9}, {3.94715639733543*^9, 3.947156559483902*^9}, {
+   3.9471566227234154`*^9, 3.947156626431736*^9}, {3.947156767522257*^9, 
+   3.947156767887388*^9}},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
+fbca5069f767"]
+},
+WindowSize->{1209, 1216.8},
+WindowMargins->{{-4.2, Automatic}, {Automatic, 7.199999999999999}},
+FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 13308, 303, 979, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+}
+]
+*)
+

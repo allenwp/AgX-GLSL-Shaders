@@ -1,0 +1,65 @@
+kNormLog2Min = -10;
+kMidGray = Rationalize[0.18];
+kPower = Rationalize[1.5];
+kSlope = Rationalize[2.4];
+
+equationScale[transitionX_, transitionY_, power_, slope_] := Module[
+   {termA, termB},
+   termA = (slope*(Rationalize[1 - transitionX]))^(Rationalize[-1*
+        power]);
+   termB =  
+    SetPrecision[((slope*(Rationalize[1 - transitionX]))/(Rationalize[
+           1 - transitionY]))^(power) - 1, 20];
+    (termA * termB)^(Rationalize[-1 / power])
+   ];
+
+exponentialCurve[x_, scaleInput_, xPivot_, yPivot_, power_, 
+  slope_] := (scaleInput * 
+    exponential[(slope*(x - xPivot))/scaleInput, power]) + yPivot
+
+exponential[x_, power_] := x / ((1 + (x^power))^(1/power))
+
+logEncodingLog2[lin_, normLog2Max_] := Module[{lg2},
+   lg2 = Log2[lin/kMidGray];
+   (lg2 - kNormLog2Min)/(normLog2Max - kNormLog2Min)];
+
+calculateSigmoid[logEncodedX_, xPivot_, scaleValue_] := 
+  Module[{sigmoidResult},
+   yPivot = kMidGray^(Rationalize[1/kSlope]);
+   
+   sigmoidResult = 
+    exponentialCurve[logEncodedX, scaleValue, xPivot, yPivot, kPower, 
+     kSlope];
+   sigmoidResult^kSlope
+   ];
+
+(*
+Alternative manual switching instead of If and Assuming statement \
+that I can't get working:
+logEncodedX<xPivot:
+scaleValue = -1*equationScale[1-xPivot,1-yPivot,kPower, kSlope];
+logEncodedX>=xPivot:
+scaleValue = equationScale[xPivot,yPivot,kPower, kSlope];
+*)
+(*
+normLog2Max = Log2[white/kMidGray];
+logEncodedX=logEncodingLog2[x,normLog2Max];
+xPivot=Abs[kNormLog2Min]/(normLog2Max-kNormLog2Min);
+ *)
+Print["logEncodedX<xPivot:"]
+scaleValue = -1*
+   equationScale[1 - xPivot, 1 - yPivot, kPower, kSlope];
+(*Assuming[x>=0 \
+,Simplify[calculateSigmoid[logEncodedX,xPivot,scaleValue]]]*)
+Assuming[x >= 0, 
+ N[Simplify[calculateSigmoid[logEncodedX, xPivot, scaleValue]], 20]]
+
+Print["logEncodedX>=xPivot:"]
+scaleValue = equationScale[xPivot, yPivot, kPower, kSlope];
+(*Assuming[x>=0 \
+,Simplify[calculateSigmoid[logEncodedX,xPivot,scaleValue]]]*)
+Assuming[x >= 0, 
+ N[Simplify[calculateSigmoid[logEncodedX, xPivot, scaleValue]], 20]]
+
+Print["simplified normized log2:"]
+N[Simplify[logEncodingLog2[x, normLog2Max]], 20]
