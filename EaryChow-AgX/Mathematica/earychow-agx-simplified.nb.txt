@@ -37,7 +37,7 @@ Print["x>=xPivot:"]
 Assuming[x >= kXPivot, 
  N[Simplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
 
-Print["log2 max:"]
-N[Log2[(2^kNormLog2Max)*kMidGray], 20]
 Print["log2 min:"]
 N[Log2[(2^kNormLog2Min)*kMidGray], 20]
+Print["log2 max:"]
+N[Log2[(2^kNormLog2Max)*kMidGray], 20]

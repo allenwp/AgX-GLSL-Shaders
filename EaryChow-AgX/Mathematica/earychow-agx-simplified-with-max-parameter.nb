@@ -10,255 +10,220 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     14244,        339]
-NotebookOptionsPosition[     13866,        325]
-NotebookOutlinePosition[     14285,        341]
-CellTagsIndexPosition[     14242,        338]
+NotebookDataLength[     14787,        328]
+NotebookOptionsPosition[     14422,        314]
+NotebookOutlinePosition[     14828,        330]
+CellTagsIndexPosition[     14785,        327]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
-  RowBox[{"kNormLog2Min", "=", 
-   RowBox[{"-", "10"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"kMidGray", "=", 
-   RowBox[{"Rationalize", "[", "0.18", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{"kPower", "=", 
-   RowBox[{"Rationalize", "[", "1.5", "]"}]}], ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"kSlope", "=", 
-    RowBox[{"Rationalize", "[", "2.4", "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\n", 
- RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"kNormLog2Min", "=", 
+     RowBox[{"-", "10"}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"kNormLog2Max", " ", "=", " ", 
+     RowBox[{"Rationalize", "[", "6.5", "]"}]}], ";"}], "*)"}], "\n", 
   RowBox[{
    RowBox[{
-    RowBox[{"equationScale", "[", 
-     RowBox[{
-     "transitionX_", ",", "transitionY_", ",", " ", "power_", ",", " ", 
-      "slope_"}], "]"}], ":=", 
-    RowBox[{"Module", "[", "\n", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"termA", ",", " ", "termB"}], "}"}], ",", "\n", 
-      RowBox[{
-       RowBox[{"termA", " ", "=", " ", 
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{"slope", "*", 
-           RowBox[{"(", 
-            RowBox[{"Rationalize", "[", 
-             RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], "^", 
-         RowBox[{"(", 
-          RowBox[{"Rationalize", "[", 
-           RowBox[{
-            RowBox[{"-", "1"}], "*", "power"}], "]"}], ")"}]}]}], ";", "\n", 
-       RowBox[{"termB", " ", "=", "  ", 
-        RowBox[{"SetPrecision", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{
-            RowBox[{"(", 
-             RowBox[{
-              RowBox[{"(", 
-               RowBox[{"slope", "*", 
-                RowBox[{"(", 
-                 RowBox[{"Rationalize", "[", 
-                  RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], 
-              "/", 
-              RowBox[{"(", 
-               RowBox[{"Rationalize", "[", 
-                RowBox[{"1", "-", " ", "transitionY"}], "]"}], ")"}]}], ")"}],
-             "^", 
-            RowBox[{"(", "power", ")"}]}], " ", "-", " ", "1"}], ",", " ", 
-          "20"}], "]"}]}], ";", "\n", " ", 
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"termA", " ", "*", " ", "termB"}], ")"}], "^", 
-        RowBox[{"(", 
-         RowBox[{"Rationalize", "[", 
-          RowBox[{
-           RowBox[{"-", "1"}], " ", "/", " ", "power"}], "]"}], ")"}]}]}]}], 
-     "\n", "]"}]}], ";"}], "\n"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"exponentialCurve", "[", 
+    RowBox[{"kMidGray", "=", 
+     RowBox[{"Rationalize", "[", "0.18", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"kPower", "=", 
+     RowBox[{"Rationalize", "[", "1.5", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"kSlope", "=", 
+     RowBox[{"Rationalize", "[", "2.4", "]"}]}], ";"}], "\n", 
+   RowBox[{"(*", 
     RowBox[{
-    "x_", ",", "scaleInput_", ",", " ", "xPivot_", ",", " ", "yPivot_", ",", 
-     " ", "power_", ",", " ", "slope_"}], "]"}], ":=", 
+     RowBox[{"kXPivot", "=", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"kNormLog2Min", "/", 
+        RowBox[{"(", 
+         RowBox[{"kNormLog2Max", "-", "kNormLog2Min"}], ")"}]}], "]"}]}], 
+     ";"}], "*)"}], "\n", 
    RowBox[{
-    RowBox[{"(", 
-     RowBox[{"scaleInput", " ", "*", " ", 
-      RowBox[{"exponential", "[", 
+    RowBox[{"kYPivot", "=", 
+     RowBox[{"kMidGray", "^", 
+      RowBox[{"(", 
+       RowBox[{"Rationalize", "[", 
+        RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationScale", "[", 
+      RowBox[{
+      "transitionX_", ",", "transitionY_", ",", " ", "power_", ",", " ", 
+       "slope_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", "\n", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"termA", ",", " ", "termB"}], "}"}], ",", "\n", 
        RowBox[{
+        RowBox[{"termA", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"slope", "*", 
+            RowBox[{"(", 
+             RowBox[{"Rationalize", "[", 
+              RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], "^", 
+          RowBox[{"(", 
+           RowBox[{"Rationalize", "[", 
+            RowBox[{
+             RowBox[{"-", "1"}], "*", "power"}], "]"}], ")"}]}]}], ";", "\n", 
+        RowBox[{"termB", " ", "=", "  ", 
+         RowBox[{"SetPrecision", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"slope", "*", 
+                 RowBox[{"(", 
+                  RowBox[{"Rationalize", "[", 
+                   RowBox[{"1", "-", "transitionX"}], "]"}], ")"}]}], ")"}], 
+               "/", 
+               RowBox[{"(", 
+                RowBox[{"Rationalize", "[", 
+                 RowBox[{"1", "-", " ", "transitionY"}], "]"}], ")"}]}], 
+              ")"}], "^", 
+             RowBox[{"(", "power", ")"}]}], " ", "-", " ", "1"}], ",", " ", 
+           "20"}], "]"}]}], ";", "\n", " ", 
         RowBox[{
          RowBox[{"(", 
-          RowBox[{"slope", "*", 
-           RowBox[{"(", 
-            RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scaleInput"}],
-         ",", " ", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], "\n"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"exponential", "[", 
-    RowBox[{"x_", ",", " ", "power_"}], "]"}], ":=", 
-   RowBox[{"x", " ", "/", " ", 
-    RowBox[{"(", 
-     RowBox[{
-      RowBox[{"(", 
-       RowBox[{"1", "+", 
-        RowBox[{"(", 
-         RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
-      RowBox[{"(", 
-       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\n"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"logEncodingLog2", "[", 
-     RowBox[{"lin_", ",", " ", "normLog2Max_"}], "]"}], ":=", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", "lg2", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"lg2", "=", 
-        RowBox[{"Log2", "[", 
-         RowBox[{"lin", "/", "kMidGray"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"(", 
-         RowBox[{"lg2", "-", "kNormLog2Min"}], ")"}], "/", 
-        RowBox[{"(", 
-         RowBox[{"normLog2Max", "-", "kNormLog2Min"}], ")"}]}]}]}], "]"}]}], 
-   ";"}], "\[IndentingNewLine]"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"calculateSigmoid", "[", 
-     RowBox[{"logEncodedX_", ",", " ", "xPivot_", ",", " ", "scaleValue_"}], 
-     "]"}], ":=", " ", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", "sigmoidResult", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"yPivot", "=", 
-        RowBox[{"kMidGray", "^", 
+          RowBox[{"termA", " ", "*", " ", "termB"}], ")"}], "^", 
          RowBox[{"(", 
           RowBox[{"Rationalize", "[", 
-           RowBox[{"1", "/", "kSlope"}], "]"}], ")"}]}]}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"sigmoidResult", "=", 
+           RowBox[{
+            RowBox[{"-", "1"}], " ", "/", " ", "power"}], "]"}], ")"}]}]}]}], 
+      "\n", "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"exponentialCurve", "[", 
+     RowBox[{
+     "x_", ",", "scaleInput_", ",", " ", "xPivot_", ",", " ", "yPivot_", ",", 
+      " ", "power_", ",", " ", "slope_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"scaleInput", " ", "*", " ", 
+       RowBox[{"exponential", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"slope", "*", 
+            RowBox[{"(", 
+             RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", 
+          "scaleInput"}], ",", " ", "power"}], "]"}]}], ")"}], "+", 
+     "yPivot"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"exponential", "[", 
+     RowBox[{"x_", ",", " ", "power_"}], "]"}], ":=", 
+    RowBox[{"x", " ", "/", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"(", 
+          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
+       RowBox[{"(", 
+        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"calculateSigmoid", "[", 
+      RowBox[{"x_", ",", " ", "xPivot_", ",", " ", "yPivot_"}], "]"}], ":=", 
+     " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", " ", "scaleValue", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"scaleValue", " ", "=", " ", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"x", "<", "xPivot"}], ",", 
+           RowBox[{
+            RowBox[{"-", "1"}], "*", 
+            RowBox[{"equationScale", "[", 
+             RowBox[{
+              RowBox[{"1.0", "-", "xPivot"}], ",", 
+              RowBox[{"1.0", "-", "yPivot"}], ",", "kPower", ",", " ", 
+              "kSlope"}], "]"}]}], ",", 
+           RowBox[{"equationScale", "[", 
+            RowBox[{
+            "xPivot", ",", "yPivot", ",", "kPower", ",", " ", "kSlope"}], 
+            "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"exponentialCurve", "[", 
          RowBox[{
-         "logEncodedX", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", 
-          ",", " ", "kPower", ",", " ", "kSlope"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"sigmoidResult", "^", "kSlope"}]}]}], "\[IndentingNewLine]", 
-     "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
+         "x", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", ",", " ", 
+          "kPower", ",", " ", "kSlope"}], "]"}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
     RowBox[{
-     RowBox[{
-     "Alternative", " ", "manual", " ", "switching", " ", "instead", " ", 
-      "of", " ", "If", " ", "and", " ", "Assuming", " ", "statement", " ", 
-      "that", " ", "I", " ", 
-      RowBox[{"can", "'"}], "t", " ", "get", " ", 
-      RowBox[{"working", ":", "\[IndentingNewLine]", 
-       RowBox[{"logEncodedX", "<", "xPivot"}], ":", "\[IndentingNewLine]", 
-       "scaleValue"}]}], " ", "=", " ", 
-     RowBox[{
-      RowBox[{"-", "1"}], "*", 
-      RowBox[{"equationScale", "[", 
-       RowBox[{
-        RowBox[{"1", "-", "xPivot"}], ",", 
-        RowBox[{"1", "-", "yPivot"}], ",", "kPower", ",", " ", "kSlope"}], 
-       "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"calculateSigmoid", "[", 
+      RowBox[{"x", ",", "0.60606060606060606061", ",", "kYPivot"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "\"\<x<xPivot:\>\"", "]"}], "\n", 
+   RowBox[{"Assuming", "[", 
     RowBox[{
-     RowBox[{"logEncodedX", ">=", 
-      RowBox[{"xPivot", ":", "\[IndentingNewLine]", "scaleValue"}]}], " ", 
-     "=", " ", 
-     RowBox[{"equationScale", "[", 
-      RowBox[{"xPivot", ",", "yPivot", ",", "kPower", ",", " ", "kSlope"}], 
-      "]"}]}], ";"}], "\[IndentingNewLine]", "*)"}], "\n", 
-  RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"normLog2Max", " ", "=", " ", 
-     RowBox[{"Log2", "[", 
-      RowBox[{"white", "/", "kMidGray"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"logEncodedX", "=", 
-     RowBox[{"logEncodingLog2", "[", 
-      RowBox[{"x", ",", "normLog2Max"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    
-    RowBox[{"xPivot", "=", 
-     RowBox[{
-      RowBox[{"Abs", "[", "kNormLog2Min", "]"}], "/", 
-      RowBox[{"(", 
-       RowBox[{"normLog2Max", "-", "kNormLog2Min"}], ")"}]}]}], ";"}], 
-   "\[IndentingNewLine]", " ", "*)"}]}], "\n", 
- RowBox[{"Print", "[", "\"\<logEncodedX<xPivot:\>\"", "]"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"scaleValue", " ", "=", " ", 
-    RowBox[{
-     RowBox[{"-", "1"}], "*", 
-     RowBox[{"equationScale", "[", 
+     RowBox[{"x", "<", "xPivot"}], ",", 
+     RowBox[{"N", "[", 
       RowBox[{
-       RowBox[{"1", "-", "xPivot"}], ",", 
-       RowBox[{"1", "-", "yPivot"}], ",", "kPower", ",", " ", "kSlope"}], 
-      "]"}]}]}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
+       RowBox[{"Simplify", "[", 
+        RowBox[{"calculateSigmoid", "[", 
+         RowBox[{"x", ",", " ", "xPivot", ",", " ", "kYPivot"}], "]"}], "]"}],
+        ",", "20"}], "]"}]}], "]"}], "\n", 
+   RowBox[{"Print", "[", "\"\<x>=xPivot:\>\"", "]"}], "\[IndentingNewLine]", 
    RowBox[{"Assuming", "[", 
     RowBox[{
-     RowBox[{"x", ">=", "0"}], " ", ",", 
-     RowBox[{"Simplify", "[", 
-      RowBox[{"calculateSigmoid", "[", 
-       RowBox[{"logEncodedX", ",", "xPivot", ",", "scaleValue"}], "]"}], 
-      "]"}]}], "]"}], "*)"}]}], "\n", 
- RowBox[{
-  RowBox[{"Assuming", "[", 
+     RowBox[{"x", ">=", "xPivot"}], ",", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"Simplify", "[", 
+        RowBox[{"calculateSigmoid", "[", 
+         RowBox[{"x", ",", " ", "xPivot", ",", " ", "kYPivot"}], "]"}], "]"}],
+        ",", "20"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"x", ">=", "0"}], ",", 
-    RowBox[{"N", "[", 
-     RowBox[{
-      RowBox[{"Simplify", "[", 
-       RowBox[{"calculateSigmoid", "[", 
-        RowBox[{"logEncodedX", ",", " ", "xPivot", ",", "scaleValue"}], "]"}],
-        "]"}], ",", "20"}], "]"}]}], "]"}], "\[IndentingNewLine]"}], "\n", 
- RowBox[{"Print", "[", "\"\<logEncodedX>=xPivot:\>\"", "]"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{"scaleValue", " ", "=", " ", 
-    RowBox[{"equationScale", "[", 
-     RowBox[{"xPivot", ",", "yPivot", ",", "kPower", ",", " ", "kSlope"}], 
-     "]"}]}], ";"}], "\n", 
-  RowBox[{"(*", 
-   RowBox[{"Assuming", "[", 
+   "Print", "[", "\"\<Normalized Log2 Encoding with Log instead of Log2:\>\"",
+     "]"}], "\[IndentingNewLine]", 
+   RowBox[{"N", "[", 
     RowBox[{
-     RowBox[{"x", ">=", "0"}], " ", ",", 
-     RowBox[{"Simplify", "[", 
-      RowBox[{"calculateSigmoid", "[", 
-       RowBox[{"logEncodedX", ",", "xPivot", ",", "scaleValue"}], "]"}], 
-      "]"}]}], "]"}], "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Assuming", "[", 
-   RowBox[{
-    RowBox[{"x", ">=", "0"}], ",", 
-    RowBox[{"N", "[", 
      RowBox[{
-      RowBox[{"Simplify", "[", 
-       RowBox[{"calculateSigmoid", "[", 
-        RowBox[{"logEncodedX", ",", " ", "xPivot", ",", "scaleValue"}], "]"}],
-        "]"}], ",", "20"}], "]"}]}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", "\"\<simplified normized log2:\>\"", "]"}], "\n", 
- RowBox[{"N", "[", 
-  RowBox[{
-   RowBox[{"Simplify", "[", 
-    RowBox[{"logEncodingLog2", "[", 
-     RowBox[{"x", ",", "normLog2Max"}], "]"}], "]"}], ",", " ", "20"}], 
-  "]"}]}], "Input",
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Log2", "[", 
+         RowBox[{"color", "/", 
+          RowBox[{"Rationalize", "[", "0.18", "]"}]}], "]"}], "-", 
+        RowBox[{"(", 
+         RowBox[{"-", "10.0"}], ")"}]}], ")"}], "/", "log_range"}], ",", 
+     "20"}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<log2 min:\>\"", "]"}], "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"Log2", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], "]"}],
+        ",", "20"}], "]"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"Log2", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], "]"}],
+        ",", "20"}], "]"}]}], "*)"}], "\n"}]}]], "Input",
  CellChangeTimes->{{3.9464810797886276`*^9, 3.9464810797896233`*^9}, {
    3.9464811177963753`*^9, 3.9464811279269676`*^9}, {3.946481214625864*^9, 
    3.946481258898613*^9}, {3.9464815015750694`*^9, 3.9464815187444267`*^9}, {
@@ -320,14 +285,38 @@ Cell[BoxData[{
    3.9470773876007957`*^9, 3.9470773949270573`*^9}, {3.9470845362589855`*^9, 
    3.9470845439879932`*^9}, {3.94715639733543*^9, 3.947156559483902*^9}, {
    3.9471566227234154`*^9, 3.947156626431736*^9}, {3.947156767522257*^9, 
-   3.947156767887388*^9}},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
+   3.947156767887388*^9}, {3.9471574714818993`*^9, 3.947157591373995*^9}, {
+   3.947157665385748*^9, 3.9471576817282333`*^9}, {3.947157721936949*^9, 
+   3.9471577455631466`*^9}, {3.947157822224886*^9, 3.94715783346805*^9}, {
+   3.9471578926012783`*^9, 3.9471578996970825`*^9}, {3.947158100957329*^9, 
+   3.947158107297636*^9}, {3.9471590586117935`*^9, 3.947159069135811*^9}, {
+   3.947159104553398*^9, 3.9471591482736797`*^9}, {3.9471594996529255`*^9, 
+   3.9471595623530865`*^9}, 3.9471596705512295`*^9, 3.947159708930088*^9, 
+   3.9471598339642544`*^9, {3.9471598951076202`*^9, 3.9471600206102734`*^9}, {
+   3.947160063566202*^9, 3.9471600691860294`*^9}, {3.9471602471391945`*^9, 
+   3.9471602739582443`*^9}, {3.947160335345318*^9, 3.947160351314272*^9}, {
+   3.9471640084210567`*^9, 3.947164047732584*^9}, {3.947164084915674*^9, 
+   3.947164138663929*^9}, {3.947164169654331*^9, 3.947164200701254*^9}, {
+   3.947164231898472*^9, 3.9471642353501377`*^9}, {3.947164319633564*^9, 
+   3.947164320461397*^9}, {3.9471645188544006`*^9, 3.947164520908249*^9}, {
+   3.9471646226253433`*^9, 3.947164633198181*^9}, {3.94716545717391*^9, 
+   3.9471654583389072`*^9}, {3.947168126421139*^9, 3.9471681300561886`*^9}, 
+   3.947172540644308*^9, {3.9471726061405334`*^9, 3.947172706314089*^9}, {
+   3.9471766858818398`*^9, 3.947176689009487*^9}, {3.9471768790526524`*^9, 
+   3.94717691016761*^9}, {3.947237427774914*^9, 3.947237515656204*^9}, {
+   3.9472378723401833`*^9, 3.947237916853548*^9}, {3.947238335319002*^9, 
+   3.947238419110756*^9}, {3.9472416115192776`*^9, 3.947241631851774*^9}, {
+   3.947242076548645*^9, 3.947242077013479*^9}, {3.9472483796933365`*^9, 
+   3.947248477062273*^9}, {3.9472581174922523`*^9, 3.947258199121311*^9}, {
+   3.9472582403372536`*^9, 3.9472582450429*^9}, {3.947258501889269*^9, 
+   3.947258508896244*^9}},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
 fbca5069f767"]
 },
-WindowSize->{1209, 1216.8},
-WindowMargins->{{-4.2, Automatic}, {Automatic, 7.199999999999999}},
+WindowSize->{1099.8, 1216.8},
+WindowMargins->{{367.8, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
-ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
+ExpressionUUID->"29a1a3e5-c132-2b44-8a6b-40041c461e99"
 ]
 (* End of Notebook Content *)
 
@@ -340,7 +329,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 13308, 303, 979, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 13864, 292, 770, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

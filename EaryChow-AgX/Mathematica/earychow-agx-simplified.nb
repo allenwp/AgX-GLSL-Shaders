@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     13143,        296]
-NotebookOptionsPosition[     12781,        282]
-NotebookOutlinePosition[     13184,        298]
-CellTagsIndexPosition[     13141,        295]
+NotebookDataLength[     13257,        297]
+NotebookOptionsPosition[     12878,        283]
+NotebookOutlinePosition[     13298,        299]
+CellTagsIndexPosition[     13255,        296]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,10 +21,10 @@ Notebook[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"kNormLog2Min", "=", 
-   RowBox[{"-", "10"}]}], ";"}], "\n", 
+   RowBox[{"-", "10"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"kNormLog2Max", " ", "=", " ", 
-   RowBox[{"Rationalize", "[", "6.5", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Rationalize", "[", "6.5", "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"kMidGray", "=", 
    RowBox[{"Rationalize", "[", "0.18", "]"}]}], ";"}], "\n", 
@@ -129,7 +129,7 @@ Cell[BoxData[{
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -159,7 +159,7 @@ Cell[BoxData[{
         RowBox[{
         "x", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", ",", " ", 
          "kPower", ",", " ", "kSlope"}], "]"}]}]}], "\[IndentingNewLine]", 
-     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+     "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<x<xPivot:\>\"", "]"}], "\n", 
  RowBox[{"Assuming", "[", 
   RowBox[{
@@ -182,14 +182,6 @@ Cell[BoxData[{
         RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}],
        ",", "20"}], "]"}]}], "]"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
- RowBox[{"N", "[", 
-  RowBox[{
-   RowBox[{"Log2", "[", 
-    RowBox[{
-     RowBox[{"(", 
-      RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], "]"}], 
-   ",", "20"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<log2 min:\>\"", "]"}], "\n", 
  RowBox[{"N", "[", 
   RowBox[{
@@ -197,6 +189,14 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"(", 
       RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], "]"}], 
+   ",", "20"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"Log2", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], "]"}], 
    ",", "20"}], "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.9464810797886276`*^9, 3.9464810797896233`*^9}, {
    3.9464811177963753`*^9, 3.9464811279269676`*^9}, {3.946481214625864*^9, 
@@ -276,12 +276,13 @@ Cell[BoxData[{
    3.9471646226253433`*^9, 3.947164633198181*^9}, {3.94716545717391*^9, 
    3.9471654583389072`*^9}, {3.947168126421139*^9, 3.9471681300561886`*^9}, 
    3.947172540644308*^9, {3.9471726061405334`*^9, 3.947172706314089*^9}, {
-   3.9471766858818398`*^9, 3.947176689009487*^9}},
+   3.9471766858818398`*^9, 3.947176689009487*^9}, {3.9471768790526524`*^9, 
+   3.94717691016761*^9}, {3.947237427774914*^9, 3.947237515656204*^9}},
  CellLabel->
-  "In[680]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+  "In[733]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 },
-WindowSize->{1209, 1216.8},
-WindowMargins->{{15.6, Automatic}, {Automatic, 0}},
+WindowSize->{1051.2, 1216.8},
+WindowMargins->{{Automatic, 64.20000000000027}, {Automatic, 4.2}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
@@ -297,7 +298,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 12223, 260, 656, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 12320, 261, 694, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)
