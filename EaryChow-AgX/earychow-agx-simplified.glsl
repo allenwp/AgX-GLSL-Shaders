@@ -47,7 +47,6 @@ vec3 tonemap_agx(vec3 color) {
 	// Apply inset matrix.
 	color = srgb_to_rec2020_agx_inset_matrix * color;
 
-	// color = (log2(color) - min_ev) / (dynamic_range);
 	color = (log2(color) / dynamic_range) - (min_ev / dynamic_range);
 	// Alternative if log is faster than log2 on some platforms (unused constants can be removed):
 	//color = 0.75599582959590377775 + 0.087436063084179600446 * log(color);

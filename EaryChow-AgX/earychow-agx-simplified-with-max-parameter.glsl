@@ -50,16 +50,16 @@ vec3 tonemap_agx(vec3 color, float normalized_log2_maximum) {
 	color = (log2(color / midgrey) - normalized_log2_minimum) / log_range;
 	// Alternative if log is faster than log2 on some platforms (midgrey constant can be removed):
 	//color = (10.0 + (1.4426950408889634074 * log(5.5555555555555555556 * color))) / log_range;
-	color = max(color, 1e-10); // Clip to 0, but go a little higher to account for later rounding error that may happen.
+	color = max(color, 0.0);
 
-	float pivot_x = 10.0 / log_range;
-	vec3 pivot_distance = pivot_x - color;
+	float x_pivot = 10.0 / log_range;
+	vec3 pivot_distance = x_pivot - color;
 
-	vec3 a_bottom = (10.858542784410849080 - (1.0 / pow(pivot_x, power))) * pow(pivot_distance, vec3(power));
-	vec3 a_top = (-1 + 10.191614048660063014 * pow(1.0 - pivot_x, power)) / pow((pivot_x - 1.0) / (pivot_distance), vec3(power));
-	vec3 a = mix(a_top, a_bottom, lessThan(color, vec3(pivot_x)));
+	vec3 a_bottom = (10.858542784410849080 - (1.0 / pow(x_pivot, power))) * pow(pivot_distance, vec3(power));
+	vec3 a_top = (-1 + 10.191614048660063014 * pow(1.0 - x_pivot, power)) / pow((x_pivot - 1.0) / (pivot_distance), vec3(power));
+	vec3 a = mix(a_top, a_bottom, lessThan(color, vec3(x_pivot)));
 	
-	color = pow(0.48943708957387834110 + (2.4 * (color - pivot_x)) / pow(1.0 + a, inverse_power), vec3(2.4));
+	color = pow(0.48943708957387834110 + ((-2.4 * x_pivot) + (2.4 * color)) / pow(1.0 + a, inverse_power), vec3(2.4));
 
 	// Apply outset to make the result more chroma-laden and then go back to linear sRGB.
 	color = agx_outset_rec2020_to_srgb_matrix * color;
