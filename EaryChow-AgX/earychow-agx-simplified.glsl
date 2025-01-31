@@ -28,7 +28,7 @@ vec3 tonemap_agx(vec3 color) {
 	const float b_bottom = 35.355952713407210237;
 	const float b_top = -27.96427282293113701;
 	const vec3 power = vec3(1.5);
-	const vec3 inverse_power = vec3(-1.0 / 1.5);
+	const vec3 inverse_power = vec3(1.0 / 1.5);
 
 	// Large negative values in one channel and large positive values in other
 	// channels can result in a colour that appears darker and more saturated than
@@ -47,15 +47,16 @@ vec3 tonemap_agx(vec3 color) {
 	// Apply inset matrix.
 	color = srgb_to_rec2020_agx_inset_matrix * color;
 
+	// color = (log2(color) - min_ev) / (dynamic_range);
 	color = (log2(color) / dynamic_range) - (min_ev / dynamic_range);
 	// Alternative if log is faster than log2 on some platforms (unused constants can be removed):
 	//color = 0.75599582959590377775 + 0.087436063084179600446 * log(color);
-	color = max(color, 1e-10); // Clip to 0, but go a little higher to account for later rounding error that may happen.
+	color = max(color, 0);
 
-	vec3 mask = step(color, vec3(x_pivot));
-	vec3 a = a_top + (a_bottom - a_top) * mask;
-	vec3 b = b_top + (b_bottom - b_top) * mask;
-	color = y_pivot + (((-2.4 * x_pivot)) + 2.4 * color) * pow(1.0 + 0.019613086908021587964 * pow(b + a * color, power), inverse_power);
+	vec3 mask = step(vec3(x_pivot), color);
+	vec3 a = a_bottom + (a_top - a_bottom) * mask;
+	vec3 b = b_bottom + (b_top - b_bottom) * mask;
+	color = y_pivot + (((-2.4 * x_pivot)) + 2.4 * color) / pow(1.0 + 0.019613086908021587964 * pow(abs(b + a * color), power), inverse_power);
 
 	color = pow(color, vec3(2.4));
 
