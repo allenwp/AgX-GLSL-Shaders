@@ -7,8 +7,9 @@
 // Added parameter normalized_log2_maximum to allow white value to be changed.
 // Default normalized_log2_maximum is 6.5.
 // If you have a white value in linear space, you can transform it to a normalized_log2_maximum prameter like this:
-// white = max(1.172, white); // Sigmoid function breaks down with a lower max than this.
+// white = max(1.172, white); // Sigmoid function breaks down with white lower than this.
 // float normalized_log2_maximum = log2(white / 0.18); // 0.18 is "midgrey".
+// Repository for this code: https://github.com/allenwp/AgX-GLSL-Shaders
 vec3 tonemap_agx(vec3 color, float normalized_log2_maximum) {
 	// Combined linear sRGB to linear Rec 2020 and Blender AgX inset matrices:
 	const mat3 srgb_to_rec2020_agx_inset_matrix = mat3(
@@ -47,7 +48,8 @@ vec3 tonemap_agx(vec3 color, float normalized_log2_maximum) {
 
 	float log_range = normalized_log2_maximum - normalized_log2_minimum;
 	color = (log2(color / midgrey) - normalized_log2_minimum) / log_range;
-	// Alternative if log is faster than log2 on some platforms: color = (10.0 + (1.4426950408889634074 * log(5.5555555555555555556 * color))) / log_range;
+	// Alternative if log is faster than log2 on some platforms (midgrey constant can be removed):
+	//color = (10.0 + (1.4426950408889634074 * log(5.5555555555555555556 * color))) / log_range;
 	color = max(color, 1e-10); // Clip to 0, but go a little higher to account for later rounding error that may happen.
 
 	float pivot_x = 10.0 / log_range;

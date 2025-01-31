@@ -3,8 +3,8 @@
 // Output: unbounded linear Rec.709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
 // This code is based off of the script that generates the AgX_Base_sRGB.cube LUT that Blender uses.
 // Source: https://github.com/EaryChow/AgX_LUT_Gen/blob/main/AgXBasesRGB.py
-// Repository for this code: https://github.com/allenwp/AgX-GLSL-Shaders
 // Changes: Negative clipping in input color space without "guard rails" and no chroma-angle mixing.
+// Repository for this code: https://github.com/allenwp/AgX-GLSL-Shaders
 vec3 tonemap_agx(vec3 color) {
 	// Combined linear sRGB to linear Rec 2020 and Blender AgX inset matrices:
 	const mat3 srgb_to_rec2020_agx_inset_matrix = mat3(
@@ -21,8 +21,8 @@ vec3 tonemap_agx(vec3 color) {
 	const float min_ev = -12.473931188332412333;
     const float max_ev = 4.0260688116675876672;
     const float dynamic_range = max_ev - min_ev;
-	const float x_pivot = 0.60606060606060606061; // = abs(LOG2_MIN / (LOG2_MAX - LOG2_MIN))
-	const float y_pivot = 0.48943708957387834110; // = MIDDLE_GRAY ^ (1.0 / 2.4)
+	const float x_pivot = 0.60606060606060606061; // = abs(normalized_log2_minimum / (normalized_log2_maximum - normalized_log2_minimum))
+	const float y_pivot = 0.48943708957387834110; // = midgrey ^ (1.0 / 2.4)
 	const float a_bottom = -58.33732197712189689;
 	const float a_top = 46.1410501578363761;
 	const float b_bottom = 35.355952713407210237;
@@ -48,6 +48,8 @@ vec3 tonemap_agx(vec3 color) {
 	color = srgb_to_rec2020_agx_inset_matrix * color;
 
 	color = (log2(color) / dynamic_range) - (min_ev / dynamic_range);
+	// Alternative if log is faster than log2 on some platforms (unused constants can be removed):
+	//color = 0.75599582959590377775 + 0.087436063084179600446 * log(color);
 	color = max(color, 1e-10); // Clip to 0, but go a little higher to account for later rounding error that may happen.
 
 	vec3 mask = step(color, vec3(x_pivot));

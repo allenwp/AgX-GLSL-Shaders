@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     14787,        328]
-NotebookOptionsPosition[     14422,        314]
-NotebookOutlinePosition[     14828,        330]
-CellTagsIndexPosition[     14785,        327]
+NotebookDataLength[     15233,        340]
+NotebookOptionsPosition[     14870,        326]
+NotebookOutlinePosition[     15274,        342]
+CellTagsIndexPosition[     15231,        339]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -130,8 +130,8 @@ Cell[BoxData[
          RowBox[{"(", 
           RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
        RowBox[{"(", 
-        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n", 
-   "\[IndentingNewLine]", 
+        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"calculateSigmoid", "[", 
@@ -160,7 +160,7 @@ Cell[BoxData[
          RowBox[{
          "x", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", ",", " ", 
           "kPower", ",", " ", "kSlope"}], "]"}]}]}], "\[IndentingNewLine]", 
-      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"Plot", "[", 
     RowBox[{
      RowBox[{"calculateSigmoid", "[", 
@@ -199,11 +199,22 @@ Cell[BoxData[
       RowBox[{"(", 
        RowBox[{
         RowBox[{"Log2", "[", 
-         RowBox[{"color", "/", 
-          RowBox[{"Rationalize", "[", "0.18", "]"}]}], "]"}], "-", 
+         RowBox[{"color", "/", "kMidGray"}], "]"}], "-", 
         RowBox[{"(", 
          RowBox[{"-", "10.0"}], ")"}]}], ")"}], "/", "log_range"}], ",", 
-     "20"}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     "20"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"N", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Log2", "[", 
+         RowBox[{"color", "/", "kMidGray"}], "]"}], "/", "log_range"}], ")"}],
+       "-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "10"}], "/", "log_range"}], ")"}]}], ",", "20"}], "]"}], 
+   "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{"Print", "[", "\"\<log2 min:\>\"", "]"}], "\[IndentingNewLine]", 
@@ -223,7 +234,7 @@ Cell[BoxData[
         RowBox[{
          RowBox[{"(", 
           RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], "]"}],
-        ",", "20"}], "]"}]}], "*)"}], "\n"}]}]], "Input",
+        ",", "20"}], "]"}]}], "*)"}], "\[IndentingNewLine]"}]}]], "Input",
  CellChangeTimes->{{3.9464810797886276`*^9, 3.9464810797896233`*^9}, {
    3.9464811177963753`*^9, 3.9464811279269676`*^9}, {3.946481214625864*^9, 
    3.946481258898613*^9}, {3.9464815015750694`*^9, 3.9464815187444267`*^9}, {
@@ -309,11 +320,12 @@ Cell[BoxData[
    3.947242076548645*^9, 3.947242077013479*^9}, {3.9472483796933365`*^9, 
    3.947248477062273*^9}, {3.9472581174922523`*^9, 3.947258199121311*^9}, {
    3.9472582403372536`*^9, 3.9472582450429*^9}, {3.947258501889269*^9, 
-   3.947258508896244*^9}},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
-fbca5069f767"]
+   3.947258508896244*^9}, 3.947327513117571*^9, {3.947327595599684*^9, 
+   3.947327623629011*^9}, {3.947327676609396*^9, 3.9473276903314896`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 },
 WindowSize->{1099.8, 1216.8},
-WindowMargins->{{367.8, Automatic}, {Automatic, 0}},
+WindowMargins->{{138, Automatic}, {Automatic, 3}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"29a1a3e5-c132-2b44-8a6b-40041c461e99"
@@ -329,7 +341,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 13864, 292, 770, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 14312, 304, 789, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

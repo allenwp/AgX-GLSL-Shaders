@@ -30,12 +30,23 @@ calculateSigmoid[x_, xPivot_, yPivot_] := Module[{ scaleValue},
    exponentialCurve[x, scaleValue, xPivot, yPivot, kPower, kSlope]
    ];
 
+Plot[calculateSigmoid[x, kXPivot, kYPivot], {x, 0, 1}]
+
 Print["x<xPivot:"]
 Assuming[x < kXPivot, 
  N[Simplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
 Print["x>=xPivot:"]
 Assuming[x >= kXPivot, 
  N[Simplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
+
+Print["Options for normalized Log2 encoding with Log instead of Log2:"]
+N[(Log2[color] - 
+    Log2[(2^kNormLog2Min)*kMidGray])/(Log2[(2^kNormLog2Max)*
+      kMidGray] - Log2[(2^kNormLog2Min)*kMidGray]), 20]
+N[(Log2[color]/(Log2[(2^kNormLog2Max)*kMidGray] - 
+      Log2[(2^kNormLog2Min)*kMidGray])) - (Log2[(2^kNormLog2Min)*
+      kMidGray]/(Log2[(2^kNormLog2Max)*kMidGray] - 
+      Log2[(2^kNormLog2Min)*kMidGray])), 20]
 
 Print["log2 min:"]
 N[Log2[(2^kNormLog2Min)*kMidGray], 20]

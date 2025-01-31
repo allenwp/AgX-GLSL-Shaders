@@ -40,7 +40,8 @@ Assuming[x >= xPivot,
  N[Simplify[calculateSigmoid[x, xPivot, kYPivot]], 20]]
 
 Print["Normalized Log2 Encoding with Log instead of Log2:"]
-N[(Log2[color/Rationalize[0.18]] - (-10.0))/log_range, 20]
+N[(Log2[color/kMidGray] - (-10.0))/log_range, 20]
+N[(Log2[color/kMidGray]/log_range) - (-10/log_range), 20]
 
 (*Print["log2 min:"]
 N[Log2[(2^kNormLog2Min)*kMidGray],20]*)

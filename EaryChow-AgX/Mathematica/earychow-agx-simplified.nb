@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     13257,        297]
-NotebookOptionsPosition[     12878,        283]
-NotebookOutlinePosition[     13298,        299]
-CellTagsIndexPosition[     13255,        296]
+NotebookDataLength[     15908,        374]
+NotebookOptionsPosition[     15529,        360]
+NotebookOutlinePosition[     15949,        376]
+CellTagsIndexPosition[     15906,        373]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -129,7 +129,7 @@ Cell[BoxData[{
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\[IndentingNewLine]"}], "\n", 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -160,6 +160,14 @@ Cell[BoxData[{
         "x", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", ",", " ", 
          "kPower", ",", " ", "kSlope"}], "]"}]}]}], "\[IndentingNewLine]", 
      "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{"calculateSigmoid", "[", 
+     RowBox[{"x", ",", "kXPivot", ",", "kYPivot"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<x<xPivot:\>\"", "]"}], "\n", 
  RowBox[{"Assuming", "[", 
   RowBox[{
@@ -181,6 +189,71 @@ Cell[BoxData[{
        RowBox[{"calculateSigmoid", "[", 
         RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}],
        ",", "20"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Options for normalized Log2 encoding with Log instead of Log2:\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Log2", "[", "color", "]"}], "-", 
+      RowBox[{"Log2", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], 
+       "]"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Log2", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], "]"}], 
+      "-", 
+      RowBox[{"Log2", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], 
+       "]"}]}], ")"}]}], ",", "20"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"N", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Log2", "[", "color", "]"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Log2", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], 
+          "]"}], "-", 
+         RowBox[{"Log2", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], 
+          "]"}]}], ")"}]}], ")"}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Log2", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], "]"}],
+        "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Log2", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "^", "kNormLog2Max"}], ")"}], "*", "kMidGray"}], 
+          "]"}], "-", 
+         RowBox[{"Log2", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "^", "kNormLog2Min"}], ")"}], "*", "kMidGray"}], 
+          "]"}]}], ")"}]}], ")"}]}], ",", "20"}], "]"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<log2 min:\>\"", "]"}], "\n", 
  RowBox[{"N", "[", 
@@ -277,12 +350,16 @@ Cell[BoxData[{
    3.9471654583389072`*^9}, {3.947168126421139*^9, 3.9471681300561886`*^9}, 
    3.947172540644308*^9, {3.9471726061405334`*^9, 3.947172706314089*^9}, {
    3.9471766858818398`*^9, 3.947176689009487*^9}, {3.9471768790526524`*^9, 
-   3.94717691016761*^9}, {3.947237427774914*^9, 3.947237515656204*^9}},
- CellLabel->
-  "In[733]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+   3.94717691016761*^9}, {3.947237427774914*^9, 3.947237515656204*^9}, {
+   3.9473254196257*^9, 3.9473254466174603`*^9}, {3.94732568027133*^9, 
+   3.947325680945532*^9}, 3.9473258242608128`*^9, {3.947325861975794*^9, 
+   3.9473259305149937`*^9}, 3.9473260019225254`*^9, {3.9473260407210026`*^9, 
+   3.9473260737626266`*^9}, {3.947326154542631*^9, 3.947326206535366*^9}, {
+   3.9473269275121136`*^9, 3.947326931217659*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 },
 WindowSize->{1051.2, 1216.8},
-WindowMargins->{{Automatic, 64.20000000000027}, {Automatic, 4.2}},
+WindowMargins->{{136.79999999999998`, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
@@ -298,7 +375,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 12320, 261, 694, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 14971, 338, 827, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)
