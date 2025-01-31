@@ -48,8 +48,6 @@ vec3 tonemap_agx(vec3 color) {
 	color = srgb_to_rec2020_agx_inset_matrix * color;
 
 	color = (log2(color) / dynamic_range) - (min_ev / dynamic_range);
-	// Alternative if log is faster than log2 on some platforms (unused constants can be removed):
-	//color = 0.75599582959590377775 + 0.087436063084179600446 * log(color);
 	color = max(color, 0);
 
 	vec3 mask = step(vec3(x_pivot), color);

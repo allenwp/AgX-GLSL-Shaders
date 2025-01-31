@@ -48,8 +48,6 @@ vec3 tonemap_agx(vec3 color, float normalized_log2_maximum) {
 
 	float log_range = normalized_log2_maximum - normalized_log2_minimum;
 	color = (log2(color / midgrey) - normalized_log2_minimum) / log_range;
-	// Alternative if log is faster than log2 on some platforms (midgrey constant can be removed):
-	//color = (10.0 + (1.4426950408889634074 * log(5.5555555555555555556 * color))) / log_range;
 	color = max(color, 0.0);
 
 	float x_pivot = 10.0 / log_range;
