@@ -34,10 +34,14 @@ Plot[calculateSigmoid[x, kXPivot, kYPivot], {x, 0, 1}]
 
 Print["x<xPivot:"]
 Assuming[x < kXPivot, 
- N[Simplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
+ FullSimplify[calculateSigmoid[x, kXPivot, kYPivot]]]
+Assuming[x < kXPivot, 
+ N[FullSimplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
 Print["x>=xPivot:"]
 Assuming[x >= kXPivot, 
- N[Simplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
+ FullSimplify[calculateSigmoid[x, kXPivot, kYPivot]]]
+Assuming[x >= kXPivot, 
+ N[FullSimplify[calculateSigmoid[x, kXPivot, kYPivot]], 20]]
 
 Print["Options for normalized Log2 encoding with Log instead of Log2:"]
 N[(Log2[color] - 

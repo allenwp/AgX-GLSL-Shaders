@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     15908,        374]
-NotebookOptionsPosition[     15529,        360]
-NotebookOutlinePosition[     15949,        376]
-CellTagsIndexPosition[     15906,        373]
+NotebookDataLength[     16890,        396]
+NotebookOptionsPosition[     16513,        382]
+NotebookOutlinePosition[     16931,        398]
+CellTagsIndexPosition[     16888,        395]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -129,7 +129,7 @@ Cell[BoxData[{
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -159,7 +159,7 @@ Cell[BoxData[{
         RowBox[{
         "x", ",", "scaleValue", ",", " ", "xPivot", ",", "yPivot", ",", " ", 
          "kPower", ",", " ", "kSlope"}], "]"}]}]}], "\[IndentingNewLine]", 
-     "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{"Plot", "[", 
    RowBox[{
@@ -172,20 +172,34 @@ Cell[BoxData[{
  RowBox[{"Assuming", "[", 
   RowBox[{
    RowBox[{"x", "<", "kXPivot"}], ",", 
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{"calculateSigmoid", "[", 
+     RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}]}], 
+  "]"}], "\n", 
+ RowBox[{"Assuming", "[", 
+  RowBox[{
+   RowBox[{"x", "<", "kXPivot"}], ",", 
    RowBox[{"N", "[", 
     RowBox[{
-     RowBox[{"Simplify", "[", 
+     RowBox[{"FullSimplify", "[", 
       RowBox[{"calculateSigmoid", "[", 
        RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}], 
      ",", "20"}], "]"}]}], "]"}], "\n", 
  RowBox[{"Print", "[", "\"\<x>=xPivot:\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Assuming", "[", 
+  RowBox[{
+   RowBox[{"x", ">=", "kXPivot"}], ",", 
+   RowBox[{"FullSimplify", "[", 
+    RowBox[{"calculateSigmoid", "[", 
+     RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Assuming", "[", 
    RowBox[{
     RowBox[{"x", ">=", "kXPivot"}], ",", 
     RowBox[{"N", "[", 
      RowBox[{
-      RowBox[{"Simplify", "[", 
+      RowBox[{"FullSimplify", "[", 
        RowBox[{"calculateSigmoid", "[", 
         RowBox[{"x", ",", " ", "kXPivot", ",", " ", "kYPivot"}], "]"}], "]"}],
        ",", "20"}], "]"}]}], "]"}], 
@@ -355,11 +369,19 @@ Cell[BoxData[{
    3.947325680945532*^9}, 3.9473258242608128`*^9, {3.947325861975794*^9, 
    3.9473259305149937`*^9}, 3.9473260019225254`*^9, {3.9473260407210026`*^9, 
    3.9473260737626266`*^9}, {3.947326154542631*^9, 3.947326206535366*^9}, {
-   3.9473269275121136`*^9, 3.947326931217659*^9}},
- CellLabel->"In[24]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+   3.9473269275121136`*^9, 3.947326931217659*^9}, {3.9473460508558617`*^9, 
+   3.9473460518880157`*^9}, {3.9473461237015133`*^9, 
+   3.9473461732236958`*^9}, {3.9473462049078045`*^9, 
+   3.9473462074360924`*^9}, {3.947348162758917*^9, 3.9473481760297966`*^9}, {
+   3.9473483295302525`*^9, 3.9473483561129417`*^9}, {3.947581626802412*^9, 
+   3.9475816668342075`*^9}, {3.9475817374228134`*^9, 
+   3.9475817393253307`*^9}, {3.947581789797823*^9, 3.947581797073683*^9}, {
+   3.947585483140524*^9, 3.947585483708397*^9}},
+ CellLabel->
+  "In[322]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 },
 WindowSize->{1051.2, 1216.8},
-WindowMargins->{{136.79999999999998`, Automatic}, {Automatic, 0}},
+WindowMargins->{{74.39999999999999, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
@@ -375,7 +397,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 14971, 338, 827, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 15955, 360, 865, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

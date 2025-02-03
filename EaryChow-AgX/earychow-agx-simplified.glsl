@@ -23,11 +23,14 @@ vec3 tonemap_agx(vec3 color) {
     const float dynamic_range = max_ev - min_ev;
 	const float x_pivot = 0.60606060606060606061; // = abs(normalized_log2_minimum / (normalized_log2_maximum - normalized_log2_minimum))
 	const float y_pivot = 0.48943708957387834110; // = midgrey ^ (1.0 / 2.4)
-	const float a_bottom = -58.33732197712189689;
-	const float a_top = 46.1410501578363761;
+	const float a_bottom = -1.1441749659185295;
+	const float a_top = 0.904968426773028;
 	const float b_bottom = 35.355952713407210237;
 	const float b_top = -27.96427282293113701;
-	const vec3 power = vec3(1.5);
+	const float c_bottom = -58.33732197712189689;
+	const float c_top = 46.1410501578363761;
+	const float d = ((4.0 / 55.0) * -20.0);
+	const float e = ((4.0 / 55.0) * 33.0);
 	const vec3 inverse_power = vec3(1.0 / 1.5);
 
 	// Large negative values in one channel and large positive values in other
@@ -53,7 +56,8 @@ vec3 tonemap_agx(vec3 color) {
 	vec3 mask = step(vec3(x_pivot), color);
 	vec3 a = a_bottom + (a_top - a_bottom) * mask;
 	vec3 b = b_bottom + (b_top - b_bottom) * mask;
-	color = y_pivot + (((-2.4 * x_pivot)) + 2.4 * color) / pow(1.0 + 0.019613086908021587964 * pow(abs(b + a * color), power), inverse_power);
+	vec3 c = c_bottom + (c_top - c_bottom) * mask;
+	color = y_pivot + (d + (e * color)) / pow(abs(1.0 + a * (color - x_pivot) * sqrt(abs(b + (c * color)))), inverse_power);
 
 	color = pow(color, vec3(2.4));
 
