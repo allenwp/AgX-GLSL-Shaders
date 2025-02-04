@@ -1,6 +1,6 @@
 // This is a simplified glsl implementation of EaryChow's AgX that is used by Blender.
 // Input: unbounded linear Rec. 709
-// Output: unbounded linear Rec.709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
+// Output: unbounded linear Rec. 709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
 // This code is based off of the script that generates the AgX_Base_sRGB.cube LUT that Blender uses.
 // Source: https://github.com/EaryChow/AgX_LUT_Gen/blob/main/AgXBasesRGB.py
 // Changes: Negative clipping in input color space without "guard rails" and no chroma-angle mixing.
