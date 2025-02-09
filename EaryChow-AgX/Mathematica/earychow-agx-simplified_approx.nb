@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     17719,        385]
-NotebookOptionsPosition[     17354,        371]
-NotebookOutlinePosition[     17759,        387]
-CellTagsIndexPosition[     17716,        384]
+NotebookDataLength[     21126,        462]
+NotebookOptionsPosition[     20762,        448]
+NotebookOutlinePosition[     21166,        464]
+CellTagsIndexPosition[     21123,        461]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -153,7 +153,8 @@ Cell[BoxData[{
         RowBox[{"(", 
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
-       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n"}], "\[IndentingNewLine]", 
+       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -202,12 +203,20 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"calculateSigmoid", "[", 
      RowBox[{"x", ",", "kXPivot", ",", "kYPivot"}], "]"}], "^", "kSlope"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Plot", "[", 
-  RowBox[{
-   RowBox[{"agxCurve", "[", "x", "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}]}], "]"}], "\n", 
+  "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"agxCurve", "[", "0.18", "]"}], "\[IndentingNewLine]", 
+    RowBox[{"agxCurve", "[", "kLinearMin", "]"}], "\[IndentingNewLine]", 
+    RowBox[{"agxCurve", "[", "kLinearMax", "]"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"agxCurve", "[", "x", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Plot", "[", 
    RowBox[{
@@ -219,32 +228,82 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", "\"\<Rational:\>\"", "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"RationalInterpolation", "[", 
-   RowBox[{
-    RowBox[{"agxCurve", "[", "x", "]"}], ",", 
-    RowBox[{"{", 
-     RowBox[{"x", ",", "2", ",", "2"}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}]}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<Minimax:\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"MiniMaxApproximation", "[", 
+  RowBox[{"miniMaxResult", "=", 
+   RowBox[{
+    RowBox[{"MiniMaxApproximation", "[", 
+     RowBox[{
+      RowBox[{"agxCurve", "[", "x", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", 
+        RowBox[{"{", 
+         RowBox[{"kLinearMin", ",", "kLinearMax"}], "}"}], ",", "2", ",", 
+        "2"}], "}"}], ",", 
+      RowBox[{"Brake", "->", 
+       RowBox[{"{", 
+        RowBox[{"200", ",", "200"}], "}"}]}], ",", " ", 
+      RowBox[{"MaxIterations", "->", "10000"}]}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"miniMaxResult", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Plot", "[", 
+   RowBox[{"miniMaxResult", ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "kLog2Min", ",", "kLog2Max"}], "}"}], ",", 
+    RowBox[{"ScalingFunctions", "->", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<Rational:\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rationResult", "=", 
+   RowBox[{"RationalInterpolation", "[", 
     RowBox[{
      RowBox[{"agxCurve", "[", "x", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"x", ",", 
-       RowBox[{"{", 
-        RowBox[{"kLinearMin", ",", "kLinearMax"}], "}"}], ",", "2", ",", 
-       "2"}], "}"}], ",", " ", 
-     RowBox[{"Brake", "->", 
+      RowBox[{"x", ",", "2", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}], ",", " ", 
+     RowBox[{"Bias", "->", 
+      RowBox[{"-", "0.5109"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"rationResult", "=", 
+    RowBox[{"RationalInterpolation", "[", 
+     RowBox[{
+      RowBox[{"agxCurve", "[", "x", "]"}], ",", 
       RowBox[{"{", 
-       RowBox[{"200", ",", "200"}], "}"}]}]}], "]"}], "[", 
-   RowBox[{"[", 
-    RowBox[{"2", ",", "1"}], "]"}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+       RowBox[{"x", ",", "2", ",", "2"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0.18", ",", "kLinearMax"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"agxCurve", "[", "0.18", "]"}], ",", 
+          RowBox[{"agxCurve", "[", "kLinearMax", "]"}]}], "}"}]}], "}"}]}], 
+     "]"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"rationResult", ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}]}], "]"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Plot", "[", 
+   RowBox[{"rationResult", ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "kLog2Min", ",", "kLog2Max"}], "}"}], ",", 
+    RowBox[{"ScalingFunctions", "->", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<linear min:\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{"N", "[", 
   RowBox[{"kLinearMin", ",", " ", "20"}], "]"}], "\[IndentingNewLine]", 
@@ -255,8 +314,11 @@ Cell[BoxData[{
  RowBox[{"N", "[", 
   RowBox[{"kLog2Min", ",", " ", "20"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\[IndentingNewLine]", 
- RowBox[{"N", "[", 
-  RowBox[{"kLog2Max", ",", " ", "20"}], "]"}]}], "Input",
+ RowBox[{
+  RowBox[{"N", "[", 
+   RowBox[{"kLog2Max", ",", " ", "20"}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<agxCurve max:\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"agxCurve", "[", "kLinearMax", "]"}]}], "Input",
  CellChangeTimes->{{3.9464810797886276`*^9, 3.9464810797896233`*^9}, {
    3.9464811177963753`*^9, 3.9464811279269676`*^9}, {3.946481214625864*^9, 
    3.946481258898613*^9}, {3.9464815015750694`*^9, 3.9464815187444267`*^9}, {
@@ -365,12 +427,27 @@ Cell[BoxData[{
    3.94804857713221*^9}, {3.948048624078823*^9, 3.94804864173477*^9}, {
    3.9480486907692585`*^9, 3.9480487494062786`*^9}, {3.948049104161476*^9, 
    3.948049130109043*^9}, {3.9480492314696217`*^9, 3.9480492565534515`*^9}, {
-   3.948049311454031*^9, 3.948049313148735*^9}},
+   3.948049311454031*^9, 3.948049313148735*^9}, {3.948057024694317*^9, 
+   3.9480570748786907`*^9}, {3.948057133482338*^9, 3.9480571742507076`*^9}, {
+   3.9480591866755295`*^9, 3.948059195968788*^9}, {3.9480592511437874`*^9, 
+   3.9480592512243156`*^9}, {3.9480592819921417`*^9, 3.948059339254631*^9}, {
+   3.948059369511654*^9, 3.948059400665636*^9}, {3.9480595828824825`*^9, 
+   3.948059677376032*^9}, 3.9480598013767605`*^9, {3.9480602805700855`*^9, 
+   3.9480603555342484`*^9}, {3.9480604403365784`*^9, 3.948060448469679*^9}, 
+   3.948060480069956*^9, {3.948060585798813*^9, 3.948060837634939*^9}, {
+   3.9480609488892117`*^9, 3.948060954060364*^9}, {3.9480609966896114`*^9, 
+   3.9480610792122593`*^9}, {3.9481053471460304`*^9, 
+   3.9481054284159393`*^9}, {3.9481055241804657`*^9, 
+   3.9481055379623737`*^9}, {3.9481055769806633`*^9, 3.94810560059659*^9}, {
+   3.9481057213908463`*^9, 3.948105765088585*^9}, {3.948105978392473*^9, 
+   3.9481060013489685`*^9}, {3.9481063604698143`*^9, 3.948106393024889*^9}, {
+   3.948106475518854*^9, 3.9481064846180077`*^9}, {3.9481273943438683`*^9, 
+   3.9481273988756123`*^9}, {3.9481274293270683`*^9, 3.9481275215408897`*^9}},
  CellLabel->
-  "In[2115]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+  "In[2305]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 },
-WindowSize->{1051.5, 1014},
-WindowMargins->{{74, Automatic}, {Automatic, 0}},
+WindowSize->{1077.5, 1014},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (December 26, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
@@ -386,7 +463,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 16796, 349, 1017, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 20204, 426, 1226, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

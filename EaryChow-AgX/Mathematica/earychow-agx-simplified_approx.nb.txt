@@ -43,17 +43,30 @@ calculateSigmoid[x_, xPivot_, yPivot_] :=
 
 agxCurve[x_] := calculateSigmoid[x, kXPivot, kYPivot]^kSlope
 
-Plot[agxCurve[x], {x, kLinearMin, kLinearMax}]
+(*agxCurve[0.18]
+agxCurve[kLinearMin]
+agxCurve[kLinearMax]*)
+(*Plot[agxCurve[x],{x,kLinearMin,kLinearMax}]*)
 Plot[agxCurve[2^x], {x, kLog2Min, kLog2Max}, 
  ScalingFunctions -> {"Log2", None}]
 
-Print["Rational:"]
-RationalInterpolation[
- agxCurve[x], {x, 2, 2}, {x, kLinearMin, kLinearMax}]
-
 Print["Minimax:"]
-MiniMaxApproximation[agxCurve[x], {x, {kLinearMin, kLinearMax}, 2, 2}, 
-  Brake -> {200, 200}][[2, 1]]
+miniMaxResult = 
+ MiniMaxApproximation[agxCurve[x], {x, {kLinearMin, kLinearMax}, 2, 2},
+    Brake -> {200, 200}, MaxIterations -> 10000][[2, 1]]
+(*Plot[miniMaxResult,{x,kLinearMin,kLinearMax}]*)
+Plot[miniMaxResult, {x, kLog2Min, kLog2Max}, 
+ ScalingFunctions -> {"Log2", None}]
+
+Print["Rational:"]
+rationResult = 
+ RationalInterpolation[
+  agxCurve[x], {x, 2, 2}, {x, kLinearMin, kLinearMax}, Bias -> -0.5109]
+(*rationResult=RationalInterpolation[agxCurve[x],{x,2,2},{{0.18,\
+kLinearMax},{agxCurve[0.18],agxCurve[kLinearMax]}}]*)
+(*Plot[rationResult,{x,kLinearMin,kLinearMax}]*)
+Plot[rationResult, {x, kLog2Min, kLog2Max}, 
+ ScalingFunctions -> {"Log2", None}]
 
 Print["linear min:"]
 N[kLinearMin, 20]
@@ -63,3 +76,6 @@ Print["log2 min:"]
 N[kLog2Min, 20]
 Print["log2 max:"]
 N[kLog2Max, 20]
+
+Print["agxCurve max:"]
+agxCurve[kLinearMax]
