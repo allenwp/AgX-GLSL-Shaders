@@ -1,0 +1,65 @@
+<< FunctionApproximations`
+
+kNormLog2Min = -10;
+kNormLog2Max = Rationalize[6.5];
+kMidGray = Rationalize[0.18];
+kLog2Min = Log2[(2^kNormLog2Min)*kMidGray];
+kLog2Max = Log2[(2^kNormLog2Max)*kMidGray];
+kLinearMin = (2^kNormLog2Min)*kMidGray;
+kLinearMax = (2^kNormLog2Max)*kMidGray;
+kPower = Rationalize[1.5];
+kSlope = Rationalize[2.4];
+kXPivot = Abs[kNormLog2Min/(kNormLog2Max - kNormLog2Min)];
+kYPivot = kMidGray^(Rationalize[1.0/2.4]);
+
+
+equationScale[transitionX_, transitionY_, power_, slope_] := Module[
+   {termA, termB},
+   termA = (slope*(Rationalize[1 - transitionX]))^(Rationalize[-1*
+        power]);
+   termB =  
+    SetPrecision[((slope*(Rationalize[1 - transitionX]))/(Rationalize[
+           1 - transitionY]))^(power) - 1, 20];
+    (termA * termB)^(Rationalize[-1 / power])
+   ];
+
+exponentialCurve[x_, scaleInput_, xPivot_, yPivot_, power_, 
+  slope_] := (scaleInput * 
+    exponential[(slope*(x - xPivot))/scaleInput, power]) + yPivot
+
+exponential[x_, power_] := x / ((1 + (x^power))^(1/power))
+
+calculateSigmoid[x_, xPivot_, yPivot_] := 
+  Module[{ scaleValue, normalizedX},
+   normalizedX = (Log2[x/kMidGray] - kNormLog2Min)/(kNormLog2Max - 
+       kNormLog2Min);
+   scaleValue = 
+    If[normalizedX < xPivot, -1*
+      equationScale[1.0 - xPivot, 1.0 - yPivot, kPower, kSlope], 
+     equationScale[xPivot, yPivot, kPower, kSlope]];
+   exponentialCurve[normalizedX, scaleValue, xPivot, yPivot, kPower, 
+    kSlope]
+   ];
+
+agxCurve[x_] := calculateSigmoid[x, kXPivot, kYPivot]^kSlope
+
+Plot[agxCurve[x], {x, kLinearMin, kLinearMax}]
+Plot[agxCurve[2^x], {x, kLog2Min, kLog2Max}, 
+ ScalingFunctions -> {"Log2", None}]
+
+Print["Rational:"]
+RationalInterpolation[
+ agxCurve[x], {x, 2, 2}, {x, kLinearMin, kLinearMax}]
+
+Print["Minimax:"]
+MiniMaxApproximation[agxCurve[x], {x, {kLinearMin, kLinearMax}, 2, 2}, 
+  Brake -> {200, 200}][[2, 1]]
+
+Print["linear min:"]
+N[kLinearMin, 20]
+Print["linear max:"]
+N[kLinearMax, 20]
+Print["log2 min:"]
+N[kLog2Min, 20]
+Print["log2 max:"]
+N[kLog2Max, 20]
