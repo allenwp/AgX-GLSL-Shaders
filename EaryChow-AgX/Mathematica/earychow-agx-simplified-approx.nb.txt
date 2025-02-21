@@ -1,0 +1,94 @@
+<< FunctionApproximations`
+
+kNormLog2Min = -10;
+kNormLog2Max = Rationalize[6.5];
+kMidGray = Rationalize[0.18];
+kLog2Min = Log2[(2^kNormLog2Min)*kMidGray];
+kLog2Max = Log2[(2^kNormLog2Max)*kMidGray];
+kLinearMin = (2^kNormLog2Min)*kMidGray;
+kLinearMax = (2^kNormLog2Max)*kMidGray;
+kPower = Rationalize[1.5];
+kSlope = Rationalize[2.4];
+kXPivot = Abs[kNormLog2Min/(kNormLog2Max - kNormLog2Min)];
+kYPivot = kMidGray^(Rationalize[1.0/2.4]);
+
+equationScale[transitionX_, transitionY_, power_, slope_] := 
+  Module[{termA, termB}, 
+   termA = (slope*(Rationalize[1 - transitionX]))^(Rationalize[-1*
+        power]);
+   termB = 
+    SetPrecision[((slope*(Rationalize[1 - transitionX]))/(Rationalize[
+           1 - transitionY]))^(power) - 1, 20];
+   (termA*termB)^(Rationalize[-1/power])];
+
+exponentialCurve[x_, scaleInput_, xPivot_, yPivot_, power_, 
+  slope_] := (scaleInput*
+    exponential[(slope*(x - xPivot))/scaleInput, power]) + yPivot
+
+exponential[x_, power_] := x/((1 + (x^power))^(1/power))
+
+calculateSigmoid[x_, xPivot_, yPivot_] := 
+  Module[{scaleValue}, 
+   scaleValue = 
+    If[x < xPivot, -1*
+      equationScale[1.0 - xPivot, 1.0 - yPivot, kPower, kSlope], 
+     equationScale[xPivot, yPivot, kPower, kSlope]];
+   exponentialCurve[x, scaleValue, xPivot, yPivot, kPower, kSlope]];
+
+agxCurve[x_] := 
+  Module[{normalizedX}, 
+   normalizedX = (Log2[x/kMidGray] - kNormLog2Min)/(kNormLog2Max - 
+       kNormLog2Min);
+   calculateSigmoid[normalizedX, kXPivot, kYPivot]^kSlope];
+
+Print["AgX tonemapping curve:"]
+Plot[agxCurve[x], {x, kLinearMin, kLinearMax}, 
+ ScalingFunctions -> {"Log2", None}]
+
+Print["Timothy Lottes' tonemapping equation:"]
+Print["Generic soultion for b and c:"]
+tonemap[x_, a_, d_] := (x^a)/(((x^a)^d)*b + c);
+Solve[{tonemap[midIn, a, d] == midOut, 
+  tonemap[maxVal, a, d] == 1}, {b, c}]
+
+Print["Soultion for b and c with hardcoded mid grey and max:"]
+Solve[{tonemap[kMidGray, a, d] == kMidGray, 
+  tonemap[kLinearMax, a, d] == 1}, {b, c}]
+
+Print["NonlinearModelFit using solution for b and c from previous \
+step."]
+Print["This uses log2 scale from the minimum value to 1 (linear value \
+of 2.0)."]
+Print["This range was chosen because linear values below 2.0 are \
+preceptually most important."]
+data = Table[{x, agxCurve[x]}, {x, 2^Range[kLog2Min, 1, 0.001]}];
+nlm = SetPrecision[
+   NonlinearModelFit[
+    data, (x^
+       a)/(((x^a)^d)*(-((
+          9^(-1 + a) 50^-a (-50 + 9 2^(13 a/2)))/(((9/50)^a)^
+           d - ((9/25)^a 2^(11 a/2))^d))) + ((
+        50^-a (-2^(13 a/2) 9^(1 + a) ((9/50)^a)^d + 
+           50 9^a ((9/25)^a 2^(11 a/2))^d))/(
+        9 (-((9/50)^a)^d + ((9/25)^a 2^(11 a/2))^d)))), {a, d}, x], 
+   15];
+nlmfResult = Normal[nlm]
+Plot[nlmfResult, {x, kLinearMin, kLinearMax}, 
+ ScalingFunctions -> {"Log2", None}]
+
+Print["Various constants:"]
+Print["linear min:"]
+N[kLinearMin, 20]
+Print["linear max:"]
+N[kLinearMax, 20]
+Print["log2 min:"]
+N[kLog2Min, 20]
+Print["log2 max:"]
+N[kLog2Max, 20]
+
+Print["agxCurve min:"]
+agxCurve[kLinearMin]
+Print["agxCurve middle grey:"]
+N[agxCurve[kMidGray]]
+Print["agxCurve max:"]
+agxCurve[kLinearMax]
