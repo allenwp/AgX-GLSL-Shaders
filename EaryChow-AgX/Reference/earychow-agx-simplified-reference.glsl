@@ -1,3 +1,8 @@
+// AgX by @sobotka https://github.com/sobotka/AgX-S2O3 and https://github.com/sobotka/SB2383-Configuration-Generation
+// Blender's AgX by @EaryChow et al. https://github.com/EaryChow/AgX_LUT_Gen
+// This shader port of Eary's version of AgX: Copyright (c) 2025 Allen Pestaluky
+// Source material does not provide a license, so this port similarly does not provide a license.
+
 vec3 exponential(vec3 x_in, float power) {
 	return x_in / pow(1.0 + pow(x_in, vec3(power)), vec3(1.0 / power));
 }

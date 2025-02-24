@@ -1,3 +1,8 @@
+// AgX by @sobotka https://github.com/sobotka/AgX-S2O3 and https://github.com/sobotka/SB2383-Configuration-Generation
+// Blender's AgX by @EaryChow et al. https://github.com/EaryChow/AgX_LUT_Gen
+// This shader port of Eary's version of AgX: Copyright (c) 2025 Allen Pestaluky
+// Source material does not provide a license, so this port similarly does not provide a license.
+
 // This is a simplified glsl implementation of EaryChow's AgX that is used by Blender.
 // Input: unbounded linear Rec. 709
 // Output: unbounded linear Rec. 709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
@@ -19,8 +24,8 @@ vec3 tonemap_agx(vec3 color) {
 			-0.10886710826831608324, -0.027084020983874825605, 1.402665347143271889);
 
 	const float min_ev = -12.473931188332412333;
-    const float max_ev = 4.0260688116675876672;
-    const float dynamic_range = max_ev - min_ev;
+	const float max_ev = 4.0260688116675876672;
+	const float dynamic_range = max_ev - min_ev;
 	const float x_pivot = 0.60606060606060606061; // = abs(normalized_log2_minimum / (normalized_log2_maximum - normalized_log2_minimum))
 	const float y_pivot = 0.48943708957387834110; // = midgrey ^ (1.0 / 2.4)
 	const float a_bottom = -1.1441749659185295;

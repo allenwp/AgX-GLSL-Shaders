@@ -1,3 +1,8 @@
+// AgX by @sobotka https://github.com/sobotka/AgX-S2O3 and https://github.com/sobotka/SB2383-Configuration-Generation
+// Blender's AgX by @EaryChow et al. https://github.com/EaryChow/AgX_LUT_Gen
+// This shader port of Eary's version of AgX: Copyright (c) 2025 Allen Pestaluky
+// Source material does not provide a license, so this port similarly does not provide a license.
+
 // This is a simplified glsl implementation of EaryChow's AgX that is used by Blender.
 // Input: unbounded linear Rec. 709
 // Output: unbounded linear Rec. 709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
@@ -20,11 +25,12 @@ vec3 tonemap_agx(vec3 color) {
 			-0.10886710826831608324, -0.027084020983874825605, 1.402665347143271889);
 
 	// Terms of Timothy Lottes' tonemapping curve equation:
-	// c and d are calculated based on a and d with AgX mid and max parameters.
-	const vec3 a = vec3(1.36989969378897);
+	// c and b are calculated based on a and d with AgX mid and max parameters
+	// using the Mathematica notebook in the source AgX-GLSL-Shaders repository.
+	const float a = 1.36989969378897;
 	const float c = 0.3589386656982;
 	const float b = 1.4325264680543;
-	const vec3 d = vec3(0.903916850555009);
+	const float e = a * 0.903916850555009; // = a * d
 
 	// Large negative values in one channel and large positive values in other
 	// channels can result in a colour that appears darker and more saturated than
@@ -35,14 +41,23 @@ vec3 tonemap_agx(vec3 color) {
 	// of color information that could be correctly interpreted within the
 	// Rec. 2020 color space as positive RGB values, but is often not worth
 	// the performance cost of an additional matrix multiplication.
-	color = max(color, 0.0);
+	// A value of 2e-10 intentionally introduces insignificant error to prevent
+	// log2(0.0) after the inset matrix is applied; color will be >= 1e-10 after
+	// the matrix transform.
+	color = max(color, 2e-10);
 
 	// Apply inset matrix.
 	color = srgb_to_rec2020_agx_inset_matrix * color;
 
 	// Use Timothy Lottes' tonemapping equation to approximate AgX's curve.
-	color = pow(color, a);
-	color = color / (pow(color, d) * b + c);
+	// Slide 44 of "Advanced Techniques and Optimization of HDR Color Pipelines"
+	// https://gpuopen.com/wp-content/uploads/2016/03/GdcVdrLottes.pdf
+	// color = pow(color, a);
+	// color = color / (pow(color, d) * b + c);
+	// Simplified using hardware-implemented shader operations.
+	// Thanks to Stephen Hill for this optimization tip!
+	color = log2(color);
+	color = exp2(color * a) / (exp2(color * e) * b + c);
 
 	// Apply outset to make the result more chroma-laden and then go back to linear sRGB.
 	color = agx_outset_rec2020_to_srgb_matrix * color;

@@ -1,3 +1,8 @@
+// AgX by @sobotka https://github.com/sobotka/AgX-S2O3 and https://github.com/sobotka/SB2383-Configuration-Generation
+// Blender's AgX by @EaryChow et al. https://github.com/EaryChow/AgX_LUT_Gen
+// This shader port of Eary's version of AgX: Copyright (c) 2025 Allen Pestaluky
+// Source material does not provide a license, so this port similarly does not provide a license.
+
 // This is a simplified glsl implementation of EaryChow's AgX that is used by Blender.
 // Input: unbounded linear Rec. 709
 // Output: unbounded linear Rec. 709 (Most any value you care about will be within [0.0, 1.0], thus safe to clip.)
