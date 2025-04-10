@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     27119,        601]
-NotebookOptionsPosition[     26749,        587]
-NotebookOutlinePosition[     27159,        603]
-CellTagsIndexPosition[     27116,        600]
+NotebookDataLength[     27120,        599]
+NotebookOptionsPosition[     26750,        585]
+NotebookOutlinePosition[     27160,        601]
+CellTagsIndexPosition[     27117,        598]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -73,8 +73,7 @@ Cell[BoxData[{
     RowBox[{"kMidGray", "^", 
      RowBox[{"(", 
       RowBox[{"Rationalize", "[", 
-       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\n", 
+       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -123,7 +122,7 @@ Cell[BoxData[{
          RowBox[{"Rationalize", "[", 
           RowBox[{
            RowBox[{"-", "1"}], "/", "power"}], "]"}], ")"}]}]}]}], "]"}]}], 
-   ";"}], "\[IndentingNewLine]"}], "\n", 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"exponentialCurve", "[", 
@@ -140,8 +139,7 @@ Cell[BoxData[{
           RowBox[{"slope", "*", 
            RowBox[{"(", 
             RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scaleInput"}],
-         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], 
-  "\[IndentingNewLine]"}], "\n", 
+         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"exponential", "[", 
@@ -154,8 +152,7 @@ Cell[BoxData[{
         RowBox[{"(", 
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
-       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\[IndentingNewLine]"}], "\n", 
+       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -182,7 +179,7 @@ Cell[BoxData[{
        RowBox[{"exponentialCurve", "[", 
         RowBox[{
         "x", ",", "scaleValue", ",", "xPivot", ",", "yPivot", ",", "kPower", ",",
-          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -204,7 +201,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"calculateSigmoid", "[", 
          RowBox[{"normalizedX", ",", "kXPivot", ",", "kYPivot"}], "]"}], "^", 
-        "kSlope"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+        "kSlope"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<AgX tonemapping curve:\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Plot", "[", 
@@ -244,7 +241,8 @@ Cell[BoxData[{
         RowBox[{"midIn", ",", "a", ",", "d"}], "]"}], "==", "midOut"}], ",", 
       RowBox[{
        RowBox[{"tonemap", "[", 
-        RowBox[{"maxVal", ",", "a", ",", "d"}], "]"}], "==", "1"}]}], "}"}], ",", 
+        RowBox[{"white", ",", "a", ",", "d"}], "]"}], "==", "maxVal"}]}], 
+     "}"}], ",", 
     RowBox[{"{", 
      RowBox[{"b", ",", "c"}], "}"}]}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", 
@@ -581,9 +579,9 @@ preceptually most important.\>\"", "]"}], "\[IndentingNewLine]",
    3.9491466724199696`*^9}, {3.9491471622910137`*^9, 3.949147162509369*^9}, {
    3.949161627940548*^9, 3.949161628627901*^9}, {3.949161805977972*^9, 
    3.949161818704096*^9}, {3.9491618691195717`*^9, 3.9491620277486115`*^9}, {
-   3.9491621020337067`*^9, 3.949162268524086*^9}},
- CellLabel->
-  "In[382]:=",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+   3.9491621020337067`*^9, 3.949162268524086*^9}, 
+   3.953287216631092*^9},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
+fbca5069f767"]
 },
 WindowSize->{1150.8, 1216.8},
 WindowMargins->{{534.6, Automatic}, {Automatic, 0}},
@@ -602,7 +600,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 26191, 565, 1359, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 26192, 563, 1359, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

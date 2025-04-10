@@ -49,7 +49,7 @@ Print["Timothy Lottes' tonemapping equation:"]
 Print["Generic soultion for b and c:"]
 tonemap[x_, a_, d_] := (x^a)/(((x^a)^d)*b + c);
 Solve[{tonemap[midIn, a, d] == midOut, 
-  tonemap[maxVal, a, d] == 1}, {b, c}]
+  tonemap[white, a, d] == maxVal}, {b, c}]
 
 Print["Soultion for b and c with hardcoded mid grey and max:"]
 Solve[{tonemap[kMidGray, a, d] == kMidGray, 
