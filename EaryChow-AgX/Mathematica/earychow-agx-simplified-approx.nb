@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     27120,        599]
-NotebookOptionsPosition[     26750,        585]
-NotebookOutlinePosition[     27160,        601]
-CellTagsIndexPosition[     27117,        598]
+NotebookDataLength[     27313,        605]
+NotebookOptionsPosition[     26943,        591]
+NotebookOutlinePosition[     27353,        607]
+CellTagsIndexPosition[     27310,        604]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -73,7 +73,8 @@ Cell[BoxData[{
     RowBox[{"kMidGray", "^", 
      RowBox[{"(", 
       RowBox[{"Rationalize", "[", 
-       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -122,7 +123,7 @@ Cell[BoxData[{
          RowBox[{"Rationalize", "[", 
           RowBox[{
            RowBox[{"-", "1"}], "/", "power"}], "]"}], ")"}]}]}]}], "]"}]}], 
-   ";"}], "\n"}], "\[IndentingNewLine]", 
+   ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"exponentialCurve", "[", 
@@ -139,7 +140,8 @@ Cell[BoxData[{
           RowBox[{"slope", "*", 
            RowBox[{"(", 
             RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scaleInput"}],
-         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], "\n"}], "\[IndentingNewLine]", 
+         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"exponential", "[", 
@@ -152,7 +154,8 @@ Cell[BoxData[{
         RowBox[{"(", 
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
-       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n"}], "\[IndentingNewLine]", 
+       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -179,7 +182,7 @@ Cell[BoxData[{
        RowBox[{"exponentialCurve", "[", 
         RowBox[{
         "x", ",", "scaleValue", ",", "xPivot", ",", "yPivot", ",", "kPower", ",",
-          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -201,7 +204,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"calculateSigmoid", "[", 
          RowBox[{"normalizedX", ",", "kXPivot", ",", "kYPivot"}], "]"}], "^", 
-        "kSlope"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+        "kSlope"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{"Print", "[", "\"\<AgX tonemapping curve:\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Plot", "[", 
@@ -261,13 +264,13 @@ Cell[BoxData[{
         RowBox[{"kLinearMax", ",", "a", ",", "d"}], "]"}], "==", "1"}]}], 
      "}"}], ",", 
     RowBox[{"{", 
-     RowBox[{"b", ",", "c"}], "}"}]}], "]"}], "\[IndentingNewLine]"}], "\n", 
+     RowBox[{"b", ",", "c"}], "}"}]}], "]"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", 
   "[", "\"\<NonlinearModelFit using solution for b and c from previous \
 step.\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", 
-  "[", "\"\<This uses log2 scale from the minimum value to 1 (linear value of \
-2.0).\>\"", "]"}], "\[IndentingNewLine]", 
+  "[", "\"\<This uses log2 scale from the minimum AgX value to linear value \
+of 2.0.\>\"", "]"}], "\[IndentingNewLine]", 
  RowBox[{"Print", 
   "[", "\"\<This range was chosen because linear values below 2.0 are \
 preceptually most important.\>\"", "]"}], "\[IndentingNewLine]", 
@@ -282,8 +285,10 @@ preceptually most important.\>\"", "]"}], "\[IndentingNewLine]",
       RowBox[{"x", ",", 
        RowBox[{"2", "^", 
         RowBox[{"Range", "[", 
-         RowBox[{"kLog2Min", ",", "1", ",", "0.001"}], "]"}]}]}], "}"}]}], 
-    "]"}]}], ";"}], "\n", 
+         RowBox[{
+          RowBox[{"Log2", "[", "kLinearMin", "]"}], ",", 
+          RowBox[{"Log2", "[", "2.0", "]"}], ",", "0.001"}], "]"}]}]}], 
+      "}"}]}], "]"}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{"nlm", "=", 
    RowBox[{"SetPrecision", "[", 
@@ -409,7 +414,7 @@ preceptually most important.\>\"", "]"}], "\[IndentingNewLine]",
  RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
  RowBox[{
   RowBox[{"N", "[", 
-   RowBox[{"kLog2Max", ",", "20"}], "]"}], "\[IndentingNewLine]"}], "\n", 
+   RowBox[{"kLog2Max", ",", "20"}], "]"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<agxCurve min:\>\"", "]"}], "\n", 
  RowBox[{"agxCurve", "[", "kLinearMin", "]"}], "\n", 
  RowBox[{"Print", "[", "\"\<agxCurve middle grey:\>\"", "]"}], "\n", 
@@ -579,8 +584,9 @@ preceptually most important.\>\"", "]"}], "\[IndentingNewLine]",
    3.9491466724199696`*^9}, {3.9491471622910137`*^9, 3.949147162509369*^9}, {
    3.949161627940548*^9, 3.949161628627901*^9}, {3.949161805977972*^9, 
    3.949161818704096*^9}, {3.9491618691195717`*^9, 3.9491620277486115`*^9}, {
-   3.9491621020337067`*^9, 3.949162268524086*^9}, 
-   3.953287216631092*^9},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
+   3.9491621020337067`*^9, 3.949162268524086*^9}, 3.953287216631092*^9, {
+   3.9532896249380264`*^9, 3.953289646081106*^9}, {3.9532897426175957`*^9, 
+   3.953289766919548*^9}},ExpressionUUID->"d279a19e-1257-234f-b2cc-\
 fbca5069f767"]
 },
 WindowSize->{1150.8, 1216.8},
@@ -600,7 +606,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 26192, 563, 1359, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
+Cell[554, 20, 26385, 569, 1359, "Input",ExpressionUUID->"d279a19e-1257-234f-b2cc-fbca5069f767"]
 }
 ]
 *)

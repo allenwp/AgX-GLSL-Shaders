@@ -57,11 +57,12 @@ Solve[{tonemap[kMidGray, a, d] == kMidGray,
 
 Print["NonlinearModelFit using solution for b and c from previous \
 step."]
-Print["This uses log2 scale from the minimum value to 1 (linear value \
-of 2.0)."]
+Print["This uses log2 scale from the minimum AgX value to linear \
+value of 2.0."]
 Print["This range was chosen because linear values below 2.0 are \
 preceptually most important."]
-data = Table[{x, agxCurve[x]}, {x, 2^Range[kLog2Min, 1, 0.001]}];
+data = Table[{x, agxCurve[x]}, {x, 
+    2^Range[Log2[kLinearMin], Log2[2.0], 0.001]}];
 nlm = SetPrecision[
    NonlinearModelFit[
     data, (x^
