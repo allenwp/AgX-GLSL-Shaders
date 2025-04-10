@@ -10,17 +10,17 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     14828,        424]
-NotebookOptionsPosition[     14439,        410]
-NotebookOutlinePosition[     14868,        426]
-CellTagsIndexPosition[     14825,        423]
+NotebookDataLength[     12872,        371]
+NotebookOptionsPosition[     12483,        357]
+NotebookOutlinePosition[     12912,        373]
+CellTagsIndexPosition[     12869,        370]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"<<", "FunctionApproximations`"}], "\[IndentingNewLine]"}], "\n", 
+  RowBox[{"<<", "FunctionApproximations`"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"kNormLog2Min", "=", 
    RowBox[{"-", "10"}]}], ";"}], "\n", 
@@ -73,8 +73,7 @@ Cell[BoxData[{
     RowBox[{"kMidGray", "^", 
      RowBox[{"(", 
       RowBox[{"Rationalize", "[", 
-       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\n", 
+       RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -123,7 +122,7 @@ Cell[BoxData[{
          RowBox[{"Rationalize", "[", 
           RowBox[{
            RowBox[{"-", "1"}], "/", "power"}], "]"}], ")"}]}]}]}], "]"}]}], 
-   ";"}], "\[IndentingNewLine]"}], "\n", 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"exponentialCurve", "[", 
@@ -140,8 +139,7 @@ Cell[BoxData[{
           RowBox[{"slope", "*", 
            RowBox[{"(", 
             RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scaleInput"}],
-         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], 
-  "\[IndentingNewLine]"}], "\n", 
+         ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"exponential", "[", 
@@ -154,8 +152,7 @@ Cell[BoxData[{
         RowBox[{"(", 
          RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
       RowBox[{"(", 
-       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-  "\[IndentingNewLine]"}], "\n", 
+       RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -182,7 +179,7 @@ Cell[BoxData[{
        RowBox[{"exponentialCurve", "[", 
         RowBox[{
         "x", ",", "scaleValue", ",", "xPivot", ",", "yPivot", ",", "kPower", ",",
-          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+          "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -204,7 +201,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"calculateSigmoid", "[", 
          RowBox[{"normalizedX", ",", "kXPivot", ",", "kYPivot"}], "]"}], "^", 
-        "kSlope"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+        "kSlope"}]}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<AgX tonemapping curve:\>\"", "]"}], "\n", 
  RowBox[{
   RowBox[{"Plot", "[", 
@@ -214,14 +211,14 @@ Cell[BoxData[{
      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}], ",", 
     RowBox[{"ScalingFunctions", "->", 
      RowBox[{"{", 
-      RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}], 
-  "\[IndentingNewLine]"}], "\n", 
- RowBox[{"Print", "[", "\"\<Timothy Lottes' tonemapping equation:\>\"", 
+      RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", 
+  "[", "\"\<Part of Timothy Lottes' tonemapping equation for the toe:\>\"", 
   "]"}], "\n", 
- RowBox[{"Print", "[", "\"\<Generic soultion for b and c:\>\"", "]"}], "\n", 
+ RowBox[{"Print", "[", "\"\<Generic soultion for c:\>\"", "]"}], "\n", 
  RowBox[{
   RowBox[{
-   RowBox[{"tonemap", "[", 
+   RowBox[{"tonemapToe", "[", 
     RowBox[{"x_", ",", "a_"}], "]"}], ":=", 
    RowBox[{
     RowBox[{"(", 
@@ -235,31 +232,24 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"{", 
      RowBox[{
-      RowBox[{"tonemap", "[", 
+      RowBox[{"tonemapToe", "[", 
        RowBox[{"midIn", ",", "a"}], "]"}], "==", "midOut"}], "}"}], ",", 
-    RowBox[{"{", "c", "}"}]}], "]"}], "\[IndentingNewLine]"}], "\n", 
- RowBox[{"Print", 
-  "[", "\"\<Soultion for b and c with hardcoded mid grey and max:\>\"", 
+    RowBox[{"{", "c", "}"}]}], "]"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<Soultion for c with hardcoded mid grey:\>\"", 
   "]"}], "\n", 
  RowBox[{
   RowBox[{"Solve", "[", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{
-      RowBox[{"tonemap", "[", 
+      RowBox[{"tonemapToe", "[", 
        RowBox[{"kMidGray", ",", "a"}], "]"}], "==", "kMidGray"}], "}"}], ",", 
     RowBox[{"{", "c", "}"}]}], "]"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", 
-  "[", "\"\<NonlinearModelFit using solution for b and c from previous \
-step.\>\"", "]"}], "\n", 
- RowBox[{"Print", 
-  "[", "\"\<This uses log2 scale from the minimum AgX value to linear value \
-of 2.0.\>\"", "]"}], "\n", 
- RowBox[{"Print", 
-  "[", "\"\<This range was chosen because linear values below 2.0 are \
-preceptually most important.\>\"", "]"}], "\n", 
+  "[", "\"\<NonlinearModelFit using solution for c from previous step. Range \
+of toe only.\>\"", "]"}], "\n", 
  RowBox[{
-  RowBox[{"data", "=", 
+  RowBox[{"dataToe", "=", 
    RowBox[{"Table", "[", 
     RowBox[{
      RowBox[{"{", 
@@ -274,11 +264,11 @@ preceptually most important.\>\"", "]"}], "\n",
           RowBox[{"Log2", "[", "kMidGray", "]"}], ",", "0.001"}], "]"}]}]}], 
       "}"}]}], "]"}]}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"nlm", "=", 
+  RowBox[{"nlmToe", "=", 
    RowBox[{"SetPrecision", "[", 
     RowBox[{
      RowBox[{"NonlinearModelFit", "[", 
-      RowBox[{"data", ",", 
+      RowBox[{"dataToe", ",", 
        RowBox[{
         RowBox[{"(", 
          RowBox[{"x", "^", "a"}], ")"}], "/", 
@@ -293,13 +283,13 @@ preceptually most important.\>\"", "]"}], "\n",
               RowBox[{"-", "1"}], "+", "a"}]], " ", 
             SuperscriptBox["50", 
              RowBox[{"-", "a"}]]}], ")"}]}], ")"}]}], ",", 
-       RowBox[{"{", "a", "}"}], ",", "x"}], "]"}], ",", "50"}], "]"}]}], 
+       RowBox[{"{", "a", "}"}], ",", "x"}], "]"}], ",", "15"}], "]"}]}], 
   ";"}], "\n", 
- RowBox[{"nlmfResult", "=", 
-  RowBox[{"Normal", "[", "nlm", "]"}]}], "\n", 
+ RowBox[{"nlmfToeResult", "=", 
+  RowBox[{"Normal", "[", "nlmToe", "]"}]}], "\n", 
  RowBox[{
   RowBox[{"Plot", "[", 
-   RowBox[{"nlmfResult", ",", 
+   RowBox[{"nlmfToeResult", ",", 
     RowBox[{"{", 
      RowBox[{"x", ",", "kLinearMin", ",", "kLinearMax"}], "}"}], ",", 
     RowBox[{"ScalingFunctions", "->", 
@@ -326,57 +316,14 @@ preceptually most important.\>\"", "]"}], "\n",
      RowBox[{
       RowBox[{"agxCurve", "[", "x", "]"}], ",", "x"}], "]"}], "/.", 
     RowBox[{"x", "->", "kMidGray"}]}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", "\"\<Slope of flitted curve configuration:\>\"", 
-  "]"}], "\n", 
+ RowBox[{"Print", "[", "\"\<Slope of flitted curve toe:\>\"", "]"}], "\n", 
  RowBox[{
-  RowBox[{"nlmPrime", "[", "x_", "]"}], "=", 
+  RowBox[{"nlmToePrime", "[", "x_", "]"}], "=", 
   RowBox[{"D", "[", 
    RowBox[{
-    RowBox[{"nlm", "[", "x", "]"}], ",", "x"}], "]"}]}], "\[IndentingNewLine]", 
+    RowBox[{"nlmToe", "[", "x", "]"}], ",", "x"}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"nlmPrime", "[", "kMidGray", "]"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"Print", "[", "\"\<Keep slope:\>\"", "]"}], " ", 
-     RowBox[{"finalCurve", "[", 
-      RowBox[{"x_", ",", "d_"}], "]"}]}], "=", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{
-       "x", "^", "1.3698996937805087981132601271383464336395263671875`50."}], 
-       "/", 
-       RowBox[{"(", 
-        RowBox[{
-        "0.3589386657045944682316775764039957011923057532031683162738200884827\
-6492581737`48.0297400088891", "+", 
-         RowBox[{
-         "1.432526468047825052447853586826419519469270983317699675875250228567\
-36494077976`48.190400530566855", " ", 
-          RowBox[{
-           RowBox[{"(", 
-            RowBox[{
-            "x", "^", 
-             "1.3698996937805087981132601271383464336395263671875`50."}], 
-            ")"}], "^", "d"}]}]}], ")"}]}], " ", 
-      RowBox[{"Print", "[", "\"\<Slope calculations attempt 3:\>\"", "]"}], " ", 
-      RowBox[{"finalCurvePrime", "[", "x_", "]"}]}], "=", 
-     RowBox[{
-      RowBox[{"D", "[", 
-       RowBox[{
-        RowBox[{"finalCurve", "[", 
-         RowBox[{"x", ",", "d"}], "]"}], ",", "x"}], "]"}], " ", 
-      RowBox[{"finalCurvePrime", "[", "kMidGray", "]"}], " ", 
-      RowBox[{"Solve", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"finalCurvePrime", "[", "kMidGray", "]"}], "==", 
-          "0.9697553989653070160481553207708290101528457763108801255222`47.\
-64541945852553"}], "}"}], ",", 
-        RowBox[{"{", "d", "}"}]}], "]"}]}]}]}], "*)"}], "\n"}], "\[IndentingNewLine]", 
+  RowBox[{"nlmToePrime", "[", "kMidGray", "]"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{"Print", "[", "\"\<Various constants:\>\"", "]"}], "\n", 
  RowBox[{"Print", "[", "\"\<linear min:\>\"", "]"}], "\n", 
  RowBox[{"N", "[", 
@@ -390,7 +337,7 @@ preceptually most important.\>\"", "]"}], "\n",
  RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
  RowBox[{
   RowBox[{"N", "[", 
-   RowBox[{"kLog2Max", ",", "20"}], "]"}], "\[IndentingNewLine]"}], "\n", 
+   RowBox[{"kLog2Max", ",", "20"}], "]"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{"Print", "[", "\"\<agxCurve min:\>\"", "]"}], "\n", 
  RowBox[{"agxCurve", "[", "kLinearMin", "]"}], "\n", 
  RowBox[{"Print", "[", "\"\<agxCurve middle grey:\>\"", "]"}], "\n", 
@@ -398,15 +345,15 @@ preceptually most important.\>\"", "]"}], "\n",
   RowBox[{"agxCurve", "[", "kMidGray", "]"}], "]"}], "\n", 
  RowBox[{"Print", "[", "\"\<agxCurve max:\>\"", "]"}], "\n", 
  RowBox[{"agxCurve", "[", "kLinearMax", "]"}]}], "Input",
- CellChangeTimes->{{3.953289950249071*^9, 3.953289950249071*^9}, {
-  3.95329005800902*^9, 3.953290072382702*^9}, {3.9532903274827175`*^9, 
-  3.95329039579179*^9}, {3.953290612346073*^9, 3.953290616368002*^9}, {
-  3.95329067570607*^9, 3.9532906763394356`*^9}, {3.953290804892063*^9, 
-  3.9532908646030006`*^9}, {3.95329093115374*^9, 3.9532909544999084`*^9}, {
-  3.953291047031801*^9, 3.953291076296852*^9}, {3.953294947623211*^9, 
-  3.9532949777100925`*^9}, {3.953295052457037*^9, 3.9532950955812244`*^9}},
- CellLabel->
-  "In[759]:=",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQnfLjeLRvyVtHGP3E0yETREvY82SD6Jyi910gOiKs
+cjKI5hDuXgei1xzjXg+iFWaUbQPRK+50gekT3XOOgWlv4XMguuB1yjUQ7fDf
+/yaIbmF5+AREX6jvfAE292PxGX8gLbLT7AKI5lnQdxNEp8z8dA9Ex8TsCAgA
+0gdEn4eD6AfzItJAdMd59UwQHRFRUAKiXbLuVIDoKeH89SD6CKsjmK5JrGgH
+0QKBCp0g2ocrphdE74gK7wPRPW+45oHohr5j88HyO9suguV3p94B0S27NR6A
+6C2uZc9ANAAnrZoo
+  "],
+ CellLabel->"In[1]:=",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
 },
 WindowSize->{1150.8, 1216.8},
 WindowMargins->{{317.4, Automatic}, {-4.7999999999999545`, Automatic}},
@@ -425,7 +372,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 13881, 388, 1591, "Input",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
+Cell[554, 20, 11925, 335, 1400, "Input",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
 }
 ]
 *)

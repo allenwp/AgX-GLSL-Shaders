@@ -45,27 +45,25 @@ Print["AgX tonemapping curve:"]
 Plot[agxCurve[x], {x, kLinearMin, kLinearMax}, 
  ScalingFunctions -> {"Log2", None}]
 
-Print["Timothy Lottes' tonemapping equation:"]
-Print["Generic soultion for b and c:"]
-tonemap[x_, a_] := (x^a)/((x^a) + c);
-Solve[{tonemap[midIn, a] == midOut}, {c}]
+Print["Part of Timothy Lottes' tonemapping equation for the toe:"]
+Print["Generic soultion for c:"]
+tonemapToe[x_, a_] := (x^a)/((x^a) + c);
+Solve[{tonemapToe[midIn, a] == midOut}, {c}]
 
-Print["Soultion for b and c with hardcoded mid grey and max:"]
-Solve[{tonemap[kMidGray, a] == kMidGray}, {c}]
+Print["Soultion for c with hardcoded mid grey:"]
+Solve[{tonemapToe[kMidGray, a] == kMidGray}, {c}]
 
-Print["NonlinearModelFit using solution for b and c from previous \
-step."]
-Print["This uses log2 scale from the minimum AgX value to linear \
-value of 2.0."]
-Print["This range was chosen because linear values below 2.0 are \
-preceptually most important."]
-data = Table[{x, agxCurve[x]}, {x, 
+Print["NonlinearModelFit using solution for c from previous step. \
+Range of toe only."]
+dataToe = 
+  Table[{x, agxCurve[x]}, {x, 
     2^Range[Log2[kLinearMin], Log2[kMidGray], 0.001]}];
-nlm = SetPrecision[
-   NonlinearModelFit[data, (x^a)/((x^a) + (41 9^(-1 + a) 50^-a)), {a},
-     x], 50];
-nlmfResult = Normal[nlm]
-Plot[nlmfResult, {x, kLinearMin, kLinearMax}, 
+nlmToe = 
+  SetPrecision[
+   NonlinearModelFit[
+    dataToe, (x^a)/((x^a) + (41 9^(-1 + a) 50^-a)), {a}, x], 15];
+nlmfToeResult = Normal[nlmToe]
+Plot[nlmfToeResult, {x, kLinearMin, kLinearMax}, 
  ScalingFunctions -> {"Log2", None}]
 
 (*Print["Slope \
@@ -75,21 +73,9 @@ grey:"] nlmfResultPrime[kMidGray]*)
 Print["Target slope at 0.18:"]
 N[D[agxCurve[x], x] /. x -> kMidGray]
 
-Print["Slope of flitted curve configuration:"]
-nlmPrime[x_] = D[nlm[x], x]
-nlmPrime[kMidGray]
-
-(*Print["Keep slope:"] finalCurve[x_,d_]=x^1.\
-3698996937805087981132601271383464336395263671875`50./(0.\
-3589386657045944682316775764039957011923057532031683162738200884827649\
-2581737`48.0297400088891+1.\
-4325264680478250524478535868264195194692709833176996758752502285673649\
-4077976`48.190400530566855 (x^1.\
-3698996937805087981132601271383464336395263671875`50.)^d) Print[\
-"Slope calculations attempt 3:"] finalCurvePrime[x_]=D[finalCurve[x,d],\
-x] finalCurvePrime[kMidGray] Solve[{finalCurvePrime[kMidGray]==0.\
-9697553989653070160481553207708290101528457763108801255222`47.\
-64541945852553},{d}]*)
+Print["Slope of flitted curve toe:"]
+nlmToePrime[x_] = D[nlmToe[x], x]
+nlmToePrime[kMidGray]
 
 Print["Various constants:"]
 Print["linear min:"]
