@@ -1,3 +1,7 @@
+(*
+Copyright (c) 2025 Allen Pestaluky
+Based on Timothy Lottes' tone curve and Reinhard tone curve.
+ *)
 << FunctionApproximations`
 
 kNormLog2Min = -10;
@@ -41,17 +45,23 @@ agxCurve[x_] :=
        kNormLog2Min);
    calculateSigmoid[normalizedX, kXPivot, kYPivot]^kSlope];
 
+Print[Style["Reference Curve", "Section"]]
 Print["AgX tonemapping curve:"]
 Plot[agxCurve[x], {x, kLinearMin, kLinearMax}, 
  ScalingFunctions -> {"Log2", None}]
 
+Print[Style["Toe Calculations", "Section"]]
 Print["Part of Timothy Lottes' tonemapping equation for the toe:"]
-Print["Generic soultion for c:"]
-tonemapToe[x_, a_] := (x^a)/((x^a) + c);
-Solve[{tonemapToe[midIn, a] == midOut}, {c}]
+Print["Generic soultion for toeA:"]
+tonemapToe[x_, contrast_] := (x^contrast)/((x^contrast) + toeA);
+FullSimplify[Solve[{tonemapToe[midIn, contrast] == midOut}, {toeA}]]
 
-Print["Soultion for c with hardcoded mid grey:"]
-Solve[{tonemapToe[kMidGray, a] == kMidGray}, {c}]
+Print["Soultion for toeA with hardcoded mid grey:"]
+SetPrecision[
+ FullSimplify[
+  Solve[{tonemapToe[N[kMidGray], contrast] == 
+     N[kMidGray]}, {toeA}]], 15]
+Print["(41/9 == 4.555 repeating)"]
 
 Print["NonlinearModelFit using solution for c from previous step. \
 Range of toe only."]
@@ -63,21 +73,53 @@ nlmToe =
    NonlinearModelFit[
     dataToe, (x^a)/((x^a) + (41 9^(-1 + a) 50^-a)), {a}, x], 15];
 nlmfToeResult = Normal[nlmToe]
-Plot[nlmfToeResult, {x, kLinearMin, kLinearMax}, 
- ScalingFunctions -> {"Log2", None}]
+Plot[nlmfToeResult, {x, kLinearMin, kMidGray}]
 
-(*Print["Slope \
-calculations:"] nlmfResultPrime[x_]=D[nlm[x],x] Print["Slope at mid \
-grey:"] nlmfResultPrime[kMidGray]*)
-
-Print["Target slope at 0.18:"]
+Print[Style["Slope Calculations", "Subsection"]]
+Print["Target slope at mid gray:"]
 N[D[agxCurve[x], x] /. x -> kMidGray]
 
 Print["Slope of flitted curve toe:"]
-nlmToePrime[x_] = D[nlmToe[x], x]
-nlmToePrime[kMidGray]
+N[D[nlmToe[x], x] /. x -> kMidGray]
 
-Print["Various constants:"]
+Print["Derivative function at midIn (slope at midIn):"]
+toeFunc[midIn_, toeContrast_, 
+   toeA_] = (midIn^toeContrast)/(midIn^toeContrast + toeA);
+FullSimplify[D[toeFunc[midIn, toeContrast, toeA], midIn]]
+
+Print[Style["Shoulder Calculations", "Section"]]
+Print["Part of Timothy Lottes' tonemapping equation for the shoulder:"]
+Print["Generic soultion for b and c:"]
+tonemapShoulder[x_, d_] := (x)/((x^d)*b + c);
+Solve[{tonemapShoulder[midIn, d] == midOut, 
+  tonemapShoulder[white, d] == maxVal}, {b, c}]
+
+Print["Soultion for b and c with hardcoded mid grey and max:"]
+Solve[{tonemapShoulder[kMidGray, d] == kMidGray, 
+  tonemapShoulder[kLinearMax, d] == 1}, {b, c}]
+
+Print["NonlinearModelFit using solution for b and c from previous \
+step. Range of shoulder only."]
+Print["This uses log2 scale from the minimum AgX value to linear \
+value of 2.0."]
+Print["This range was chosen because linear values below 2.0 are \
+preceptually most important."]
+dataShoulder = 
+  Table[{x, agxCurve[x]}, {x, 
+    2^Range[Log2[kMidGray], Log2[kLinearMax], 0.001]}];
+nlmShoulder = 
+  SetPrecision[
+   NonlinearModelFit[
+    dataShoulder, (x)/((x^d)*(-((
+          25^(-1 + d) (-25 + 288 Sqrt[2]))/((9/2)^d - 
+           2^(11 d/2) 9^d))) + ((-25 2^(11 d/2) 9^d + 
+         2^(11/2 - d) 9^(1 + d))/(
+        25 ((9/2)^d - 2^(11 d/2) 9^d)))), {d}, x], 15];
+nlmfShoulderResult = Normal[nlmShoulder]
+Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 
+ ScalingFunctions -> {"Log2", None}]
+
+Print[Style["Various constants:", "Section"]]
 Print["linear min:"]
 N[kLinearMin, 20]
 Print["linear max:"]
@@ -87,9 +129,9 @@ N[kLog2Min, 20]
 Print["log2 max:"]
 N[kLog2Max, 20]
 
-Print["agxCurve min:"]
+Print["agxCurve at min:"]
 agxCurve[kLinearMin]
-Print["agxCurve middle grey:"]
+Print["agxCurve at middle grey:"]
 N[agxCurve[kMidGray]]
-Print["agxCurve max:"]
+Print["agxCurve at max:"]
 agxCurve[kLinearMax]
