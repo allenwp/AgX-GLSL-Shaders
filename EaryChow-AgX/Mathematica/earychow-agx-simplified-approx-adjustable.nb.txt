@@ -61,9 +61,10 @@ SetPrecision[
  FullSimplify[
   Solve[{tonemapToe[N[kMidGray], contrast] == 
      N[kMidGray]}, {toeA}]], 15]
-Print["(41/9 == 4.555 repeating)"]
+Print["41/9 == 4.555 repeating, so this is equivalent to:"]
+FullSimplify[41/9* kMidGray^contrast]
 
-Print["NonlinearModelFit using solution for c from previous step. \
+Print["NonlinearModelFit using solution for toeA from previous step. \
 Range of toe only."]
 dataToe = 
   Table[{x, agxCurve[x]}, {x, 
@@ -71,7 +72,9 @@ dataToe =
 nlmToe = 
   SetPrecision[
    NonlinearModelFit[
-    dataToe, (x^a)/((x^a) + (41 9^(-1 + a) 50^-a)), {a}, x], 15];
+    dataToe, (x^
+       contrast)/((x^contrast) + (41 9^(-1 + contrast)
+          50^-contrast)), {contrast}, x], 15];
 nlmfToeResult = Normal[nlmToe]
 Plot[nlmfToeResult, {x, kLinearMin, kMidGray}]
 
@@ -80,41 +83,55 @@ Print["Target slope at mid gray:"]
 N[D[agxCurve[x], x] /. x -> kMidGray]
 
 Print["Slope of flitted curve toe:"]
-N[D[nlmToe[x], x] /. x -> kMidGray]
+D[nlmToe[x], x] /. x -> kMidGray
 
 Print["Derivative function at midIn (slope at midIn):"]
 toeFunc[midIn_, toeContrast_, 
    toeA_] = (midIn^toeContrast)/(midIn^toeContrast + toeA);
-FullSimplify[D[toeFunc[midIn, toeContrast, toeA], midIn]]
+slopeFunc[midIn, toeContrast] = 
+ FullSimplify[
+  D[toeFunc[midIn, toeContrast, 
+    41 9^(-1 + toeContrast) 50^-toeContrast], midIn]]
 
 Print[Style["Shoulder Calculations", "Section"]]
-Print["Part of Timothy Lottes' tonemapping equation for the shoulder:"]
-Print["Generic soultion for b and c:"]
-tonemapShoulder[x_, d_] := (x)/((x^d)*b + c);
-Solve[{tonemapShoulder[midIn, d] == midOut, 
-  tonemapShoulder[white, d] == maxVal}, {b, c}]
+tonemapShoulder[x_, midIn_, midOut_, white_, maxVal_, slope_, 
+   shoulder_, c_] := Module[{shoulderMaxVal, w, result},
+   (*toeA=-((midIn^toeContrast (-1+midOut))/midOut);
+   slope=(midIn^(-1+toeContrast) toeA toeContrast)/(midIn^toeContrast+
+   toeA)^2;*)
+   shoulderMaxVal = maxVal - midOut;
+   w = white - midIn;
+   w = w*w;
+   w = w/shoulderMaxVal;
+   w = w*slope;
+   result = x - midIn;
+   result = 
+    slope*result*(c + 
+        result/w)/(c + (result^shoulder*slope)/shoulderMaxVal);
+   result = result + midOut;
+   result
+   ];
+Print["Generic shoulder function with shoulder paramter:"]
+FullSimplify[
+ tonemapShoulder[x, midIn, midOut, white, maxVal, slope, shoulder, c]]
+Print["Solution for c such that input of white always results in \
+output of maxVal:"]
+FullSimplify[
+ Solve[{tonemapShoulder[white, midIn, midOut, white, maxVal, slope, 
+     shoulder, c] == maxVal}, {c}]]
 
-Print["Soultion for b and c with hardcoded mid grey and max:"]
-Solve[{tonemapShoulder[kMidGray, d] == kMidGray, 
-  tonemapShoulder[kLinearMax, d] == 1}, {b, c}]
-
-Print["NonlinearModelFit using solution for b and c from previous \
-step. Range of shoulder only."]
-Print["This uses log2 scale from the minimum AgX value to linear \
-value of 2.0."]
-Print["This range was chosen because linear values below 2.0 are \
-preceptually most important."]
+Print["NonlinearModelFit using solution for c from previous step. \
+Range of shoulder only."]
+Print["This uses log2 scale from the minimum AgX value to linear value\
+ of 2.0."]
+Print["This range was chosen because linear values below 2.\
+0 are preceptually most important."]
 dataShoulder = 
   Table[{x, agxCurve[x]}, {x, 
     2^Range[Log2[kMidGray], Log2[kLinearMax], 0.001]}];
 nlmShoulder = 
   SetPrecision[
-   NonlinearModelFit[
-    dataShoulder, (x)/((x^d)*(-((
-          25^(-1 + d) (-25 + 288 Sqrt[2]))/((9/2)^d - 
-           2^(11 d/2) 9^d))) + ((-25 2^(11 d/2) 9^d + 
-         2^(11/2 - d) 9^(1 + d))/(
-        25 ((9/2)^d - 2^(11 d/2) 9^d)))), {d}, x], 15];
+   NonlinearModelFit[dataShoulder, shoulder, {shoulder}, x], 15];
 nlmfShoulderResult = Normal[nlmShoulder]
 Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 
  ScalingFunctions -> {"Log2", None}]
