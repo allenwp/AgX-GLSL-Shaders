@@ -1,6 +1,7 @@
 (*
 Copyright (c) 2025 Allen Pestaluky
-Based on Timothy Lottes' tone curve and Reinhard tone curve.
+Based on Timothy Lottes' tone curve and Reinhard tone curve, \
+aims to match EaryChow's AgX tone curve.
  *)
 << FunctionApproximations`
 
@@ -62,8 +63,9 @@ SetPrecision[
  FullSimplify[
   Solve[{tonemapToe[N[kMidGray], contrast] == 
      N[kMidGray]}, {toeA}]], 15]
-Print["41/9 == 4.555 repeating, so this is equivalent to:"]
-FullSimplify[41/9* kMidGray^contrast]
+Print["41/9 == 4.555 repeating, so this is equivalent to: (41/9)*\!\(\
+\*SuperscriptBox[\(kMidGray\), \(contrast\)]\) or:"]
+(41/9)* (kMidGray^contrast)
 
 Print["NonlinearModelFit using solution for toeA from previous step. \
 Range of toe only."]
@@ -77,7 +79,9 @@ nlmToe =
        contrast)/((x^contrast) + (41 9^(-1 + contrast)
           50^-contrast)), {contrast}, x], 15];
 nlmfToeResult = Normal[nlmToe]
-toePlot = Plot[nlmfToeResult, {x, kLinearMin, kMidGray}];
+toePlot = 
+  Plot[nlmfToeResult, {x, kLinearMin, kMidGray}, 
+   ScalingFunctions -> {"Log2", None}];
 Show[toePlot, agxReferencePlot]
 
 Print[Style["Slope Calculations", "Subsection"]]
@@ -110,7 +114,8 @@ tonemapShoulder[x_, midIn_, midOut_, white_, maxVal_, slope_,
    w = w*w;
    w = w/shoulderMaxVal;
    w = w*slope;
-   result = x - midIn;
+   result = x;
+   result = result - midIn;
    result = 
     slope*result*(c + 
         result/w)/(c + (result^shoulder*slope)/shoulderMaxVal);
@@ -125,23 +130,24 @@ t of maxVal:"]
 FullSimplify[
  Solve[{tonemapShoulder[white, midIn, midOut, white, maxVal, slope, 
      shoulder, c] == maxVal}, {c}]]
-Print["Shoulder with hardcoded slope:"]
+Print["Shoulder with hardcoded parameters:"]
 hardcodedSlopeShoulder = 
  FullSimplify[
-  tonemapShoulder[x, kMidGray, kMidGray, kLinearMax, 1.0, (
-    41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
-      contrast)/(41 9^contrast + 9 50^contrast kMidGray^contrast)^2, 
-    shoulder, (-kLinearMax + 
-     kMidGray + (
-      41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
-        contrast)/(41 9^contrast + 
-        9 50^contrast kMidGray^contrast)^2 (-kMidGray + 1)^
-      shoulder)/(-kLinearMax + 
-     kMidGray + (
-      41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
-        contrast)/(41 9^contrast + 
-        9 50^contrast kMidGray^contrast)^2 (-kMidGray + 1))] /. 
-   contrast -> 1.25652780401490971051714495843043550849`15.]
+  tonemapShoulder[x, midIn, midOut, white, maxVal, (
+    contrast midIn^(-1 + contrast) toeA)/(midIn^contrast + toeA)^2, 
+    shoulder, (-maxVal + 
+     midOut + (
+      contrast midIn^(-1 + contrast)
+        toeA)/(midIn^contrast + toeA)^2 (-midIn + white)^
+      shoulder)/(-maxVal + 
+     midOut + (
+      contrast midIn^(-1 + contrast)
+        toeA)/(midIn^contrast + toeA)^2 (-midIn + 
+        white))] /. {toeA -> -((
+      kMidGray^1.25652780401490971051714495843043550849`15. (-1 + 
+         kMidGray))/kMidGray), midIn -> kMidGray, midOut -> kMidGray, 
+    white -> kLinearMax, maxVal -> 1.0, 
+    contrast -> 1.25652780401490971051714495843043550849`15.}]
 
 Print["NonlinearModelFit using solution for c from previous step and s\
 lope from above. Range of shoulder only."]
@@ -151,12 +157,12 @@ dataShoulder =
 nlmShoulder = 
   SetPrecision[
    NonlinearModelFit[dataShoulder, 
-    0.18` + (41^
-         shoulder (-0.18546350387260066` + 1.0303527992922261` x) + 
-        50^shoulder (2.898596760202988` + (-16.094890430384027` - 
-              0.0468050226500802` x) x))/(1.` 41^shoulder - 
-        15.637110171977595` 50^shoulder - 
-        18.618110906241984` (-9 + 50 x)^shoulder), {shoulder}, x], 15];
+    9/50 + (1.030352799292226` (-0.8042958789731098` + 
+        1.` (9/50 (-1 + 64 Sqrt[2]))^shoulder + 
+        0.04695538570826866` x) (-0.18` + 
+        1.` x))/(-0.7958439095456215` + 
+      1.` (9/50 (-1 + 64 Sqrt[2]))^shoulder + 
+      19.244849580788884` (-(9/50) + x)^shoulder), {shoulder}, x], 15];
 nlmfShoulderResult = FullSimplify[Normal[nlmShoulder]]
 shoulderPlot = 
   Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 

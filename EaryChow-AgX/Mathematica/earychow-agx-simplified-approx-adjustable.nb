@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     32005,        763]
-NotebookOptionsPosition[     31605,        748]
-NotebookOutlinePosition[     32045,        765]
-CellTagsIndexPosition[     32002,        762]
+NotebookDataLength[     33556,        789]
+NotebookOptionsPosition[     33173,        775]
+NotebookOutlinePosition[     33596,        791]
+CellTagsIndexPosition[     33553,        788]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,15 +21,18 @@ Notebook[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", "\[IndentingNewLine]", 
-   RowBox[{"Copyright", " ", 
-    RowBox[{"(", "c", ")"}], " ", "2025", " ", "Allen", " ", "Pestaluky", "\[IndentingNewLine]",
-     "Based", " ", "on", " ", "Timothy", " ", 
-    RowBox[{"Lottes", "'"}], " ", "tone", " ", "curve", " ", "and", " ", 
-    "Reinhard", " ", "tone", " ", 
-    RowBox[{"curve", "."}]}], "\[IndentingNewLine]", " ", "*)"}], 
+   RowBox[{
+    RowBox[{"Copyright", " ", 
+     RowBox[{"(", "c", ")"}], " ", "2025", " ", "Allen", " ", "Pestaluky", "\[IndentingNewLine]",
+      "Based", " ", "on", " ", "Timothy", " ", 
+     RowBox[{"Lottes", "'"}], " ", "tone", " ", "curve", " ", "and", " ", 
+     "Reinhard", " ", "tone", " ", "curve"}], ",", " ", 
+    RowBox[{"aims", " ", "to", " ", "match", " ", 
+     RowBox[{"EaryChow", "'"}], "s", " ", "AgX", " ", "tone", " ", 
+     RowBox[{"curve", "."}]}]}], "\[IndentingNewLine]", " ", "*)"}], 
   "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"<<", "FunctionApproximations`"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"<<", "FunctionApproximations`"}], "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"kNormLog2Min", "=", 
      RowBox[{"-", "10"}]}], ";"}], "\n", 
@@ -83,8 +86,7 @@ Cell[BoxData[
      RowBox[{"kMidGray", "^", 
       RowBox[{"(", 
        RowBox[{"Rationalize", "[", 
-        RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], 
-   "\[IndentingNewLine]", "\n", 
+        RowBox[{"1.0", "/", "2.4"}], "]"}], ")"}]}]}], ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"equationScale", "[", 
@@ -132,7 +134,7 @@ Cell[BoxData[
           RowBox[{"Rationalize", "[", 
            RowBox[{
             RowBox[{"-", "1"}], "/", "power"}], "]"}], ")"}]}]}]}], "]"}]}], 
-    ";"}], "\[IndentingNewLine]", "\n", 
+    ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"exponentialCurve", "[", 
      RowBox[{
@@ -149,7 +151,7 @@ Cell[BoxData[
             RowBox[{"(", 
              RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", 
           "scaleInput"}], ",", "power"}], "]"}]}], ")"}], "+", "yPivot"}]}], 
-   "\[IndentingNewLine]", "\n", 
+   "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"exponential", "[", 
      RowBox[{"x_", ",", "power_"}], "]"}], ":=", 
@@ -161,8 +163,7 @@ Cell[BoxData[
          RowBox[{"(", 
           RowBox[{"x", "^", "power"}], ")"}]}], ")"}], "^", 
        RowBox[{"(", 
-        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], 
-   "\[IndentingNewLine]", "\n", 
+        RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], "\n", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
      RowBox[{"calculateSigmoid", "[", 
@@ -188,7 +189,7 @@ Cell[BoxData[
         RowBox[{"exponentialCurve", "[", 
          RowBox[{
          "x", ",", "scaleValue", ",", "xPivot", ",", "yPivot", ",", "kPower", 
-          ",", "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+          ",", "kSlope"}], "]"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{
     RowBox[{
      RowBox[{"agxCurve", "[", "x_", "]"}], ":=", 
@@ -224,7 +225,7 @@ Cell[BoxData[
       RowBox[{"ScalingFunctions", "->", 
        RowBox[{"{", 
         RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}], ",", 
-      RowBox[{"PlotStyle", "->", "Gray"}]}], "]"}]}], "\n", "\[IndentingNewLine]", 
+      RowBox[{"PlotStyle", "->", "Gray"}]}], "]"}]}], "\[IndentingNewLine]", "\n", 
    RowBox[{"Print", "[", 
     RowBox[{"Style", "[", 
      RowBox[{"\"\<Toe Calculations\>\"", ",", "\"\<Section\>\""}], "]"}], 
@@ -252,7 +253,7 @@ toe:\>\"", "]"}], "\n",
        RowBox[{
         RowBox[{"tonemapToe", "[", 
          RowBox[{"midIn", ",", "contrast"}], "]"}], "==", "midOut"}], "}"}], ",", 
-      RowBox[{"{", "toeA", "}"}]}], "]"}], "]"}], "\[IndentingNewLine]", "\n", 
+      RowBox[{"{", "toeA", "}"}]}], "]"}], "]"}], "\n", "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", "\"\<Soultion for toeA with hardcoded mid grey:\>\"", "]"}], 
    "\n", 
@@ -269,12 +270,13 @@ toe:\>\"", "]"}], "\n",
           RowBox[{"N", "[", "kMidGray", "]"}]}], "}"}], ",", 
         RowBox[{"{", "toeA", "}"}]}], "]"}], "]"}], ",", "15"}], "]"}], "\[IndentingNewLine]", 
    RowBox[{
-   "Print", "[", "\"\<41/9 == 4.555 repeating, so this is equivalent to:\>\"",
-     "]"}], "\n", 
-   RowBox[{"FullSimplify", "[", 
-    RowBox[{
-     RowBox[{"41", "/", "9"}], "*", " ", 
-     SuperscriptBox["kMidGray", "contrast"]}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "Print", "[", "\"\<41/9 == 4.555 repeating, so this is equivalent to: \
+(41/9)*\!\(\*SuperscriptBox[\(kMidGray\), \(contrast\)]\) or:\>\"", "]"}], "\n", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"41", "/", "9"}], ")"}], "*", " ", 
+    RowBox[{"(", 
+     SuperscriptBox["kMidGray", "contrast"], ")"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", "\"\<NonlinearModelFit using solution for toeA from previous \
 step. Range of toe only.\>\"", "]"}], "\n", 
@@ -322,8 +324,10 @@ step. Range of toe only.\>\"", "]"}], "\n",
      RowBox[{"Plot", "[", 
       RowBox[{"nlmfToeResult", ",", 
        RowBox[{"{", 
-        RowBox[{"x", ",", "kLinearMin", ",", "kMidGray"}], "}"}]}], "]"}]}], 
-    ";"}], "\[IndentingNewLine]", 
+        RowBox[{"x", ",", "kLinearMin", ",", "kMidGray"}], "}"}], ",", 
+       RowBox[{"ScalingFunctions", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Log2\>\"", ",", "None"}], "}"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"Show", "[", 
     RowBox[{"toePlot", ",", "agxReferencePlot"}], "]"}], 
    "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -337,8 +341,7 @@ step. Range of toe only.\>\"", "]"}], "\n",
      RowBox[{"D", "[", 
       RowBox[{
        RowBox[{"agxCurve", "[", "x", "]"}], ",", "x"}], "]"}], "/.", 
-     RowBox[{"x", "->", "kMidGray"}]}], "]"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+     RowBox[{"x", "->", "kMidGray"}]}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"Print", "[", "\"\<Slope of flitted curve toe:\>\"", "]"}], "\n", 
    RowBox[{
     RowBox[{"D", "[", 
@@ -444,8 +447,9 @@ derivative:\>\"", "]"}], "\[IndentingNewLine]",
          RowBox[{"w", "/", "shoulderMaxVal"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"w", "=", 
          RowBox[{"w", "*", "slope"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"result", "=", 
-         RowBox[{"x", "-", "midIn"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"result", "=", "x"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"result", " ", "=", " ", 
+         RowBox[{"result", "-", "midIn"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"result", "=", 
          RowBox[{"slope", "*", "result", "*", 
           RowBox[{
@@ -484,79 +488,78 @@ in output of maxVal:\>\"", "]"}], "\[IndentingNewLine]",
            "slope", ",", "shoulder", ",", "c"}], "]"}], "==", "maxVal"}], 
        "}"}], ",", 
       RowBox[{"{", "c", "}"}]}], "]"}], "]"}], "\[IndentingNewLine]", 
-   RowBox[{"Print", "[", "\"\<Shoulder with hardcoded slope:\>\"", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "\"\<Shoulder with hardcoded parameters:\>\"", "]"}],
+    "\[IndentingNewLine]", 
    RowBox[{"hardcodedSlopeShoulder", "=", 
     RowBox[{"FullSimplify", "[", 
      RowBox[{
       RowBox[{"tonemapShoulder", "[", 
        RowBox[{
-       "x", ",", "kMidGray", ",", "kMidGray", ",", "kLinearMax", ",", "1.0", ",", 
+       "x", ",", "midIn", ",", "midOut", ",", "white", ",", "maxVal", ",", 
         FractionBox[
-         RowBox[{"41", " ", 
-          SuperscriptBox["9", 
-           RowBox[{"1", "+", "contrast"}]], " ", 
-          SuperscriptBox["50", "contrast"], " ", 
-          SuperscriptBox["kMidGray", 
+         RowBox[{"contrast", " ", 
+          SuperscriptBox["midIn", 
            RowBox[{
-            RowBox[{"-", "1"}], "+", "contrast"}]], " ", "contrast"}], 
+            RowBox[{"-", "1"}], "+", "contrast"}]], " ", "toeA"}], 
          SuperscriptBox[
           RowBox[{"(", 
            RowBox[{
-            RowBox[{"41", " ", 
-             SuperscriptBox["9", "contrast"]}], "+", 
-            RowBox[{"9", " ", 
-             SuperscriptBox["50", "contrast"], " ", 
-             SuperscriptBox["kMidGray", "contrast"]}]}], ")"}], "2"]], ",", 
-        "shoulder", ",", 
+            SuperscriptBox["midIn", "contrast"], "+", "toeA"}], ")"}], "2"]], 
+        ",", "shoulder", ",", 
         FractionBox[
          RowBox[{
-          RowBox[{"-", "kLinearMax"}], "+", "kMidGray", "+", 
+          RowBox[{"-", "maxVal"}], "+", "midOut", "+", 
           RowBox[{
            FractionBox[
-            RowBox[{"41", " ", 
-             SuperscriptBox["9", 
-              RowBox[{"1", "+", "contrast"}]], " ", 
-             SuperscriptBox["50", "contrast"], " ", 
-             SuperscriptBox["kMidGray", 
+            RowBox[{"contrast", " ", 
+             SuperscriptBox["midIn", 
               RowBox[{
-               RowBox[{"-", "1"}], "+", "contrast"}]], " ", "contrast"}], 
+               RowBox[{"-", "1"}], "+", "contrast"}]], " ", "toeA"}], 
             SuperscriptBox[
              RowBox[{"(", 
               RowBox[{
-               RowBox[{"41", " ", 
-                SuperscriptBox["9", "contrast"]}], "+", 
-               RowBox[{"9", " ", 
-                SuperscriptBox["50", "contrast"], " ", 
-                SuperscriptBox["kMidGray", "contrast"]}]}], ")"}], "2"]], " ", 
+               SuperscriptBox["midIn", "contrast"], "+", "toeA"}], ")"}], 
+             "2"]], " ", 
            SuperscriptBox[
             RowBox[{"(", 
              RowBox[{
-              RowBox[{"-", "kMidGray"}], "+", "1"}], ")"}], "shoulder"]}]}], 
+              RowBox[{"-", "midIn"}], "+", "white"}], ")"}], "shoulder"]}]}], 
          RowBox[{
-          RowBox[{"-", "kLinearMax"}], "+", "kMidGray", "+", 
+          RowBox[{"-", "maxVal"}], "+", "midOut", "+", 
           RowBox[{
            FractionBox[
-            RowBox[{"41", " ", 
-             SuperscriptBox["9", 
-              RowBox[{"1", "+", "contrast"}]], " ", 
-             SuperscriptBox["50", "contrast"], " ", 
-             SuperscriptBox["kMidGray", 
+            RowBox[{"contrast", " ", 
+             SuperscriptBox["midIn", 
               RowBox[{
-               RowBox[{"-", "1"}], "+", "contrast"}]], " ", "contrast"}], 
+               RowBox[{"-", "1"}], "+", "contrast"}]], " ", "toeA"}], 
             SuperscriptBox[
              RowBox[{"(", 
               RowBox[{
-               RowBox[{"41", " ", 
-                SuperscriptBox["9", "contrast"]}], "+", 
-               RowBox[{"9", " ", 
-                SuperscriptBox["50", "contrast"], " ", 
-                SuperscriptBox["kMidGray", "contrast"]}]}], ")"}], "2"]], " ", 
+               SuperscriptBox["midIn", "contrast"], "+", "toeA"}], ")"}], 
+             "2"]], " ", 
            RowBox[{"(", 
             RowBox[{
-             RowBox[{"-", "kMidGray"}], "+", "1"}], ")"}]}]}]]}], "]"}], "/.", 
-      RowBox[{
-      "contrast", "->", "1.25652780401490971051714495843043550849`15."}]}], 
-     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"-", "midIn"}], "+", "white"}], ")"}]}]}]]}], "]"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"toeA", "->", 
+         RowBox[{"-", 
+          FractionBox[
+           RowBox[{
+            
+            SuperscriptBox["kMidGray", 
+             "1.25652780401490971051714495843043550849`15."], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "kMidGray"}], ")"}]}], "kMidGray"]}]}],
+         ",", 
+        RowBox[{"midIn", "->", "kMidGray"}], ",", 
+        RowBox[{"midOut", "->", "kMidGray"}], ",", 
+        RowBox[{"white", "->", "kLinearMax"}], ",", 
+        RowBox[{"maxVal", "->", "1.0"}], ",", 
+        RowBox[{
+        "contrast", "->", "1.25652780401490971051714495843043550849`15."}]}], 
+       "}"}]}], "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
    "Print", "[", "\"\<NonlinearModelFit using solution for c from previous \
 step and slope from above. Range of shoulder only.\>\"", "]"}], "\[IndentingNewLine]", 
@@ -581,39 +584,47 @@ step and slope from above. Range of shoulder only.\>\"", "]"}], "\[IndentingNewL
       RowBox[{
        RowBox[{"NonlinearModelFit", "[", 
         RowBox[{"dataShoulder", ",", 
-         RowBox[{"0.18`", "\[VeryThinSpace]", "+", 
-          RowBox[{
-           RowBox[{"(", 
-            RowBox[{
+         RowBox[{
+          FractionBox["9", "50"], "+", 
+          FractionBox[
+           RowBox[{"1.030352799292226`", " ", 
+            RowBox[{"(", 
              RowBox[{
-              SuperscriptBox["41", "shoulder"], " ", 
+              RowBox[{"-", "0.8042958789731098`"}], "+", 
+              RowBox[{"1.`", " ", 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{
+                  FractionBox["9", "50"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"-", "1"}], "+", 
+                    RowBox[{"64", " ", 
+                    SqrtBox["2"]}]}], ")"}]}], ")"}], "shoulder"]}], "+", 
+              RowBox[{"0.04695538570826866`", " ", "x"}]}], ")"}], " ", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "0.18`"}], "+", 
+              RowBox[{"1.`", " ", "x"}]}], ")"}]}], 
+           RowBox[{
+            RowBox[{"-", "0.7958439095456215`"}], "+", 
+            RowBox[{"1.`", " ", 
+             SuperscriptBox[
               RowBox[{"(", 
                RowBox[{
-                RowBox[{"-", "0.18546350387260066`"}], "+", 
-                RowBox[{"1.0303527992922261`", " ", "x"}]}], ")"}]}], "+", 
-             RowBox[{
-              SuperscriptBox["50", "shoulder"], " ", 
+                FractionBox["9", "50"], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], "+", 
+                  RowBox[{"64", " ", 
+                   SqrtBox["2"]}]}], ")"}]}], ")"}], "shoulder"]}], "+", 
+            RowBox[{"19.244849580788884`", " ", 
+             SuperscriptBox[
               RowBox[{"(", 
-               RowBox[{"2.898596760202988`", "\[VeryThinSpace]", "+", 
-                RowBox[{
-                 RowBox[{"(", 
-                  RowBox[{
-                   RowBox[{"-", "16.094890430384027`"}], "-", 
-                   RowBox[{"0.0468050226500802`", " ", "x"}]}], ")"}], " ", 
-                 "x"}]}], ")"}]}]}], ")"}], "/", 
-           RowBox[{"(", 
-            RowBox[{
-             RowBox[{"1.`", " ", 
-              SuperscriptBox["41", "shoulder"]}], "-", 
-             RowBox[{"15.637110171977595`", " ", 
-              SuperscriptBox["50", "shoulder"]}], "-", 
-             RowBox[{"18.618110906241984`", " ", 
-              SuperscriptBox[
-               RowBox[{"(", 
-                RowBox[{
-                 RowBox[{"-", "9"}], "+", 
-                 RowBox[{"50", " ", "x"}]}], ")"}], "shoulder"]}]}], 
-            ")"}]}]}], ",", 
+               RowBox[{
+                RowBox[{"-", 
+                 FractionBox["9", "50"]}], "+", "x"}], ")"}], 
+              "shoulder"]}]}]]}], ",", 
          RowBox[{"{", "shoulder", "}"}], ",", "x"}], "]"}], ",", "15"}], 
       "]"}]}], ";"}], "\n", 
    RowBox[{"nlmfShoulderResult", "=", 
@@ -646,7 +657,7 @@ step and slope from above. Range of shoulder only.\>\"", "]"}], "\[IndentingNewL
     RowBox[{"kLog2Min", ",", "20"}], "]"}], "\n", 
    RowBox[{"Print", "[", "\"\<log2 max:\>\"", "]"}], "\n", 
    RowBox[{"N", "[", 
-    RowBox[{"kLog2Max", ",", "20"}], "]"}], "\[IndentingNewLine]", "\n", 
+    RowBox[{"kLog2Max", ",", "20"}], "]"}], "\n", "\[IndentingNewLine]", 
    RowBox[{"Print", "[", "\"\<agxCurve at min:\>\"", "]"}], "\n", 
    RowBox[{"agxCurve", "[", "kLinearMin", "]"}], "\n", 
    RowBox[{"Print", "[", "\"\<agxCurve at middle grey:\>\"", "]"}], "\n", 
@@ -742,13 +753,28 @@ step and slope from above. Range of shoulder only.\>\"", "]"}], "\[IndentingNewL
    3.954417442089123*^9}, {3.9544175398941536`*^9, 3.954417563230034*^9}, 
    3.9544176176003304`*^9, {3.9544177353671875`*^9, 3.9544177386309967`*^9}, {
    3.9544177849769783`*^9, 3.954417947329727*^9}, {3.9544180033819466`*^9, 
-   3.9544180208567524`*^9}},
+   3.9544180208567524`*^9}, {3.954418318013092*^9, 3.9544183209320946`*^9}, {
+   3.9544183512694206`*^9, 3.95441835325103*^9}, {3.9544184184059143`*^9, 
+   3.954418438261095*^9}, {3.9544186989479637`*^9, 3.954418706338402*^9}, {
+   3.954418760765581*^9, 3.954418840262491*^9}, {3.9544189670882072`*^9, 
+   3.9544190016010246`*^9}, 3.9544190710920544`*^9, {3.9544191138295116`*^9, 
+   3.9544191508441696`*^9}, {3.9544191876179886`*^9, 3.954419201052328*^9}, {
+   3.954419252559881*^9, 3.9544192554442005`*^9}, {3.954419350420019*^9, 
+   3.9544193595975304`*^9}, {3.954419391874502*^9, 3.9544194174054184`*^9}, {
+   3.9544194590570736`*^9, 3.954419470823267*^9}, 3.9544195542365875`*^9, {
+   3.954421894094736*^9, 3.9544219016674614`*^9}, {3.954421952078003*^9, 
+   3.9544219980467873`*^9}, {3.9544221514999847`*^9, 3.954422151608759*^9}, {
+   3.954422213316881*^9, 3.9544222728409576`*^9}, {3.954422332854841*^9, 
+   3.9544223336358185`*^9}, {3.954426485321207*^9, 3.954426499187752*^9}, {
+   3.954494721590969*^9, 3.954494724219652*^9}, {3.954495470395569*^9, 
+   3.9544954771779747`*^9}, 3.954501649642809*^9, {3.954501979474209*^9, 
+   3.954501981260929*^9}, {3.9545020207502975`*^9, 3.9545020462221546`*^9}, {
+   3.954502080440857*^9, 3.9545020904163685`*^9}},
  CellLabel->
-  "In[3983]:=",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
+  "In[6386]:=",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
 },
-WindowSize->{1134, 1216.8},
-WindowMargins->{{
-  Automatic, 574.8000000000002}, {-0.599999999999909, Automatic}},
+WindowSize->{1150.8, 1221.6},
+WindowMargins->{{Automatic, -4.799999999999727}, {Automatic, 0}},
 FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (December 26, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"1314a039-1bd9-d745-a688-c53e779c8ee4"
@@ -764,7 +790,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 31047, 726, 2561, "Input",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
+Cell[554, 20, 32615, 753, 2636, "Input",ExpressionUUID->"fade57e0-a462-4144-8e6d-c41313c69901"]
 }
 ]
 *)
