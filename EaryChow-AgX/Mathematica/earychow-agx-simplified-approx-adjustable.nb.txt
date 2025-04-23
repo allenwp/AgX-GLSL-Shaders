@@ -47,8 +47,9 @@ agxCurve[x_] :=
 
 Print[Style["Reference Curve", "Section"]]
 Print["AgX tonemapping curve:"]
-Plot[agxCurve[x], {x, kLinearMin, kLinearMax}, 
- ScalingFunctions -> {"Log2", None}]
+agxReferencePlot = 
+ Plot[agxCurve[x], {x, kLinearMin, kLinearMax}, 
+  ScalingFunctions -> {"Log2", None}, PlotStyle -> Gray]
 
 Print[Style["Toe Calculations", "Section"]]
 Print["Part of Timothy Lottes' tonemapping equation for the toe:"]
@@ -76,7 +77,8 @@ nlmToe =
        contrast)/((x^contrast) + (41 9^(-1 + contrast)
           50^-contrast)), {contrast}, x], 15];
 nlmfToeResult = Normal[nlmToe]
-Plot[nlmfToeResult, {x, kLinearMin, kMidGray}]
+toePlot = Plot[nlmfToeResult, {x, kLinearMin, kMidGray}];
+Show[toePlot, agxReferencePlot]
 
 Print[Style["Slope Calculations", "Subsection"]]
 Print["Target slope at mid gray:"]
@@ -86,19 +88,23 @@ Print["Slope of flitted curve toe:"]
 D[nlmToe[x], x] /. x -> kMidGray
 
 Print["Derivative function at midIn (slope at midIn):"]
-toeFunc[midIn_, toeContrast_, 
-   toeA_] = (midIn^toeContrast)/(midIn^toeContrast + toeA);
-slopeFunc[midIn, toeContrast] = 
- FullSimplify[
-  D[toeFunc[midIn, toeContrast, 
-    41 9^(-1 + toeContrast) 50^-toeContrast], midIn]]
+toeFunc[midIn_, contrast_, 
+   toeA_] = (midIn^contrast)/(midIn^contrast + toeA);
+FullSimplify[D[toeFunc[midIn, contrast, toeA], midIn]]
+
+Print["Sanity check of slope of fitted curve toe using general \
+derivative:"]
+slopeFunc[midIn_, contrast_, toeA_] := (
+  contrast midIn^(-1 + contrast) toeA)/(midIn^contrast + toeA)^2;
+slopeFunc[kMidGray, 
+  contrast, -((kMidGray^contrast (-1 + kMidGray))/kMidGray)] /. 
+ contrast -> 1.25652780401490971051714495843043550849`15.
 
 Print[Style["Shoulder Calculations", "Section"]]
 tonemapShoulder[x_, midIn_, midOut_, white_, maxVal_, slope_, 
    shoulder_, c_] := Module[{shoulderMaxVal, w, result},
-   (*toeA=-((midIn^toeContrast (-1+midOut))/midOut);
-   slope=(midIn^(-1+toeContrast) toeA toeContrast)/(midIn^toeContrast+
-   toeA)^2;*)
+   (*toeA=-((midIn^contrast (-1+midOut))/midOut);
+   slope=(midIn^(-1+contrast) toeA contrast)/(midIn^contrast+toeA)^2;*)
    shoulderMaxVal = maxVal - midOut;
    w = white - midIn;
    w = w*w;
@@ -114,27 +120,48 @@ tonemapShoulder[x_, midIn_, midOut_, white_, maxVal_, slope_,
 Print["Generic shoulder function with shoulder paramter:"]
 FullSimplify[
  tonemapShoulder[x, midIn, midOut, white, maxVal, slope, shoulder, c]]
-Print["Solution for c such that input of white always results in \
-output of maxVal:"]
+Print["Solution for c such that input of white always results in outpu\
+t of maxVal:"]
 FullSimplify[
  Solve[{tonemapShoulder[white, midIn, midOut, white, maxVal, slope, 
      shoulder, c] == maxVal}, {c}]]
+Print["Shoulder with hardcoded slope:"]
+hardcodedSlopeShoulder = 
+ FullSimplify[
+  tonemapShoulder[x, kMidGray, kMidGray, kLinearMax, 1.0, (
+    41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
+      contrast)/(41 9^contrast + 9 50^contrast kMidGray^contrast)^2, 
+    shoulder, (-kLinearMax + 
+     kMidGray + (
+      41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
+        contrast)/(41 9^contrast + 
+        9 50^contrast kMidGray^contrast)^2 (-kMidGray + 1)^
+      shoulder)/(-kLinearMax + 
+     kMidGray + (
+      41 9^(1 + contrast) 50^contrast kMidGray^(-1 + contrast)
+        contrast)/(41 9^contrast + 
+        9 50^contrast kMidGray^contrast)^2 (-kMidGray + 1))] /. 
+   contrast -> 1.25652780401490971051714495843043550849`15.]
 
-Print["NonlinearModelFit using solution for c from previous step. \
-Range of shoulder only."]
-Print["This uses log2 scale from the minimum AgX value to linear value\
- of 2.0."]
-Print["This range was chosen because linear values below 2.\
-0 are preceptually most important."]
+Print["NonlinearModelFit using solution for c from previous step and s\
+lope from above. Range of shoulder only."]
 dataShoulder = 
   Table[{x, agxCurve[x]}, {x, 
     2^Range[Log2[kMidGray], Log2[kLinearMax], 0.001]}];
 nlmShoulder = 
   SetPrecision[
-   NonlinearModelFit[dataShoulder, shoulder, {shoulder}, x], 15];
-nlmfShoulderResult = Normal[nlmShoulder]
-Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 
- ScalingFunctions -> {"Log2", None}]
+   NonlinearModelFit[dataShoulder, 
+    0.18` + (41^
+         shoulder (-0.18546350387260066` + 1.0303527992922261` x) + 
+        50^shoulder (2.898596760202988` + (-16.094890430384027` - 
+              0.0468050226500802` x) x))/(1.` 41^shoulder - 
+        15.637110171977595` 50^shoulder - 
+        18.618110906241984` (-9 + 50 x)^shoulder), {shoulder}, x], 15];
+nlmfShoulderResult = FullSimplify[Normal[nlmShoulder]]
+shoulderPlot = 
+  Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 
+   ScalingFunctions -> {"Log2", None}];
+Show[shoulderPlot, agxReferencePlot]
 
 Print[Style["Various constants:", "Section"]]
 Print["linear min:"]
