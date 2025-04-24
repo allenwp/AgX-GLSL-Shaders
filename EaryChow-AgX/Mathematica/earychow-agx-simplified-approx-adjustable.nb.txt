@@ -105,28 +105,21 @@ slopeFunc[kMidGray,
  contrast -> 1.25652780401490971051714495843043550849`15.
 
 Print[Style["Shoulder Calculations", "Section"]]
-tonemapShoulder[x_, midIn_, midOut_, white_, maxVal_, slope_, 
-   shoulder_, c_] := Module[{shoulderMaxVal, w, result},
-   (*toeA=-((midIn^contrast (-1+midOut))/midOut);
-   slope=(midIn^(-1+contrast) toeA contrast)/(midIn^contrast+toeA)^2;*)
+tonemapShoulder[xIn_, midIn_, midOut_, white_, maxVal_, slope_, 
+   shoulder_, c_] := Module[{x, shoulderMaxVal, w, result},
    shoulderMaxVal = maxVal - midOut;
-   w = white - midIn;
-   w = w*w;
-   w = w/shoulderMaxVal;
-   w = w*slope;
-   result = x;
-   result = result - midIn;
-   result = 
-    slope*result*(c + 
-        result/w)/(c + (result^shoulder*slope)/shoulderMaxVal);
-   result = result + midOut;
-   result
+   x = xIn;
+   x = x - midIn;
+   x = slope*
+     x*(shoulder + x/(c*slope))/(shoulder + (x*slope)/shoulderMaxVal);
+   x = x + midOut;
+   x
    ];
 Print["Generic shoulder function with shoulder paramter:"]
 FullSimplify[
  tonemapShoulder[x, midIn, midOut, white, maxVal, slope, shoulder, c]]
-Print["Solution for c such that input of white always results in outpu\
-t of maxVal:"]
+Print["Solution for c such that input of white always results in \
+output of maxVal:"]
 FullSimplify[
  Solve[{tonemapShoulder[white, midIn, midOut, white, maxVal, slope, 
      shoulder, c] == maxVal}, {c}]]
@@ -135,34 +128,31 @@ hardcodedSlopeShoulder =
  FullSimplify[
   tonemapShoulder[x, midIn, midOut, white, maxVal, (
     contrast midIn^(-1 + contrast) toeA)/(midIn^contrast + toeA)^2, 
-    shoulder, (-maxVal + 
-     midOut + (
+    shoulder, (midIn - white)^2/(
+    maxVal shoulder - 
+     midOut shoulder + (-1 + shoulder) (
       contrast midIn^(-1 + contrast)
-        toeA)/(midIn^contrast + toeA)^2 (-midIn + white)^
-      shoulder)/(-maxVal + 
-     midOut + (
-      contrast midIn^(-1 + contrast)
-        toeA)/(midIn^contrast + toeA)^2 (-midIn + 
+        toeA)/(midIn^contrast + toeA)^2 (midIn - 
         white))] /. {toeA -> -((
       kMidGray^1.25652780401490971051714495843043550849`15. (-1 + 
          kMidGray))/kMidGray), midIn -> kMidGray, midOut -> kMidGray, 
     white -> kLinearMax, maxVal -> 1.0, 
     contrast -> 1.25652780401490971051714495843043550849`15.}]
 
-Print["NonlinearModelFit using solution for c from previous step and s\
-lope from above. Range of shoulder only."]
+Print["NonlinearModelFit using solution for c from previous step and \
+slope from above. Range of shoulder only."]
 dataShoulder = 
   Table[{x, agxCurve[x]}, {x, 
     2^Range[Log2[kMidGray], Log2[kLinearMax], 0.001]}];
 nlmShoulder = 
   SetPrecision[
-   NonlinearModelFit[dataShoulder, 
-    9/50 + (1.030352799292226` (-0.8042958789731098` + 
-        1.` (9/50 (-1 + 64 Sqrt[2]))^shoulder + 
-        0.04695538570826866` x) (-0.18` + 
-        1.` x))/(-0.7958439095456215` + 
-      1.` (9/50 (-1 + 64 Sqrt[2]))^shoulder + 
-      19.244849580788884` (-(9/50) + x)^shoulder), {shoulder}, x], 15];
+   NonlinearModelFit[
+    dataShoulder, (-0.03863950675119501` + (0.20315284806837197` + 
+          0.06395043515086599` x) x + 
+       shoulder (-0.007433151244207792` + (1.0522377700878607` - 
+             0.06079158554343046` x) x))/(-0.22617500472268373` + 
+       shoulder + 1.2565278040149097` x), {shoulder}, x], 15];
+nlmShoulder["BestFitParameters"]
 nlmfShoulderResult = FullSimplify[Normal[nlmShoulder]]
 shoulderPlot = 
   Plot[nlmfShoulderResult, {x, kMidGray, kLinearMax}, 
