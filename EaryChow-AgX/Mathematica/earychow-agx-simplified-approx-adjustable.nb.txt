@@ -91,6 +91,10 @@ N[D[agxCurve[x], x] /. x -> kMidGray]
 Print["Slope of flitted curve toe:"]
 D[nlmToe[x], x] /. x -> kMidGray
 
+basicToe[x_] := (x^1.25)/((x^1.25) + (41 9^(-1 + 1.25) 50^-1.25));
+Print["Slope of 1.25 contrast toe:"]
+D[basicToe[x], x] /. x -> kMidGray
+
 Print["Derivative function at midIn (slope at midIn):"]
 toeFunc[midIn_, contrast_, 
    toeA_] = (midIn^contrast)/(midIn^contrast + toeA);
